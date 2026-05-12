@@ -1,6 +1,38 @@
 {
   "hosting": {
     "public": "public",
+    "redirects": [
+      {
+        "source": "/20x20-airlaid-cocktail-napkins",
+        "destination": "/8x8-airlaid-cocktail-napkins",
+        "type": 301
+      },
+      {
+        "source": "/20x20-airlaid-cocktail-napkins/",
+        "destination": "/8x8-airlaid-cocktail-napkins",
+        "type": 301
+      },
+      {
+        "source": "/40x40-airlaid-dinner-napkins",
+        "destination": "/16x16-airlaid-dinner-napkins",
+        "type": 301
+      },
+      {
+        "source": "/40x40-airlaid-dinner-napkins/",
+        "destination": "/16x16-airlaid-dinner-napkins",
+        "type": 301
+      },
+      {
+        "source": "/catalogue",
+        "destination": "/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf",
+        "type": 301
+      },
+      {
+        "source": "/catalogue/",
+        "destination": "/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf",
+        "type": 301
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
