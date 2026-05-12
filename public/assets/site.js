@@ -56,30 +56,3 @@ document.addEventListener('click', (event) => {
     dropdown.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', 'false');
   });
 });
-
-const siteHeader = document.querySelector('.site-header');
-const menuToggle = document.querySelector('.site-menu-toggle');
-const menuOverlay = document.querySelector('.site-menu-overlay');
-
-if (siteHeader && menuToggle && menuOverlay) {
-  const setMenuOpen = (open) => {
-    siteHeader.classList.toggle('menu-open', open);
-    menuToggle.setAttribute('aria-expanded', String(open));
-    menuOverlay.setAttribute('aria-hidden', String(!open));
-    document.documentElement.classList.toggle('menu-lock', open);
-  };
-
-  menuToggle.addEventListener('click', () => {
-    setMenuOpen(!siteHeader.classList.contains('menu-open'));
-  });
-
-  menuOverlay.addEventListener('click', (event) => {
-    if (event.target === menuOverlay || event.target.closest('a')) {
-      setMenuOpen(false);
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') setMenuOpen(false);
-  });
-}
