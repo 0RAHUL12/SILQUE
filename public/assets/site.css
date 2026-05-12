@@ -20,6 +20,7 @@ img { max-width: 100%; display: block; }
 .nav-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .nav-links a { color: rgba(255,255,255,.92); font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; padding: 8px 0; border-bottom: 2px solid transparent; }
 .nav-links a:hover, .nav-links a.active { color: #fff; border-bottom-color: var(--gold); }
+.nav-links a:focus-visible, .btn:focus-visible, .download-card:focus-visible, .social-icon:focus-visible, .footer-grid a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 .btn { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 2px; padding: 0 20px; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; border: 1px solid transparent; transition: transform .25s ease, opacity .25s ease; }
 .btn:hover { transform: translateY(-2px); }
 .btn-gold { background: var(--gold); color: var(--navy); }
@@ -83,9 +84,11 @@ p { margin: 0 0 14px; }
 .download-card span { color: var(--gold); text-transform: uppercase; letter-spacing: .13em; font-size: .72rem; font-weight: 700; }
 .download-card strong { color: var(--navy); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2vw, 1.85rem); line-height: 1.12; }
 .download-card em { color: #6e7d92; font-style: normal; font-size: .88rem; }
+.download-card b { width: fit-content; margin-top: 10px; padding: 10px 14px; background: var(--navy); color: #fff; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
 .download-card.accent { background: var(--navy); border-color: rgba(198,168,92,.42); }
 .download-card.accent strong { color: #fff; }
 .download-card.accent em { color: rgba(255,255,255,.7); }
+.download-card.accent b { background: var(--gold); color: var(--navy); }
 .contact-strip { background: var(--gold); padding: 38px 0; }
 .contact-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .contact-strip h2 { margin: 0; color: var(--navy); }
@@ -211,8 +214,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 @media (max-width: 860px) {
   .nav { min-height: 76px; flex-direction: row; align-items: center; padding: 8px 0; gap: 14px; }
   .site-header .brand-logo { width: 62px; height: 62px; }
-  .nav-links { flex: 1 1 auto; justify-content: flex-end; gap: 12px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links { flex: 1 1 auto; justify-content: flex-end; gap: 10px 14px; flex-wrap: wrap; overflow: visible; }
   .nav-links a { white-space: nowrap; font-size: .66rem; letter-spacing: .1em; }
   .hero-copy-panel { margin-left: 16px; }
   .hero { padding: 22px; }
@@ -220,11 +222,13 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 }
 @media (max-width: 520px) {
   .site-header .brand-logo { width: 56px; height: 56px; }
-  .nav-links { gap: 10px; }
+  .nav { align-items: flex-start; }
+  .nav-links { gap: 8px 10px; justify-content: flex-start; padding-top: 4px; }
   .nav-links a { font-size: .62rem; }
   .hero-copy-panel { margin-bottom: 64px; }
   .hero-copy-panel h1 { font-size: 2.45rem; }
   .contact-strip-inner { align-items: flex-start; }
+  .download-card { min-height: 170px; }
 }
 /* Final design polish */
 .quiet-details {
