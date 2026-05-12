@@ -1,5 +1,0 @@
-# https://silquetissues.com/
-User-agent: *
-Allow: /
-
-Sitemap: https://silquetissues.com/sitemap.xml
