@@ -35,6 +35,8 @@ dropdowns.forEach((dropdown) => {
   const toggle = dropdown.querySelector('.nav-drop-toggle');
   if (!toggle) return;
 
+  toggle.setAttribute('aria-haspopup', 'true');
+
   toggle.addEventListener('click', () => {
     const isOpen = dropdown.classList.contains('is-open');
     dropdowns.forEach((item) => {
@@ -51,6 +53,14 @@ dropdowns.forEach((dropdown) => {
 
 document.addEventListener('click', (event) => {
   if (event.target.closest('.nav-dropdown')) return;
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.remove('is-open');
+    dropdown.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
   dropdowns.forEach((dropdown) => {
     dropdown.classList.remove('is-open');
     dropdown.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', 'false');
