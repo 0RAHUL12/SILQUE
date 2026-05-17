@@ -1098,76 +1098,6 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
   border-bottom: 1px solid rgba(198,168,92,.55);
 }
 
-.contact-icon-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.contact-icon-link {
-  min-height: 104px;
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  grid-template-rows: auto auto;
-  align-items: center;
-  column-gap: 12px;
-  padding: 14px;
-  background: #fff;
-  border: 1px solid rgba(21,34,56,.10);
-  box-shadow: 0 10px 28px rgba(21,34,56,.045);
-}
-
-.contact-icon-link:hover {
-  border-color: rgba(198,168,92,.38);
-}
-
-.contact-icon-link span {
-  grid-row: 1 / span 2;
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #fff;
-}
-
-.contact-icon-link svg {
-  width: 23px;
-  height: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.contact-icon-link b {
-  color: var(--navy);
-  font-size: .76rem;
-  letter-spacing: .1em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.contact-icon-link small {
-  min-width: 0;
-  color: #66758a;
-  font-size: .78rem;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
-}
-
-.contact-icon-link.email span { background: #152238; }
-.contact-icon-link.whatsapp span { background: #1f8f63; }
-.contact-icon-link.instagram span { background: linear-gradient(135deg, #7b2ff7, #f94174 54%, #f9a826); }
-.contact-icon-link.maps span { background: #c6a85c; }
-
-.gst-line {
-  margin-top: 18px;
-}
-
 @media (max-width: 980px) {
   .contact-logo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1209,9 +1139,5 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
   .contact-logo-card strong,
   .contact-logo-card small {
     display: block;
-  }
-
-  .contact-icon-list {
-    grid-template-columns: 1fr;
   }
 }
