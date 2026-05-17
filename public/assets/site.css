@@ -1203,25 +1203,42 @@ h2,
   }
 
   .nav-dropdown {
-    position: static;
+    position: relative;
   }
 
   .nav-dropdown-menu {
-    top: calc(100% + 7px);
-    left: 0;
-    right: auto;
-    width: min(300px, calc(100vw - 24px));
+    display: none;
+    position: static;
+    width: 100%;
     min-width: 0;
-    max-width: calc(100vw - 24px);
-    transform: translateY(8px);
+    max-width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    transform: none;
+    box-shadow: 0 14px 34px rgba(8,7,14,.26);
   }
 
   .nav-dropdown-menu a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    background: rgba(21,17,31,.04);
+    border-radius: 6px;
     white-space: normal;
   }
 
   .nav-dropdown.is-open .nav-dropdown-menu {
-    transform: translateY(0);
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav-dropdown.is-open {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 
   .hero-copy-panel {
@@ -1261,69 +1278,6 @@ h2,
 
 /* Desktop hover animation layer */
 @media (hover: hover) and (pointer: fine) {
-  .cursor-aura {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 9999;
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(198,168,92,.78);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-    transition: width .2s ease, height .2s ease, opacity .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
-    box-shadow: 0 0 0 7px rgba(198,168,92,.08), 0 0 28px rgba(198,168,92,.18);
-    backdrop-filter: blur(1px);
-  }
-
-  .cursor-aura::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    transform: translate(-50%, -50%);
-  }
-
-  .cursor-aura.is-visible {
-    opacity: 1;
-  }
-
-  .cursor-aura.is-hovering {
-    width: 58px;
-    height: 58px;
-    border-color: rgba(198,168,92,.95);
-    background: rgba(198,168,92,.10);
-    box-shadow: 0 0 0 11px rgba(198,168,92,.08), 0 0 42px rgba(198,168,92,.28);
-  }
-
-  .cursor-aura.is-pressed {
-    width: 26px;
-    height: 26px;
-    background: rgba(198,168,92,.18);
-  }
-
-  .cursor-effects .visual-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: .86;
-    background: radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(198,168,92,.20), rgba(198,168,92,.06) 14%, transparent 34%);
-    mix-blend-mode: screen;
-    transition: opacity .2s ease;
-  }
-
-  .cursor-effects .hero-copy-panel {
-    z-index: 2;
-  }
-
   .btn,
   .nav-links .nav-link,
   .nav-drop-toggle,
@@ -1472,10 +1426,6 @@ h2,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-aura {
-    display: none;
-  }
-
   .btn::before {
     display: none;
   }
