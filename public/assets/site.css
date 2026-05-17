@@ -1203,16 +1203,21 @@ h2,
   }
 
   .nav-dropdown {
-    position: relative;
+    position: static;
   }
 
   .nav-dropdown-menu {
     top: calc(100% + 7px);
     left: 0;
     right: auto;
-    min-width: min(250px, calc(100vw - 24px));
+    width: min(300px, calc(100vw - 24px));
+    min-width: 0;
     max-width: calc(100vw - 24px);
     transform: translateY(8px);
+  }
+
+  .nav-dropdown-menu a {
+    white-space: normal;
   }
 
   .nav-dropdown.is-open .nav-dropdown-menu {
