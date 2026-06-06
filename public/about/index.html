@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -22,10 +22,341 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-YM0HS25N9N');
-  </script></head>
+  </script>
+  <style>
+    /* ── PAGE-SPECIFIC STYLE DECORATIONS ── */
+    
+    .ab-intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(198,168,92,.12);
+      border: 1px solid rgba(198,168,92,.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .ab-intro-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+      padding: clamp(54px, 8vw, 104px) 0;
+    }
+    .ab-intro-content h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 20px;
+    }
+    .ab-intro-content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .ab-intro-image {
+      position: relative;
+    }
+    .ab-intro-image img {
+      width: 100%;
+      border-radius: 2px;
+      box-shadow: 0 16px 38px rgba(21, 34, 56, 0.08);
+      border: 1px solid var(--line);
+    }
+    /* Decorative shadow card behind image */
+    .ab-intro-image::after {
+      content: "";
+      position: absolute;
+      inset: 12px -12px -12px 12px;
+      border: 1px solid rgba(198,168,92,.3);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Trust Pillars Grid */
+    .ab-pillars-section {
+      background: var(--white);
+      border-block: 1px solid var(--line);
+      padding: clamp(60px, 9vw, 110px) 0;
+    }
+    .ab-pillars-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto clamp(36px, 6vw, 64px);
+    }
+    .ab-pillars-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    }
+    .ab-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .ab-pillar-card {
+      display: flex;
+      gap: 20px;
+      background: var(--ivory);
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--gold);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ab-pillar-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px rgba(21, 34, 56, 0.06);
+    }
+    .ab-pillar-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(198, 168, 92, 0.12);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ab-pillar-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ab-pillar-info h3 {
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .ab-pillar-info p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* Comparison Section */
+    .ab-comp-section {
+      padding: clamp(60px, 9vw, 110px) 0;
+      background: var(--ivory);
+    }
+    .ab-comp-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto clamp(36px, 6vw, 56px);
+    }
+    .ab-comp-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    }
+    .ab-comp-table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 38px rgba(21, 34, 56, 0.04);
+      background: var(--white);
+    }
+    .ab-comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 800px;
+    }
+    .ab-comp-table th, .ab-comp-table td {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+    .ab-comp-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .ab-comp-table th:first-child {
+      color: var(--gold);
+    }
+    .ab-comp-table td:first-child {
+      font-weight: 700;
+      color: var(--navy);
+      background: rgba(21, 34, 56, 0.02);
+    }
+    .ab-comp-table tr:hover td {
+      background: rgba(198, 168, 92, 0.03);
+    }
+    .ab-comp-table td.highlight {
+      font-weight: 600;
+      color: var(--navy);
+      border-inline: 1px solid rgba(198,168,92,.15);
+      background: rgba(198, 168, 92, 0.04);
+    }
+    .ab-comp-table th.highlight {
+      background: #1d2b42;
+      color: #fff;
+      border-inline: 1px solid rgba(198,168,92,.25);
+      border-bottom: 3px solid var(--gold);
+    }
+    .ab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ab-badge.success {
+      background: rgba(31, 143, 99, 0.1);
+      color: #1f8f63;
+    }
+    .ab-badge.warning {
+      background: rgba(198, 168, 92, 0.12);
+      color: #a88b45;
+    }
+    .ab-badge.danger {
+      background: rgba(220, 53, 69, 0.08);
+      color: #dc3545;
+    }
+
+    /* Transparency & Verification Card */
+    .ab-verif-section {
+      padding: clamp(60px, 9vw, 110px) 0;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+    .ab-verif-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 72px);
+      align-items: center;
+    }
+    .ab-verif-card {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.9);
+      padding: clamp(32px, 5vw, 48px);
+      border: 1px solid rgba(198, 168, 92, 0.35);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 42px rgba(21, 34, 56, 0.12);
+    }
+    .ab-verif-card::before {
+      content: "";
+      position: absolute;
+      top: 0; right: 0;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(198, 168, 92, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ab-verif-card h3 {
+      color: var(--white);
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 14px;
+    }
+    .ab-verif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ab-verif-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+      font-size: 0.92rem;
+    }
+    .ab-verif-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .ab-verif-label {
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 500;
+    }
+    .ab-verif-value {
+      color: var(--white);
+      text-align: right;
+      font-weight: 600;
+    }
+    .ab-verif-value a {
+      color: var(--gold);
+      border-bottom: 1px dashed rgba(198, 168, 92, 0.5);
+      transition: color .2s, border-color .2s;
+    }
+    .ab-verif-value a:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    .ab-verif-info h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 18px;
+    }
+    .ab-verif-info p {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .ab-verif-check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .ab-verif-check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .ab-verif-check-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(31, 143, 99, 0.12);
+      color: #1f8f63;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ab-verif-check-dot svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 860px) {
+      .ab-intro-container, .ab-pillars-grid, .ab-verif-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .ab-intro-image::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="brand-link" href="/" aria-label="SILQUE home"><img class="brand-logo" src="/silque-header-lockup.png?v=20260522-pixacut-revert" alt="SILQUE" width="234" height="66" decoding="async"/></a><button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="/">HOME</a><a class="nav-link" href="/airlaid-napkins">ABOUT AIRLAID</a><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">PRODUCTS</button><div class="nav-dropdown-menu"><a href="/8x8-airlaid-cocktail-napkins">8x8 Cocktail Napkin</a><a href="/16x16-airlaid-dinner-napkins">16x16 Dinner Napkin</a><a href="/airlaid-pocket-napkins">Pocket Cutlery Napkin</a></div></div><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">DOWNLOADS</button><div class="nav-dropdown-menu"><a href="/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf" download>Catalogue</a></div></div><a class="nav-link active" href="/about">ABOUT US</a><a class="nav-link" href="/contact">CONTACT US</a></nav></div></header>
   <main>
+    <!-- ── IMMERSIVE HERO WITH SLIDER ── -->
     <section class="visual-hero inner-visual-hero">
       <div class="hero-media hero-slider" data-hero-slider>
         <img class="hero-slide is-active" src="/silque-page-bangalore-bulk-supply.webp" alt="SILQUE airlaid napkin supply for hospitality buyers" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
@@ -34,49 +365,216 @@
         <img class="hero-slide" data-src="/silque-hero-multi-format-airlaid-napkins.webp" alt="SILQUE airlaid napkin formats" width="1536" height="1024" loading="lazy" decoding="async" />
       </div>
       <div class="hero-copy-panel">
-        <div class="eyebrow">About Us</div>
+        <div class="ab-intro-badge">SILQUE Standard</div>
         <h1>About SILQUE</h1>
-        <p>SILQUE is a Bengaluru-based airlaid napkin company focused on refined single-use table presentation for professional hospitality.</p>
+        <p>Premium airlaid napkin formats crafted in Bengaluru for high-end B2B hospitality, banquets, and fine dining settings across India.</p>
       </div>
     </section>
 
+    <!-- ── BRAND VISION SECTION ── -->
     <section class="about-vision-section" data-reveal>
       <div class="container about-vision-wrap">
         <div>
           <div class="eyebrow">Our Vision</div>
-          <h2>A premium experience that feels considered from the first touch.</h2>
+          <h2>Redefining single-use table presentation.</h2>
         </div>
         <blockquote>
-          "Our vision is to redefine what people expect from tissues and napkins by delivering products that feel softer, look more elegant, perform better, and bring a truly premium experience to every table and space."
+          "We founded SILQUE with a singular focus: to elevate the guest experience. By combining the luxury weight of linen with the hygienic convenience of single-use material, we help hospitality leaders run pristine services without operational overhead."
         </blockquote>
       </div>
     </section>
 
-    <section class="premium-table-section" data-reveal>
-      <div class="container premium-table-grid">
-        <div>
-          <div class="eyebrow">What We Do</div>
-          <h2>Focused airlaid napkin supply for hospitality buyers.</h2>
-          <p>SILQUE supplies premium airlaid napkin formats for hotels, restaurants, cafes, caterers, events, banquets, corporates, and distributors. Our range is focused on three professional service needs: 8x8 cocktail napkins, 16x16 dinner napkins, and pocket cutlery napkins.</p>
-          <p>We help buyers choose the right format based on service style, table presentation, quantity, colour requirement, delivery city, and sample requirement. The goal is simple: a napkin that looks premium, performs reliably, and fits the workflow of real hospitality service.</p>
+    <!-- ── BRAND NARRATIVE SECTION ── -->
+    <section class="section ab-intro-section" data-reveal>
+      <div class="container ab-intro-container">
+        <div class="ab-intro-content">
+          <div class="eyebrow">Why We Exist</div>
+          <h2>Bridging the gap between luxury and utility.</h2>
+          <p>Traditional woven linen requires heavy laundry operations, water consumption, sorting, pressing, and is prone to wear. Standard paper napkins, on the other hand, shred instantly and fail to match the grandeur of a fine dining setup.</p>
+          <p>SILQUE premium airlaid napkins provide the perfect B2B solution. Crafted from 60-75 GSM dry-laid fluff pulp, our napkins have a tactile linen-like texture, exceptional absorption speed, and hold crisp decorative folds. We help luxury hotels, caterers, and venues deliver consistent luxury at every cover.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Order Samples on WhatsApp</a>
+            <a class="btn btn-light" href="/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf" download>Download Catalogue</a>
+          </div>
         </div>
-        <img src="/silque-products-overview-card.webp" alt="SILQUE premium airlaid napkin range for hospitality" width="1536" height="1024" loading="lazy" decoding="async" />
+        <div class="ab-intro-image">
+          <img src="/silque-hero-multi-format-airlaid-napkins.webp" alt="SILQUE airlaid napkin range close-up" width="1536" height="1024" loading="lazy" decoding="async" />
+        </div>
       </div>
     </section>
 
-    <section class="home-product-section" data-reveal-group>
+    <!-- ── THE PILLARS OF TRUST ── -->
+    <section class="ab-pillars-section" data-reveal-group>
       <div class="container">
-        <div class="eyebrow">Why Customers Trust Us</div>
-        <h2>Clear, reachable, and consistent.</h2>
-        <div class="home-product-grid compact-card-grid">
-          <article class="home-product-card" data-reveal><span>Focused Range</span><p>Three practical airlaid napkin formats for beverage service, dinner service, and cutlery presentation.</p></article>
-          <article class="home-product-card" data-reveal><span>Hospitality Fit</span><p>Suitable for restaurants, hotels, banquets, events, catering, cafes, and distributor enquiries.</p></article>
-          <article class="home-product-card" data-reveal><span>Direct Support</span><p>Email, WhatsApp, Instagram, LinkedIn, and Google Business Maps are visible so customers can verify the same business entity.</p></article>
+        <div class="ab-pillars-head">
+          <div class="eyebrow">Our Trust Pillars</div>
+          <h2>Why hospitality teams rely on SILQUE.</h2>
         </div>
+        <div class="ab-pillars-grid">
+          <div class="ab-pillar-card" data-reveal>
+            <div class="ab-pillar-icon">
+              <!-- Factory icon -->
+              <svg viewBox="0 0 24 24"><path d="M22 21H2V3l7 4v5l7-4v4l6-3v13z"/><path d="M17 13h2v3h-2zM12 15h2v3h-2zM7 17h2v2H7z"/></svg>
+            </div>
+            <div class="ab-pillar-info">
+              <h3>Precision Manufacturing</h3>
+              <p>Produced in state-of-the-art facilities using dry-laid air forming technology. We ensure uniform GSM thickness, texture, and strength across every batch.</p>
+            </div>
+          </div>
+          <div class="ab-pillar-card" data-reveal>
+            <div class="ab-pillar-icon">
+              <!-- Sparkles/Softness icon -->
+              <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M12 3l3 4.5M12 3L9 7.5M12 21l3-4.5M12 21l-3-4.5M3 12l4.5 3M3 12l4.5-3M21 12l-4.5 3M21 12l-4.5-3"/></svg>
+            </div>
+            <div class="ab-pillar-info">
+              <h3>Lint-Free Cleanliness</h3>
+              <p>Unlike ordinary paper tissues that leave tiny white fibers on glasses, cutlery, or guests' clothing, SILQUE napkins are 100% lint-free and dust-free.</p>
+            </div>
+          </div>
+          <div class="ab-pillar-card" data-reveal>
+            <div class="ab-pillar-icon">
+              <!-- Recycle/Eco icon -->
+              <svg viewBox="0 0 24 24"><path d="M2 12h5v5H2zM17 12h5v5h-5zM9.5 3.5L12 2l2.5 1.5V6h-5z"/><path d="M12 6v6M12 12l-5 5M12 12l5 5"/></svg>
+            </div>
+            <div class="ab-pillar-info">
+              <h3>Ecological Accountability</h3>
+              <p>Made from responsibly sourced, certified wood pulp. Our napkins are 100% biodegradable and compostable, returning to nature cleanly.</p>
+            </div>
+          </div>
+          <div class="ab-pillar-card" data-reveal>
+            <div class="ab-pillar-icon">
+              <!-- Logistics / Box icon -->
+              <svg viewBox="0 0 24 24"><path d="M21 7.5L12 3 3 7.5 12 12z"/><path d="M12 12v9.5M3 7.5v9L12 21M21 7.5v9L12 21"/></svg>
+            </div>
+            <div class="ab-pillar-info">
+              <h3>B2B Operational Focus</h3>
+              <p>We supply hotels, banquets, and caterers directly. Custom branding, reliable logistics, and dedicated account support are standard parts of our B2B service.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PERFORMANCE COMPARISON CHART ── -->
+    <section class="ab-comp-section" data-reveal>
+      <div class="container">
+        <div class="ab-comp-head">
+          <div class="eyebrow">Performance Matrix</div>
+          <h2>Compare the differences.</h2>
+          <p>How SILQUE airlaid napkins perform against linen and standard 2-ply tissues on key hospitality variables.</p>
+        </div>
+        <div class="ab-comp-table-wrapper">
+          <table class="ab-comp-table">
+            <thead>
+              <tr>
+                <th>Service Variable</th>
+                <th class="highlight">SILQUE Airlaid</th>
+                <th>Traditional Linen</th>
+                <th>Standard Tissue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Aesthetic & Feel</strong></td>
+                <td class="highlight">Matte linen-like feel; elegant drape</td>
+                <td>Premium, but prone to wrinkles</td>
+                <td>Thin, cheap look; tears easily</td>
+              </tr>
+              <tr>
+                <td><strong>Wet Strength (Linting)</strong></td>
+                <td class="highlight"><span class="ab-badge success">Zero Lint</span></td>
+                <td>Varies (can lint as it wears)</td>
+                <td><span class="ab-badge danger">High Lint</span></td>
+              </tr>
+              <tr>
+                <td><strong>Absorbency Rate</strong></td>
+                <td class="highlight">Absorbs 6x its weight in seconds</td>
+                <td>Slow if starch-heavy</td>
+                <td>Soaks through instantly</td>
+              </tr>
+              <tr>
+                <td><strong>Setup & Laundry Cost</strong></td>
+                <td class="highlight"><span class="ab-badge success">Zero Laundry</span></td>
+                <td>High laundry, sorting, pressing</td>
+                <td>Low initial cost, high wastage</td>
+              </tr>
+              <tr>
+                <td><strong>Hygiene Standards</strong></td>
+                <td class="highlight">100% fresh, untouched fold</td>
+                <td>Prone to storage dampness/odor</td>
+                <td>Sanitary, but lacks utility</td>
+              </tr>
+              <tr>
+                <td><strong>Custom Brand Printing</strong></td>
+                <td class="highlight">Crisp, non-bleeding custom print</td>
+                <td>Expensive embroidery or screen</td>
+                <td>Bleeds and blurs easily</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TRANSPARENCY & VERIFICATION SECTION ── -->
+    <section class="ab-verif-section" data-reveal>
+      <div class="container ab-verif-grid">
+        <div class="ab-verif-info">
+          <div class="eyebrow">Verified B2B Entity</div>
+          <h2>Committed to absolute transparency.</h2>
+          <p>In high-volume B2B hospitality procurement, you need a partner you can track, visit, and verify. SILQUE is a registered commercial brand under SILQUE TISSUES. Our physical office, tax registration, and communication channels are entirely open for corporate audit and inspection.</p>
+          <div class="ab-verif-check-list">
+            <div class="ab-verif-check-item">
+              <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>Registered GSTIN entity in Karnataka</span>
+            </div>
+            <div class="ab-verif-check-item">
+              <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>Physical Koramangala office open for partners</span>
+            </div>
+            <div class="ab-verif-check-item">
+              <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>FSC-Certified raw wood pulp sourcing</span>
+            </div>
+          </div>
+        </div>
+        <div class="ab-verif-card">
+          <h3>SILQUE Credentials</h3>
+          <div class="ab-verif-list">
+            <div class="ab-verif-item">
+              <span class="ab-verif-label">Legal Name</span>
+              <span class="ab-verif-value">SILQUE TISSUES</span>
+            </div>
+            <div class="ab-verif-item">
+              <span class="ab-verif-label">GSTIN</span>
+              <span class="ab-verif-value">29AFXFS1361J1Z8</span>
+            </div>
+            <div class="ab-verif-item">
+              <span class="ab-verif-label">Headquarters</span>
+              <span class="ab-verif-value"><a href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">Koramangala, Bengaluru</a></span>
+            </div>
+            <div class="ab-verif-item">
+              <span class="ab-verif-label">Primary Email</span>
+              <span class="ab-verif-value"><a href="mailto:info@silquetissues.com">info@silquetissues.com</a></span>
+            </div>
+            <div class="ab-verif-item">
+              <span class="ab-verif-label">Helpline</span>
+              <span class="ab-verif-value"><a href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">+91 91224 28064</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BOTTOM CTA STRIP ── -->
+    <section class="contact-strip" data-reveal>
+      <div class="container contact-strip-inner">
+        <h2>Experience the SILQUE difference firsthand.</h2>
+        <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Request sample pack</a>
       </div>
     </section>
   </main>
   <footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img class="brand-logo" src="/silque-logo-square.png?v=20260519-ux-favicon" alt="SILQUE logo" width="320" height="320" loading="lazy" decoding="async"/><p>SILQUE airlaid napkins for premium hospitality.</p><p><a class="footer-map-link" href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">15, 3rd Cross, 80 Feet Road, Koramangala 6th Block, Bengaluru 560095.</a></p><p><a href="mailto:info@silquetissues.com">info@silquetissues.com</a></p><div class="footer-social"><a class="social-icon" href="https://www.instagram.com/silque_airlaidnapkins/" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2"></circle></svg></a><a class="social-icon" href="https://in.linkedin.com/company/silque" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5V19"></path><path d="M6.5 6.5h.01"></path><path d="M11 19v-9.5"></path><path d="M11 13.4c0-2.2 1.4-4 3.7-4 2.1 0 3.3 1.4 3.3 4V19"></path></svg></a><a class="social-icon" href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on Google Maps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></a></div></div><div class="footer-nav-compact"><details class="footer-group"><summary>Products</summary><ul><li><a href="/8x8-airlaid-cocktail-napkins">8x8 Cocktail Napkin</a></li><li><a href="/16x16-airlaid-dinner-napkins">16x16 Dinner Napkin</a></li><li><a href="/airlaid-pocket-napkins">Pocket Cutlery Napkin</a></li></ul></details><details class="footer-group"><summary>Company</summary><ul><li><a href="/about">About Us</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/airlaid-napkins">What Is Airlaid</a></li></ul></details><details class="footer-group"><summary>Connect</summary><ul><li><a href="mailto:info@silquetissues.com">Email</a></li><li><a href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="https://www.instagram.com/silque_airlaidnapkins/" target="_blank" rel="me noopener noreferrer">Instagram</a></li><li><a href="https://in.linkedin.com/company/silque" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li><li><a href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">Google Business Maps</a></li></ul></details></div></div><div class="footer-bar"><div class="container">&copy; 2026 SILQUE | GSTIN: 29AFXFS1361J1Z8</div></div></footer>
   <script src="/assets/site.js?v=20260522-immersive-header"></script>
-</body>
+ </body>
 </html>
