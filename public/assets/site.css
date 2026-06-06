@@ -2860,3 +2860,276 @@ body.quote-modal-open {
     transform: translateY(10px);
   }
 }
+
+/* What is Airlaid page - Visual Infographics & Comparison Styles */
+.comparison-container {
+  overflow-x: auto;
+  margin-top: 28px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.comparison-table th, 
+.comparison-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.comparison-table th {
+  background: var(--navy);
+  color: var(--gold);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.comparison-table td b {
+  color: var(--navy);
+}
+
+.comparison-table tr:hover td {
+  background: rgba(216, 195, 165, 0.04);
+}
+
+.comparison-table .highlight {
+  background: rgba(216, 195, 165, 0.08);
+  font-weight: 700;
+  border-left: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Absorbency Chart Styles */
+.chart-wrapper {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--white);
+  padding: 28px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.chart-bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 60px;
+  align-items: center;
+  gap: 20px;
+}
+
+.chart-label {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.9rem;
+}
+
+.chart-track {
+  height: 12px;
+  background: #f0ebe4;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-fill {
+  height: 100%;
+  background: var(--navy);
+  border-radius: 6px;
+  transition: width 1s ease-in-out;
+}
+
+.chart-fill.airlaid-fill {
+  background: linear-gradient(90deg, var(--navy), var(--gold));
+}
+
+.chart-value {
+  font-weight: 800;
+  color: var(--navy);
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+/* Manufacturing Process Infographic */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.process-step {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.process-step:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.process-number {
+  position: absolute;
+  top: -16px;
+  left: 24px;
+  background: var(--navy);
+  color: var(--gold);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.process-step h3 {
+  margin-top: 10px;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+
+.process-step p {
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Responsive Overrides */
+@media (max-width: 860px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .chart-bar-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .chart-value {
+    text-align: left;
+    margin-top: -4px;
+  }
+}
+
+/* B2B Redesign - What is Airlaid page additional styles */
+.b2b-applications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.application-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 32px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.application-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.application-card h3 {
+  font-size: 1.25rem;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.application-card ul {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.application-card li {
+  margin-bottom: 8px;
+}
+
+/* Eco Benefits styles */
+.eco-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.eco-benefit-card {
+  background: var(--white);
+  border: 1px solid rgba(31, 143, 99, 0.15) !important;
+  border-top: 3px solid rgba(31, 143, 99, 0.5) !important;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(31, 143, 99, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eco-benefit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(31, 143, 99, 0.08);
+}
+
+.eco-benefit-card h3 {
+  color: #1f8f63 !important;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.eco-benefit-card p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .b2b-applications-grid,
+  .eco-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card action link styling for high-conversion B2B CTA */
+.card-action-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--gold);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.card-action-link:hover {
+  border-bottom-color: var(--gold);
+  padding-left: 4px;
+}
+
+
