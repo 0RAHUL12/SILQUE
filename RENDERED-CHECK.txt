@@ -1,0 +1,35 @@
+Content check vs https://silquetissues.com/
+==========================================
+Generated: 2026-06-05 (re-verified)
+
+Live URL:  https://silquetissues.com/
+Local URL: http://127.0.0.1:8765/
+
+Result: FILES MATCH (byte-identical homepage, CSS, JS, logos)
+
+Verified matches:
+- Homepage HTML: 18915 bytes (identical SHA256)
+- CSS: 75650 bytes, version 20260522-immersive-header
+- JS: 20695 bytes, version 20260522-immersive-header
+- Header logo file: silque-header-lockup.png (13186 bytes)
+- Footer logo file: silque-logo-square.png (42823 bytes)
+
+Homepage content (same on live and local):
+- Title: Premium Airlaid Napkins Supplier in Bangalore | Silque
+- Header logo: /silque-header-lockup.png (wide horizontal logo)
+- Hero H1: Premium Airlaid Napkins
+- Hero text: Cloth-like airlaid napkins for hotels, restaurants...
+
+IMPORTANT - why preview can still LOOK different:
+1. Wrong folder: open ONLY C:\Users\rahul\Desktop\web\public
+   Do NOT open public-nonwww-backup or public-www-backup (old square logo version).
+2. Wrong preview method: use Preview Website.bat or http://127.0.0.1:8765/
+   Do NOT double-click index.html (breaks images/CSS).
+3. Browser cache: press Ctrl+Shift+R on the local preview tab.
+4. Homepage vs other pages: only homepage has body class "header-demo"
+   (slightly different header styling - same on live and local).
+
+To re-sync from live: run sync-from-live.ps1
+To verify match:       run verify-match.ps1
+
+Note: www.silquetissues.com now matches non-www. Backup www folder is outdated.

@@ -1,0 +1,28 @@
+WWW live website verification report
+Generated: 2026-05-11 03:33:20
+Live site checked: https://www.silquetissues.com/
+Local folder: C:\Users\rahul\Desktop\web\public
+
+Local files: 10
+Byte matches to live: 10
+Byte mismatches: 0
+Fetch errors: 0
+Internal references checked: 11
+Missing internal references: 0
+Served matches: 10
+Served mismatches: 0
+Served errors: 0
+
+
+Matched files
+=============
+favicon.ico | 285478 bytes | 43cd70802a16ca77 | https://www.silquetissues.com/favicon.ico
+favicon.png | 148975 bytes | 8de08adf23e3c2ff | https://www.silquetissues.com/favicon.png
+index.html | 39078 bytes | dc82a8dd5c4852df | https://www.silquetissues.com/
+robots.txt | 100 bytes | c70cc10f231df03f | https://www.silquetissues.com/robots.txt
+silque-hero-pyramid-plate.png | 1931772 bytes | 1fa709fb6b118d54 | https://www.silquetissues.com/silque-hero-pyramid-plate.png
+silque-logo-square.png | 148975 bytes | 8de08adf23e3c2ff | https://www.silquetissues.com/silque-logo-square.png
+silque-product-cocktail.png | 2714614 bytes | 7eec4fd3fd439063 | https://www.silquetissues.com/silque-product-cocktail.png
+silque-product-dinner.png | 2233361 bytes | 391997952c2f5be2 | https://www.silquetissues.com/silque-product-dinner.png
+silque-product-pocket.png | 2206756 bytes | 1d780a5bfb722384 | https://www.silquetissues.com/silque-product-pocket.png
+sitemap.xml | 268 bytes | 82aafdf242a690eb | https://www.silquetissues.com/sitemap.xml

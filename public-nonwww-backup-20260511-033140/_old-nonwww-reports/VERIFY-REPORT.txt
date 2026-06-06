@@ -1,0 +1,82 @@
+Silque website verification report
+Generated: 2026-05-11 03:15:20
+Live site: https://silquetissues.com/
+Local folder: C:\Users\rahul\Desktop\web
+
+Live files/pages checked: 59
+Already matched: 59
+Fixed from live: 0
+Local public files checked: 59
+Internal references checked: 894
+Missing internal references: 0
+Extra/unmatched local files: 0
+Local mismatches after direct check: 0
+Fetch issues: 3
+
+Fetch issues
+============
+('https://silquetissues.com/manifest.json', 404, 'Not Found')
+('https://silquetissues.com/browserconfig.xml', 404, 'Not Found')
+('https://silquetissues.com/404.html', 404, 'Not Found')
+
+Checked live records
+====================
+20x20-airlaid-cocktail-napkins/index.html | 13564 bytes | 52810f37ab006369 | https://silquetissues.com/20x20-airlaid-cocktail-napkins
+40x40-airlaid-dinner-napkins/index.html | 13558 bytes | 7c61df976a769571 | https://silquetissues.com/40x40-airlaid-dinner-napkins
+about/index.html | 10095 bytes | f38a0010be51e3c1 | https://silquetissues.com/about
+airlaid-napkin-manufacturer-bangalore/index.html | 14168 bytes | 3ef409344bfce2f5 | https://silquetissues.com/airlaid-napkin-manufacturer-bangalore
+airlaid-napkin-manufacturer-india/index.html | 12490 bytes | 2c21fa02ff97e715 | https://silquetissues.com/airlaid-napkin-manufacturer-india
+airlaid-napkins-for-caterers/index.html | 11906 bytes | ce3c716ef2fdc9f1 | https://silquetissues.com/airlaid-napkins-for-caterers
+airlaid-napkins-for-distributors/index.html | 11894 bytes | 854849e7f4bea945 | https://silquetissues.com/airlaid-napkins-for-distributors
+airlaid-napkins-for-events-banquets/index.html | 12045 bytes | 59b0ecc01787aca8 | https://silquetissues.com/airlaid-napkins-for-events-banquets
+airlaid-napkins-for-hotels/index.html | 12140 bytes | cc0d3ca6bf9381ac | https://silquetissues.com/airlaid-napkins-for-hotels
+airlaid-napkins-for-restaurants/index.html | 11952 bytes | c880e1d194a30501 | https://silquetissues.com/airlaid-napkins-for-restaurants
+airlaid-napkins/index.html | 12517 bytes | 921ff9bb4d6a0372 | https://silquetissues.com/airlaid-napkins
+airlaid-pocket-napkins/index.html | 13542 bytes | 6fc336cb12c4b721 | https://silquetissues.com/airlaid-pocket-napkins
+assets/site.css | 19225 bytes | 39a9bdf3a219e948 | https://silquetissues.com/assets/site.css
+assets/site.js | 1091 bytes | 73efb540a18d07fd | https://silquetissues.com/assets/site.js
+contact/index.html | 8889 bytes | 7a03c238962333c7 | https://silquetissues.com/contact
+custom-printed-airlaid-napkins/index.html | 13652 bytes | 2efed386bdd1af4a | https://silquetissues.com/custom-printed-airlaid-napkins
+disposable-luxury-restaurant-napkins/index.html | 12391 bytes | 0767dde7b95918a0 | https://silquetissues.com/disposable-luxury-restaurant-napkins
+faq/index.html | 11828 bytes | 869981ac83778b81 | https://silquetissues.com/faq
+favicon-48.png | 2077 bytes | 82cbe93d0ca55305 | https://silquetissues.com/favicon-48.png
+favicon-96.png | 7680 bytes | 9c03ca8bcb115d98 | https://silquetissues.com/favicon-96.png
+favicon.ico | 4703 bytes | 8366dc701c7510c5 | https://silquetissues.com/favicon.ico
+favicon.png | 62449 bytes | 12fa1a1a632bc1f9 | https://silquetissues.com/favicon.png
+hospitality-bulk-enquiries/index.html | 12525 bytes | b6880893ad675e96 | https://silquetissues.com/hospitality-bulk-enquiries
+hotel-napkin-wholesale-suppliers-bangalore/index.html | 12519 bytes | 39ccd80a735a8b31 | https://silquetissues.com/hotel-napkin-wholesale-suppliers-bangalore
+index.html | 29291 bytes | d7eef52d1dea75ad | https://silquetissues.com/
+industries/index.html | 9112 bytes | c7d210a5d409300a | https://silquetissues.com/industries
+llms.txt | 11811 bytes | 7e1ea276d0f19b48 | https://silquetissues.com/llms.txt
+products/index.html | 15193 bytes | 5cbf8737d9a5e9b8 | https://silquetissues.com/products
+robots.txt | 151 bytes | 85b6ac60eb7cf3c8 | https://silquetissues.com/robots.txt
+silque-airlaid-material-macro-texture.webp | 113596 bytes | de5e744c5f90a2da | https://silquetissues.com/silque-airlaid-material-macro-texture.webp
+silque-banquet-pocket-cutlery-napkins.webp | 71522 bytes | f436944ee3a51a7d | https://silquetissues.com/silque-banquet-pocket-cutlery-napkins.webp
+silque-bulk-airlaid-napkin-supply.webp | 61652 bytes | d748ffda0fe135d7 | https://silquetissues.com/silque-bulk-airlaid-napkin-supply.webp
+silque-colour-pocket-range.webp | 104216 bytes | e163ef18ea18b861 | https://silquetissues.com/silque-colour-pocket-range.webp
+silque-colour-range-stacks.webp | 157818 bytes | 54ce249fd2e74615 | https://silquetissues.com/silque-colour-range-stacks.webp
+silque-colour-sample-fan.webp | 150540 bytes | b05fe6e8c0d6167e | https://silquetissues.com/silque-colour-sample-fan.webp
+silque-generated-cocktail-detail.webp | 69982 bytes | 22de507c00f9cc1c | https://silquetissues.com/silque-generated-cocktail-detail.webp
+silque-generated-pocket-detail.webp | 54786 bytes | 0878600195c0a34d | https://silquetissues.com/silque-generated-pocket-detail.webp
+silque-hero-multi-format-airlaid-napkins.webp | 78122 bytes | d099233686193db9 | https://silquetissues.com/silque-hero-multi-format-airlaid-napkins.webp
+silque-hero-pyramid-plate.webp | 27940 bytes | 91a0196e191f8bf9 | https://silquetissues.com/silque-hero-pyramid-plate.webp
+silque-hotel-guest-towel-airlaid-napkins.webp | 45634 bytes | 6b155d294042db0b | https://silquetissues.com/silque-hotel-guest-towel-airlaid-napkins.webp
+silque-hotel-room-service-airlaid-napkin.webp | 60882 bytes | cb3afc73ab6d5646 | https://silquetissues.com/silque-hotel-room-service-airlaid-napkin.webp
+silque-logo-square.png | 62449 bytes | 12fa1a1a632bc1f9 | https://silquetissues.com/silque-logo-square.png
+silque-og-image.jpg | 119927 bytes | 80251e4b505f2ebb | https://silquetissues.com/silque-og-image.jpg
+silque-page-airlaid-texture-zoom.webp | 57456 bytes | 6dea7ce4994bba11 | https://silquetissues.com/silque-page-airlaid-texture-zoom.webp
+silque-page-bangalore-bulk-supply.webp | 67952 bytes | 2ea70cdee52ca57e | https://silquetissues.com/silque-page-bangalore-bulk-supply.webp
+silque-page-cocktail-closeup.webp | 61654 bytes | cbfe8d54ce335b2a | https://silquetissues.com/silque-page-cocktail-closeup.webp
+silque-page-custom-print-plate.webp | 20642 bytes | 4933a7c2fd4b6180 | https://silquetissues.com/silque-page-custom-print-plate.webp
+silque-page-dinner-table-detail.webp | 27470 bytes | 899cdef8c93233e5 | https://silquetissues.com/silque-page-dinner-table-detail.webp
+silque-page-pocket-cutlery-detail.webp | 61742 bytes | 6fe6a07ff35abe48 | https://silquetissues.com/silque-page-pocket-cutlery-detail.webp
+silque-product-cocktail.webp | 71700 bytes | cbcf4a2a960da88d | https://silquetissues.com/silque-product-cocktail.webp
+silque-product-dinner.webp | 44102 bytes | 899fa3d4e9ea79a5 | https://silquetissues.com/silque-product-dinner.webp
+silque-product-pocket.webp | 41616 bytes | f6b9d6fb1e0ab0a0 | https://silquetissues.com/silque-product-pocket.webp
+silque-products-cocktail-card.webp | 48368 bytes | a4061c0420fcdc43 | https://silquetissues.com/silque-products-cocktail-card.webp
+silque-products-custom-card.webp | 38708 bytes | 40ad5c2932c6f6c1 | https://silquetissues.com/silque-products-custom-card.webp
+silque-products-dinner-card.webp | 18884 bytes | c62eb2e47b597e81 | https://silquetissues.com/silque-products-dinner-card.webp
+silque-products-overview-card.webp | 66282 bytes | 293d78f600a0f378 | https://silquetissues.com/silque-products-overview-card.webp
+silque-products-pocket-card.webp | 35962 bytes | 9341825d65a33364 | https://silquetissues.com/silque-products-pocket-card.webp
+site.webmanifest | 371 bytes | 6bb4e3e0a2c95900 | https://silquetissues.com/site.webmanifest
+sitemap.xml | 3296 bytes | b4ca3b4ed474b289 | https://silquetissues.com/sitemap.xml

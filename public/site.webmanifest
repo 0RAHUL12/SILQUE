@@ -1,0 +1,24 @@
+{
+  "name": "SILQUE",
+  "short_name": "SILQUE",
+  "icons": [
+    {
+      "src": "/favicon-48.png?v=20260519-ux-favicon",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-96.png?v=20260519-ux-favicon",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png?v=20260519-ux-favicon",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#152238",
+  "background_color": "#f5f3ef",
+  "display": "standalone"
+}
