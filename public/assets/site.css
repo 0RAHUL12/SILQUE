@@ -3132,4 +3132,82 @@ body.quote-modal-open {
   padding-left: 4px;
 }
 
+/* Footer FAQ Toggle styling */
+.footer-faq-container {
+  border-top: 1px solid rgba(198,168,92,0.18);
+  padding: 32px 0 16px;
+  margin-top: 24px;
+  text-align: center;
+}
+.footer-faq-toggle-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid var(--gold);
+  min-height: 40px;
+  border-radius: 2px;
+  padding: 0 24px;
+  font-size: .74rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+.footer-faq-toggle-btn:hover {
+  background: var(--gold);
+  color: #101827;
+  transform: translateY(-1px);
+}
+.footer-faq-toggle-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+.footer-faq-content {
+  display: none;
+  margin-top: 32px;
+  border-top: 1px dashed rgba(198,168,92,0.15);
+  padding-top: 32px;
+  text-align: left;
+}
+.footer-faq-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  color: rgba(255,255,255,0.76);
+  line-height: 1.6;
+}
+.footer-faq-title {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 28px;
+  text-align: center;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+}
+.footer-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 48px;
+}
+@media (max-width: 860px) {
+  .footer-faq-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .footer-faq-container {
+    padding: 24px 0 8px;
+  }
+}
+.footer-faq-item h4 {
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.footer-faq-item p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+}
+
+
 
