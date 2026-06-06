@@ -22,126 +22,593 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-YM0HS25N9N');
-  </script></head>
+  </script>
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    /* Hero intro badge */
+    .al-intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(198,168,92,.12);
+      border: 1px solid rgba(198,168,92,.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    /* Four-point navigator strip */
+    .al-nav-strip {
+      background: var(--navy);
+      position: sticky;
+      top: 76px;
+      z-index: 40;
+      border-bottom: 1px solid rgba(198,168,92,.2);
+    }
+    .al-nav-inner {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 0;
+    }
+    .al-nav-inner::-webkit-scrollbar { display: none; }
+    .al-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      color: rgba(255,255,255,.6);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 700;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      text-decoration: none;
+    }
+    .al-nav-link:hover {
+      color: var(--gold);
+      border-bottom-color: rgba(198,168,92,.4);
+    }
+    .al-nav-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(198,168,92,.15);
+      color: var(--gold);
+      font-size: .7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Point container */
+    .al-point {
+      padding: clamp(60px, 9vw, 110px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .al-point:last-of-type { border-bottom: none; }
+    .al-point-head {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(16px, 4vw, 48px);
+      margin-bottom: clamp(32px, 5vw, 56px);
+    }
+    .al-point-num {
+      font-family: Georgia, serif;
+      font-size: clamp(3.6rem, 9vw, 7rem);
+      font-weight: 700;
+      color: rgba(21,34,56,.08);
+      line-height: 1;
+      flex-shrink: 0;
+      user-select: none;
+      margin-top: -8px;
+    }
+    .al-point-meta { flex: 1; }
+    .al-point-meta .eyebrow { margin-bottom: 6px; }
+    .al-point-meta h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      margin-bottom: 12px;
+    }
+    .al-point-meta > p {
+      font-size: .95rem;
+      max-width: 680px;
+      color: var(--text);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── POINT 1: Manufacturing — 3-step visual flow ── */
+    .al-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 36px;
+    }
+    .al-step {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 28px 24px 24px;
+      position: relative;
+    }
+    .al-step-num {
+      font-family: Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .al-step h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .al-step p {
+      font-size: .84rem;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0;
+    }
+    .al-step-arrow {
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .al-step-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold);
+      stroke-width: 2;
+      fill: none;
+    }
+    .al-step:last-child .al-step-arrow { display: none; }
+
+    /* vs tissue strip */
+    .al-vs-strip {
+      margin-top: 28px;
+      background: var(--navy);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .al-vs-strip p {
+      color: rgba(255,255,255,.75);
+      font-size: .84rem;
+      margin: 0;
+      flex: 1;
+      min-width: 200px;
+    }
+    .al-vs-strip strong { color: var(--gold); }
+
+    /* ── POINT 2: Properties — stat cards + comparison table ── */
+    .al-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 36px;
+    }
+    .al-stat {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .al-stat-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 12px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .al-stat-value {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .al-stat-label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #7a8799;
+    }
+
+    /* Absorbency bar chart */
+    .al-absorb {
+      margin-top: 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 28px;
+    }
+    .al-absorb-title {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #7a8799;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .al-bar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 90px;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .al-bar-row:last-child { margin-bottom: 0; }
+    .al-bar-label { font-size: .82rem; color: var(--text); font-weight: 600; }
+    .al-bar-label.is-silque { color: var(--navy); font-weight: 800; }
+    .al-bar-track {
+      height: 10px;
+      background: rgba(21,34,56,.06);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .al-bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      background: rgba(21,34,56,.2);
+    }
+    .al-bar-fill.is-silque {
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+    }
+    .al-bar-val {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: right;
+    }
+    .al-bar-val.is-silque { color: var(--navy); }
+
+    /* Three-column compare table */
+    .al-compare {
+      margin-top: 28px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+    }
+    .al-compare table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .84rem;
+      background: var(--white);
+    }
+    .al-compare th, .al-compare td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+    }
+    .al-compare thead th {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 600;
+    }
+    .al-compare thead th.is-silque { color: var(--gold); }
+    .al-compare tbody tr:last-child td { border-bottom: none; }
+    .al-compare .row-label { font-weight: 700; color: var(--navy); }
+    .al-compare .is-silque { background: rgba(198,168,92,.06); font-weight: 600; }
+    .al-compare .tick { color: #1e9e6a; font-size: 1rem; }
+    .al-compare .cross { color: #c0392b; font-size: 1rem; }
+
+    /* ── POINT 3: Application — icon tile grid ── */
+    .al-app-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 36px;
+    }
+    .al-app-tile {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 28px 22px 24px;
+      transition: border-color .25s, transform .25s;
+    }
+    .al-app-tile:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .al-app-icon {
+      width: 40px;
+      height: 40px;
+      stroke: var(--navy);
+      stroke-width: 1.5;
+      fill: none;
+      margin-bottom: 16px;
+    }
+    .al-app-tile h3 {
+      font-size: .95rem;
+      margin-bottom: 8px;
+    }
+    .al-app-tile ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .al-app-tile li {
+      font-size: .8rem;
+      color: var(--text);
+      padding: 4px 0;
+      border-top: 1px solid var(--line);
+      line-height: 1.4;
+    }
+    .al-app-tile li:first-child { border-top: none; }
+
+    /* ── POINT 4: Eco — big stat + three cards ── */
+    .al-eco-hero {
+      margin-top: 36px;
+      background: var(--navy);
+      padding: clamp(28px, 5vw, 48px);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+    }
+    .al-eco-big-num {
+      font-family: Georgia, serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .al-eco-big-label {
+      color: rgba(255,255,255,.8);
+      font-size: clamp(.84rem, 1.5vw, 1rem);
+      line-height: 1.5;
+      max-width: 460px;
+    }
+    .al-eco-big-label strong { color: #fff; }
+    .al-eco-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 2px;
+    }
+    .al-eco-card {
+      background: var(--white);
+      border: 1px solid rgba(30,158,106,.2);
+      border-top: 3px solid rgba(30,158,106,.55);
+      padding: 24px 20px;
+      transition: transform .25s;
+    }
+    .al-eco-card:hover { transform: translateY(-3px); }
+    .al-eco-card-icon {
+      width: 32px;
+      height: 32px;
+      stroke: #1e9e6a;
+      stroke-width: 1.5;
+      fill: none;
+      margin-bottom: 12px;
+    }
+    .al-eco-card h3 {
+      font-size: .95rem;
+      color: #1a7a52;
+      margin-bottom: 6px;
+    }
+    .al-eco-card p {
+      font-size: .8rem;
+      line-height: 1.5;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .al-steps { grid-template-columns: 1fr; gap: 2px; }
+      .al-step-arrow { display: none; }
+      .al-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .al-app-grid { grid-template-columns: repeat(2, 1fr); }
+      .al-eco-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .al-point-head { flex-direction: column; gap: 8px; }
+      .al-point-num { font-size: 3rem; }
+      .al-bar-row { grid-template-columns: 100px 1fr 70px; gap: 10px; }
+      .al-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .al-app-grid { grid-template-columns: 1fr; }
+      .al-eco-hero { grid-template-columns: 1fr; gap: 16px; }
+    }
+  </style>
+</head>
 <body>
   <header class="site-header"><div class="container nav"><a class="brand-link" href="/" aria-label="SILQUE home"><img class="brand-logo" src="/silque-header-lockup.png?v=20260522-pixacut-revert" alt="SILQUE" width="234" height="66" decoding="async"/></a><button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="/">HOME</a><a class="nav-link active" href="/airlaid-napkins">ABOUT AIRLAID</a><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">PRODUCTS</button><div class="nav-dropdown-menu"><a href="/8x8-airlaid-cocktail-napkins">8x8 Cocktail Napkin</a><a href="/16x16-airlaid-dinner-napkins">16x16 Dinner Napkin</a><a href="/airlaid-pocket-napkins">Pocket Cutlery Napkin</a></div></div><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">DOWNLOADS</button><div class="nav-dropdown-menu"><a href="/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf" download>Catalogue</a></div></div><a class="nav-link" href="/about">ABOUT US</a><a class="nav-link" href="/contact">CONTACT US</a></nav></div></header>
+
   <main>
+
+    <!-- HERO -->
     <section class="visual-hero inner-visual-hero">
       <div class="hero-media hero-slider" data-hero-slider>
         <img class="hero-slide is-active" src="/silque-airlaid-material-macro-texture.webp" alt="macro texture of airlaid paper napkin material" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
-        <img class="hero-slide" data-src="/silque-page-airlaid-texture-zoom.webp" alt="airlaid paper napkin texture close-up" width="1536" height="1024" loading="lazy" decoding="async" />
         <img class="hero-slide" data-src="/silque-premium-table-presentation.webp" alt="premium table setting using airlaid napkin" width="1600" height="1000" loading="lazy" decoding="async" />
         <img class="hero-slide" data-src="/silque-hero-multi-format-airlaid-napkins.webp" alt="SILQUE airlaid napkin product formats" width="1536" height="1024" loading="lazy" decoding="async" />
       </div>
       <div class="hero-copy-panel">
         <div class="eyebrow">What Is Airlaid</div>
-        <h1>What Is Airlaid?</h1>
-        <p>Imagine a napkin that feels like premium linen cloth, but is completely disposable. That is Airlaid: the softness of fabric combined with the convenience of paper.</p>
+        <h1>Not tissue.<br>Not cloth.<br>Airlaid.</h1>
+        <p>A material that feels like premium linen, holds a sharp fold, absorbs like a sponge — and costs a fraction of laundered cloth.</p>
       </div>
     </section>
 
-    <!-- SECTION 1: MANUFACTURING PROCESS -->
-    <section class="premium-table-section" data-reveal>
+    <!-- STICKY POINT NAV -->
+    <nav class="al-nav-strip" aria-label="Page sections">
+      <div class="container al-nav-inner">
+        <a class="al-nav-link" href="#manufacturing"><span class="al-nav-num">1</span>Manufacturing</a>
+        <a class="al-nav-link" href="#properties"><span class="al-nav-num">2</span>Properties</a>
+        <a class="al-nav-link" href="#application"><span class="al-nav-num">3</span>Application</a>
+        <a class="al-nav-link" href="#eco"><span class="al-nav-num">4</span>Eco Benefits</a>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+         POINT 1 — MANUFACTURING PROCESS
+    ══════════════════════════════════════════ -->
+    <section class="al-point" id="manufacturing" data-reveal>
       <div class="container">
-        <div class="eyebrow">01. Manufacturing Process</div>
-        <h2>How Airlaid is Engineered: The Dry-Laid System</h2>
-        <p style="max-width: 800px; margin-bottom: 36px;">Unlike standard tissue paper which uses huge volumes of water to carry fibers (the wet-laid method), Airlaid is manufactured using a clean dry-laid system. By using air currents, the fibers are formed into a soft, textile-like material that is both robust and gentle.</p>
-        
-        <div class="process-grid">
-          <div class="process-step">
-            <span class="process-number">1</span>
+        <div class="al-point-head">
+          <div class="al-point-num" aria-hidden="true">01</div>
+          <div class="al-point-meta">
+            <div class="eyebrow">Manufacturing Process</div>
+            <h2>Made with air, not water.</h2>
+            <p>Standard tissue paper is made by pulping wood in huge vats of water, pressing it flat, and drying it — which is why it tears and turns soggy the moment it gets wet. Airlaid does the opposite: <strong>it uses pressurised air currents</strong> to suspend and arrange wood cellulose fibres into a three-dimensional, fluffy web — the same way cotton candy is spun, not pressed. The result is a material with vastly more body, strength, and absorbency.</p>
+          </div>
+        </div>
+
+        <div class="al-steps">
+          <div class="al-step">
+            <div class="al-step-num">①</div>
             <h3>Air Dispersion</h3>
-            <p>100% virgin cellulose wood pulp fibers are separated into individual fibers using rapid, pressurized air streams instead of water suspension.</p>
+            <p>Virgin wood pulp fibres are broken apart and suspended individually using high-speed air jets — no water involved at any stage.</p>
+            <div class="al-step-arrow">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
-          <div class="process-step">
-            <span class="process-number">2</span>
+          <div class="al-step">
+            <div class="al-step-num">②</div>
             <h3>Forming the Web</h3>
-            <p>The air-dispersed fibers are laid down onto a continuous moving forming mesh, creating a uniform, highly fluffy fiber web structure.</p>
+            <p>The airborne fibres land on a moving mesh belt and stack up in a thick, three-dimensional layer — creating a naturally fluffy, cloth-like structure.</p>
+            <div class="al-step-arrow">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
-          <div class="process-step">
-            <span class="process-number">3</span>
+          <div class="al-step">
+            <div class="al-step-num">③</div>
             <h3>Thermal Bonding</h3>
-            <p>The web is bonded together using heat and an eco-friendly binder. This locks the wood fibers into a strong, highly absorbent cloth-like sheet.</p>
+            <p>Heat and an eco-friendly binder lock the fibre web into a strong, stable sheet that holds its shape even when completely wet.</p>
           </div>
+        </div>
+
+        <div class="al-vs-strip">
+          <p><strong>Standard tissue paper:</strong> fibres laid flat in water → pressed → dried → thin, weak, tears when wet.</p>
+          <p><strong>SILQUE Airlaid:</strong> fibres suspended in air → stacked in 3D → bonded with heat → thick, soft, stays intact when wet.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: PROPERTIES & CHARACTERISTICS -->
-    <section class="premium-table-section" data-reveal>
-      <div class="container premium-table-grid">
-        <div>
-          <div class="eyebrow">02. Properties & Characteristics</div>
-          <h2>Exceptional Absorption & Tear Strength</h2>
-          <p>Due to the airy, dry-laid structure, Airlaid material has an incredibly high void volume. This allows it to absorb liquids rapidly and retain up to 12 times its own weight in fluid without breaking down.</p>
-          
-          <div class="chart-wrapper">
-            <div class="chart-bar-row">
-              <span class="chart-label">Standard Tissue</span>
-              <div class="chart-track"><div class="chart-fill" style="width: 33%;"></div></div>
-              <span class="chart-value">4x weight</span>
-            </div>
-            <div class="chart-bar-row">
-              <span class="chart-label">Woven Linen</span>
-              <div class="chart-track"><div class="chart-fill" style="width: 66%;"></div></div>
-              <span class="chart-value">8x weight</span>
-            </div>
-            <div class="chart-bar-row" style="margin-bottom: 0;">
-              <span class="chart-label" style="font-weight: 800;">SILQUE Airlaid</span>
-              <div class="chart-track"><div class="chart-fill airlaid-fill" style="width: 100%;"></div></div>
-              <span class="chart-value" style="font-weight: 800;">12x weight</span>
-            </div>
-          </div>
-        </div>
-        <img src="/silque-airlaid-material-macro-texture.webp" alt="macro texture of airlaid paper napkin material" width="1536" height="1024" loading="lazy" decoding="async" />
-      </div>
-    </section>
-
-    <section class="premium-table-section" data-reveal>
+    <!-- ══════════════════════════════════════════
+         POINT 2 — PROPERTIES & CHARACTERISTICS
+    ══════════════════════════════════════════ -->
+    <section class="al-point" id="properties" data-reveal>
       <div class="container">
-        <h2>Linen vs. Tissue vs. SILQUE Airlaid</h2>
-        <p style="max-width: 800px; margin-bottom: 28px;">How Airlaid sits perfectly in the sweet spot between standard paper and traditional woven linen, combining B2B operational efficiency with the premium look and feel of cloth.</p>
-        
-        <div class="comparison-container">
-          <table class="comparison-table">
+        <div class="al-point-head">
+          <div class="al-point-num" aria-hidden="true">02</div>
+          <div class="al-point-meta">
+            <div class="eyebrow">Properties &amp; Characteristics</div>
+            <h2>What makes it perform differently.</h2>
+            <p>Because the fibres are arranged in a 3D structure rather than pressed flat, Airlaid has enormous internal void space — which is what makes it feel thick, fold crisply, and absorb far more liquid than standard paper.</p>
+          </div>
+        </div>
+
+        <!-- Four key stat callouts -->
+        <div class="al-stat-row">
+          <div class="al-stat">
+            <svg class="al-stat-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+            <div class="al-stat-value">12×</div>
+            <div class="al-stat-label">Liquid absorption by weight</div>
+          </div>
+          <div class="al-stat">
+            <svg class="al-stat-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div class="al-stat-value">High</div>
+            <div class="al-stat-label">Wet tear strength retained</div>
+          </div>
+          <div class="al-stat">
+            <svg class="al-stat-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            <div class="al-stat-value">Sharp</div>
+            <div class="al-stat-label">Crease &amp; fold retention</div>
+          </div>
+          <div class="al-stat">
+            <svg class="al-stat-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <div class="al-stat-value">Soft</div>
+            <div class="al-stat-label">Cloth-like hand feel</div>
+          </div>
+        </div>
+
+        <!-- Absorbency comparison bar -->
+        <div class="al-absorb">
+          <div class="al-absorb-title">Absorbency comparison — liquid held per sheet</div>
+          <div class="al-bar-row">
+            <span class="al-bar-label">Standard Tissue</span>
+            <div class="al-bar-track"><div class="al-bar-fill" style="width:28%"></div></div>
+            <span class="al-bar-val">~4× weight</span>
+          </div>
+          <div class="al-bar-row">
+            <span class="al-bar-label">Woven Linen</span>
+            <div class="al-bar-track"><div class="al-bar-fill" style="width:58%"></div></div>
+            <span class="al-bar-val">~7× weight</span>
+          </div>
+          <div class="al-bar-row">
+            <span class="al-bar-label is-silque">SILQUE Airlaid</span>
+            <div class="al-bar-track"><div class="al-bar-fill is-silque" style="width:100%"></div></div>
+            <span class="al-bar-val is-silque">12× weight</span>
+          </div>
+        </div>
+
+        <!-- Comparison table -->
+        <div class="al-compare">
+          <table>
             <thead>
               <tr>
-                <th>Feature / Metric</th>
+                <th>Property</th>
                 <th>Standard Tissue</th>
-                <th class="highlight">SILQUE Airlaid</th>
-                <th>Woven Linen / Cloth</th>
+                <th class="is-silque">SILQUE Airlaid</th>
+                <th>Woven Linen</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><b>Material Structure</b></td>
-                <td>Flat, wet-laid paper</td>
-                <td class="highlight">Fluffy, dry-laid nonwoven</td>
-                <td>Woven cotton or polyester thread</td>
+                <td class="row-label">Feel in hand</td>
+                <td>Thin &amp; papery</td>
+                <td class="is-silque">Thick, soft, cloth-like</td>
+                <td>Heavy, warm</td>
               </tr>
               <tr>
-                <td><b>Hand Feel & Softness</b></td>
-                <td>Thin, rough when wet</td>
-                <td class="highlight">Cloth-like, extremely soft</td>
-                <td>Heavy, soft when washed</td>
+                <td class="row-label">When it gets wet</td>
+                <td><span class="cross">✕</span> Tears apart</td>
+                <td class="is-silque"><span class="tick">✓</span> Stays intact</td>
+                <td><span class="tick">✓</span> Stays intact</td>
               </tr>
               <tr>
-                <td><b>Wet Tear Strength</b></td>
-                <td>Low (dissolves easily)</td>
-                <td class="highlight">High (retains shape when wet)</td>
-                <td>Extremely High</td>
+                <td class="row-label">Holds table fold</td>
+                <td><span class="cross">✕</span> Collapses</td>
+                <td class="is-silque"><span class="tick">✓</span> Sharp crease</td>
+                <td><span class="tick">✓</span> Needs ironing</td>
               </tr>
               <tr>
-                <td><b>Table Fold Retention</b></td>
-                <td>Poor (collapses)</td>
-                <td class="highlight">Excellent (holds sharp creases)</td>
-                <td>Excellent (requires starching/ironing)</td>
+                <td class="row-label">Hygiene</td>
+                <td>Single-use</td>
+                <td class="is-silque">Single-use</td>
+                <td>Shared, washed</td>
               </tr>
               <tr>
-                <td><b>Operational Load</b></td>
-                <td>None (throw away)</td>
-                <td class="highlight">None (single-use, throw away)</td>
-                <td>High (wash, dry, iron, count, store)</td>
+                <td class="row-label">Operational cost</td>
+                <td>Low</td>
+                <td class="is-silque">Low</td>
+                <td>High (laundry)</td>
               </tr>
             </tbody>
           </table>
@@ -149,82 +616,109 @@
       </div>
     </section>
 
-    <!-- SECTION 3: APPLICATIONS -->
-    <section class="premium-table-section" data-reveal>
+    <!-- ══════════════════════════════════════════
+         POINT 3 — APPLICATION
+    ══════════════════════════════════════════ -->
+    <section class="al-point" id="application" data-reveal>
       <div class="container">
-        <div class="eyebrow">03. Application</div>
-        <h2>Where Performance Meets Professional Dining</h2>
-        <p style="max-width: 800px;">SILQUE Airlaid napkins are custom engineered to meet the strict demands of professional hospitality settings, replacing high operational costs with reliable luxury presentation.</p>
-        
-        <div class="b2b-applications-grid">
-          <div class="application-card">
-            <h3>Fine Dining & Restaurants</h3>
-            <p>Elevate the first-touch quality signal on your guest tables. Airlaid napkins look identical to linen and support custom brand printing to enhance brand recall.</p>
-            <ul>
-              <li>Sharp crease lines for complex decorative folds</li>
-              <li>Saturated color options to match table aesthetics</li>
-              <li>Consistent high-end presentation for every diner</li>
-            </ul>
-            <a href="/contact" class="card-action-link">Request Custom Print Samples &rarr;</a>
+        <div class="al-point-head">
+          <div class="al-point-num" aria-hidden="true">03</div>
+          <div class="al-point-meta">
+            <div class="eyebrow">Application</div>
+            <h2>Who uses it and why.</h2>
+            <p>Airlaid is the silent upgrade that hospitality professionals reach for when they want the look and feel of cloth without the operational burden of laundering. It works across every service format.</p>
           </div>
-          <div class="application-card">
-            <h3>Hotels & Room Service</h3>
-            <p>Streamline tray and table setup. Airlaid provides a premium look for breakfast layouts, banquet setups, and room service trays without high laundry costs.</p>
+        </div>
+
+        <div class="al-app-grid">
+          <div class="al-app-tile">
+            <svg class="al-app-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18M5 17V7h14v10"/><circle cx="12" cy="11" r="2"/><path d="M8 17v-2h8v2"/></svg>
+            <h3>Fine Dining &amp; Restaurants</h3>
             <ul>
-              <li>Zero linen count shrinkage or tracking logs</li>
-              <li>Faster tray setup and room cleaning cycles</li>
-              <li>Premium presentation regardless of occupancy spikes</li>
+              <li>Matches cloth napkin presentation</li>
+              <li>Holds complex folds (bishop, fan, pocket)</li>
+              <li>Custom brand print available</li>
+              <li>No laundry tracking or losses</li>
             </ul>
-            <a href="/contact" class="card-action-link">Request Hotel Sample Kit &rarr;</a>
           </div>
-          <div class="application-card">
-            <h3>Banquets, Catering & Events</h3>
-            <p>For large-scale weddings, corporate dinners, and banquets, the cutlery pocket napkin style ensures fast cutlery placement and high turnover rates.</p>
+          <div class="al-app-tile">
+            <svg class="al-app-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            <h3>Hotels &amp; Room Service</h3>
             <ul>
-              <li>Saves hours of prep time with pre-folded cutlery pockets</li>
-              <li>Saves laundry bills on high-volume guest lists</li>
-              <li>Hygiene-compliant single-use setup</li>
+              <li>Faster tray setup times</li>
+              <li>Zero linen count audits</li>
+              <li>Consistent look at every occupancy</li>
+              <li>Cuts laundry cost significantly</li>
             </ul>
-            <a href="/contact" class="card-action-link">Request Pocket Napkin Samples &rarr;</a>
           </div>
-          <div class="application-card">
-            <h3>Cocktail Receptions & Bars</h3>
-            <p>Our 8x8 cocktail squares absorb high liquid condensation without falling apart, keeping bar counters clean and hands dry.</p>
+          <div class="al-app-tile">
+            <svg class="al-app-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <h3>Banquets &amp; Catering</h3>
             <ul>
-              <li>Does not stick to glass bases when wet</li>
-              <li>Premium texture for corporate welcome drinks</li>
-              <li>Custom logo prints to add a branded touch</li>
+              <li>Pre-folded pocket saves hours of prep</li>
+              <li>Single-use = full hygiene compliance</li>
+              <li>Scales from 50 to 5,000 covers</li>
+              <li>No linen return / shrinkage losses</li>
             </ul>
-            <a href="/contact" class="card-action-link">Request Cocktail Napkin Samples &rarr;</a>
+          </div>
+          <div class="al-app-tile">
+            <svg class="al-app-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 22H3a1 1 0 0 1-1-1V8l5-5 5 5v13a1 1 0 0 1-1 1h-3z"/><path d="M8 22V14h4v8"/><path d="M21 22h-5V14l2.5-2.5L21 14z"/></svg>
+            <h3>Cocktail Bars &amp; Events</h3>
+            <ul>
+              <li>Absorbs condensation without dissolving</li>
+              <li>Does not stick to cold glass bases</li>
+              <li>Logo print for brand recall</li>
+              <li>Premium feel for welcome drinks</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: ENVIRONMENTAL BENEFITS -->
-    <section class="premium-table-section" data-reveal>
+    <!-- ══════════════════════════════════════════
+         POINT 4 — ENVIRONMENTAL BENEFITS
+    ══════════════════════════════════════════ -->
+    <section class="al-point" id="eco" data-reveal>
       <div class="container">
-        <div class="eyebrow">04. Environmental Benefits</div>
-        <h2>Sustainable Operations without Compromise</h2>
-        <p style="max-width: 800px; margin-bottom: 36px;">True sustainability makes sense operationally. SILQUE Airlaid reduces the daily environmental load of linen laundering and tissue waste simultaneously.</p>
-        
-        <div class="eco-benefits-grid">
-          <div class="eco-benefit-card">
-            <h3>95% Water Saving</h3>
-            <p>The dry-laid manufacturing process uses air currents instead of water, saving up to 95% of fresh water compared to conventional wet-laid papermaking mills.</p>
+        <div class="al-point-head">
+          <div class="al-point-num" aria-hidden="true">04</div>
+          <div class="al-point-meta">
+            <div class="eyebrow">Environmental Benefits</div>
+            <h2>Sustainability that makes operational sense.</h2>
+            <p>Switching to Airlaid is not just good for the environment — it directly reduces operational waste and cost. There is no trade-off between being responsible and being efficient.</p>
           </div>
-          <div class="eco-benefit-card">
-            <h3>Reduced Waste Volume</h3>
-            <p>Because Airlaid napkins are thick and highly absorbent, guests use only 1 napkin per meal. Standard thin tissues require multiple sheets, multiplying waste volume.</p>
+        </div>
+
+        <!-- Big stat hero -->
+        <div class="al-eco-hero">
+          <div class="al-eco-big-num">95%</div>
+          <div class="al-eco-big-label">
+            <strong>Less water used in manufacturing</strong> compared to conventional wet-laid tissue papermaking mills, which require thousands of litres of water per ton of paper produced. Airlaid uses pressurised air — water consumption is near-zero at the forming stage.
           </div>
-          <div class="eco-benefit-card">
-            <h3>Biodegradable Fibers</h3>
-            <p>SILQUE Airlaid is made of 100% natural, plant-based wood cellulose. The fibers naturally decompose back into the earth, minimizing landfill footprint.</p>
+        </div>
+
+        <!-- Three eco benefit cards -->
+        <div class="al-eco-cards">
+          <div class="al-eco-card">
+            <svg class="al-eco-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><path d="M18 2v4h4"/></svg>
+            <h3>One napkin per guest</h3>
+            <p>Because Airlaid is highly absorbent, one napkin handles an entire meal. Standard thin tissue requires guests to use 3–5 sheets, multiplying your waste output and restocking cost.</p>
+          </div>
+          <div class="al-eco-card">
+            <svg class="al-eco-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z"/><path d="M7 13s.5 2 2.5 2 4.5-4 7-4"/></svg>
+            <h3>100% plant cellulose</h3>
+            <p>SILQUE Airlaid is made from virgin wood pulp — a natural, plant-based material. The fibres biodegrade completely and return to the earth, generating zero microplastic waste.</p>
+          </div>
+          <div class="al-eco-card">
+            <svg class="al-eco-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            <h3>Eliminates linen laundry load</h3>
+            <p>A 100-cover restaurant using cloth napkins washes ~400 napkins per day, consuming water, electricity, chemicals, and fuel. Switching to SILQUE Airlaid eliminates this entirely.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CTA STRIP -->
     <section class="contact-strip" data-reveal>
       <div class="container contact-strip-inner">
         <h2>Ready to upgrade your table presentation?</h2>
@@ -234,7 +728,9 @@
         </div>
       </div>
     </section>
+
   </main>
+
   <footer class="site-footer"><div class="container footer-grid"><div class="footer-brand"><img class="brand-logo" src="/silque-logo-square.png?v=20260519-ux-favicon" alt="SILQUE logo" width="320" height="320" loading="lazy" decoding="async"/><p>SILQUE airlaid napkins for premium hospitality.</p><p><a class="footer-map-link" href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">15, 3rd Cross, 80 Feet Road, Koramangala 6th Block, Bengaluru 560095.</a></p><p><a href="mailto:info@silquetissues.com">info@silquetissues.com</a></p><div class="footer-social"><a class="social-icon" href="https://www.instagram.com/silque_airlaidnapkins/" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2"></circle></svg></a><a class="social-icon" href="https://in.linkedin.com/company/silque" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5V19"></path><path d="M6.5 6.5h.01"></path><path d="M11 19v-9.5"></path><path d="M11 13.4c0-2.2 1.4-4 3.7-4 2.1 0 3.3 1.4 3.3 4V19"></path></svg></a><a class="social-icon" href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer" aria-label="SILQUE on Google Maps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></a></div></div><div class="footer-nav-compact"><details class="footer-group"><summary>Products</summary><ul><li><a href="/8x8-airlaid-cocktail-napkins">8x8 Cocktail Napkin</a></li><li><a href="/16x16-airlaid-dinner-napkins">16x16 Dinner Napkin</a></li><li><a href="/airlaid-pocket-napkins">Pocket Cutlery Napkin</a></li></ul></details><details class="footer-group"><summary>Company</summary><ul><li><a href="/about">About Us</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/airlaid-napkins">What Is Airlaid</a></li></ul></details><details class="footer-group"><summary>Connect</summary><ul><li><a href="mailto:info@silquetissues.com">Email</a></li><li><a href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="https://www.instagram.com/silque_airlaidnapkins/" target="_blank" rel="me noopener noreferrer">Instagram</a></li><li><a href="https://in.linkedin.com/company/silque" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li><li><a href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">Google Business Maps</a></li></ul></details></div></div><div class="footer-bar"><div class="container">&copy; 2026 SILQUE | GSTIN: 29AFXFS1361J1Z8</div></div></footer>
   <script src="/assets/site.js?v=20260522-immersive-header"></script>
 </body>
