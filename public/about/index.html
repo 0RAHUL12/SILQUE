@@ -24,9 +24,9 @@
     gtag('config', 'G-YM0HS25N9N');
   </script>
   <style>
-    /* ── PAGE-SPECIFIC STYLE DECORATIONS ── */
+    /* ── PSYCHOLOGICAL UX STYLE OPTIMIZATIONS ── */
     
-    .ab-intro-badge {
+    .ab-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -42,195 +42,198 @@
       margin-bottom: 18px;
     }
 
-    .ab-intro-container {
+    /* Manifesto visual card block */
+    .ab-manifesto-section {
+      padding: clamp(54px, 8vw, 96px) 0;
+      background: var(--white);
+    }
+    .ab-manifesto-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: clamp(32px, 6vw, 80px);
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(32px, 6vw, 72px);
       align-items: center;
-      padding: clamp(54px, 8vw, 104px) 0;
     }
-    .ab-intro-content h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      margin-bottom: 20px;
+    .ab-manifesto-content h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
     }
-    .ab-intro-content p {
+    .ab-manifesto-lead {
+      font-family: Georgia, serif;
+      font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+      color: var(--navy);
+      line-height: 1.4;
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .ab-manifesto-text p {
       font-size: 1.05rem;
-      line-height: 1.7;
+      line-height: 1.65;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .ab-intro-image {
+    .ab-manifesto-text strong {
+      color: var(--navy);
+    }
+    .ab-manifesto-image img {
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 38px rgba(21, 34, 56, 0.08);
+    }
+
+    /* Comparison drawbacks grid (Visual & Scan-Friendly) */
+    .ab-choices-section {
+      background: var(--ivory);
+      border-block: 1px solid var(--line);
+      padding: clamp(54px, 8vw, 96px) 0;
+    }
+    .ab-choices-head {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto clamp(32px, 5vw, 56px);
+    }
+    .ab-choices-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 12px;
+    }
+    .ab-choices-head p {
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    .ab-choices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .ab-choice-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
       position: relative;
     }
-    .ab-intro-image img {
-      width: 100%;
-      border-radius: 2px;
-      box-shadow: 0 16px 38px rgba(21, 34, 56, 0.08);
-      border: 1px solid var(--line);
-    }
-    /* Decorative shadow card behind image */
-    .ab-intro-image::after {
-      content: "";
-      position: absolute;
-      inset: 12px -12px -12px 12px;
-      border: 1px solid rgba(198,168,92,.3);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Trust Pillars Grid */
-    .ab-pillars-section {
-      background: var(--white);
-      border-block: 1px solid var(--line);
-      padding: clamp(60px, 9vw, 110px) 0;
-    }
-    .ab-pillars-head {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto clamp(36px, 6vw, 64px);
-    }
-    .ab-pillars-head h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    }
-    .ab-pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-    }
-    .ab-pillar-card {
-      display: flex;
-      gap: 20px;
-      background: var(--ivory);
-      padding: 32px;
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--gold);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .ab-pillar-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 34px rgba(21, 34, 56, 0.06);
-    }
-    .ab-pillar-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(198, 168, 92, 0.12);
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .ab-pillar-icon svg {
-      width: 26px;
-      height: 26px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .ab-pillar-info h3 {
+    .ab-choice-card h3 {
       font-family: Georgia, serif;
       font-size: 1.25rem;
+      margin-bottom: 18px;
       color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .ab-pillar-info p {
-      margin: 0;
-      font-size: 0.94rem;
-      line-height: 1.6;
-      color: var(--text);
-    }
-
-    /* Comparison Section */
-    .ab-comp-section {
-      padding: clamp(60px, 9vw, 110px) 0;
-      background: var(--ivory);
-    }
-    .ab-comp-head {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto clamp(36px, 6vw, 56px);
-    }
-    .ab-comp-head h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    }
-    .ab-comp-table-wrapper {
-      overflow-x: auto;
-      border: 1px solid var(--line);
-      box-shadow: 0 16px 38px rgba(21, 34, 56, 0.04);
-      background: var(--white);
-    }
-    .ab-comp-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      min-width: 800px;
-    }
-    .ab-comp-table th, .ab-comp-table td {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.95rem;
-    }
-    .ab-comp-table th {
-      background: var(--navy);
-      color: var(--white);
-      font-family: Georgia, serif;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-    .ab-comp-table th:first-child {
-      color: var(--gold);
-    }
-    .ab-comp-table td:first-child {
-      font-weight: 700;
-      color: var(--navy);
-      background: rgba(21, 34, 56, 0.02);
-    }
-    .ab-comp-table tr:hover td {
-      background: rgba(198, 168, 92, 0.03);
-    }
-    .ab-comp-table td.highlight {
-      font-weight: 600;
-      color: var(--navy);
-      border-inline: 1px solid rgba(198,168,92,.15);
-      background: rgba(198, 168, 92, 0.04);
-    }
-    .ab-comp-table th.highlight {
-      background: #1d2b42;
-      color: #fff;
-      border-inline: 1px solid rgba(198,168,92,.25);
-      border-bottom: 3px solid var(--gold);
-    }
-    .ab-badge {
-      display: inline-flex;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 2px;
-      font-size: 0.8rem;
-      font-weight: 700;
+    }
+    .ab-choice-badge {
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-weight: 700;
     }
-    .ab-badge.success {
-      background: rgba(31, 143, 99, 0.1);
-      color: #1f8f63;
-    }
-    .ab-badge.warning {
-      background: rgba(198, 168, 92, 0.12);
-      color: #a88b45;
-    }
-    .ab-badge.danger {
+    .ab-choice-badge.negative {
       background: rgba(220, 53, 69, 0.08);
       color: #dc3545;
     }
+    .ab-choice-badge.positive {
+      background: rgba(31, 143, 99, 0.1);
+      color: #1f8f63;
+    }
+    .ab-choice-card.featured {
+      border: 2px solid var(--gold);
+      box-shadow: 0 16px 38px rgba(198, 168, 92, 0.08);
+    }
+    .ab-choice-card.featured::after {
+      content: "PREMIUM STANDARD";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+    .ab-choice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ab-choice-item {
+      font-size: 0.94rem;
+      line-height: 1.5;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .ab-choice-bullet {
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .ab-choice-badge.negative + .ab-choice-list .ab-choice-bullet {
+      color: #dc3545;
+    }
+    .ab-choice-badge.positive + .ab-choice-list .ab-choice-bullet {
+      color: #1f8f63;
+    }
 
-    /* Transparency & Verification Card */
-    .ab-verif-section {
-      padding: clamp(60px, 9vw, 110px) 0;
+    /* Twin Pillars - Luxury & Sustainability Focus */
+    .ab-pillars-section {
+      padding: clamp(54px, 8vw, 96px) 0;
       background: var(--white);
+    }
+    .ab-pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 72px);
+    }
+    .ab-pillar-column h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin-bottom: 20px;
+    }
+    .ab-pillar-image {
+      margin-bottom: 24px;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .ab-pillar-image img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+    .ab-pillar-points {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ab-pillar-point {
+      font-size: 1.02rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .ab-pillar-point strong {
+      color: var(--navy);
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .ab-pillar-point strong.green-text {
+      color: #1f8f63;
+    }
+
+    /* Transparency/Verification details */
+    .ab-verif-section {
+      padding: clamp(54px, 8vw, 96px) 0;
+      background: var(--ivory);
       border-top: 1px solid var(--line);
     }
     .ab-verif-grid {
@@ -239,80 +242,20 @@
       gap: clamp(32px, 6vw, 72px);
       align-items: center;
     }
-    .ab-verif-card {
-      background: var(--navy);
-      color: rgba(255, 255, 255, 0.9);
-      padding: clamp(32px, 5vw, 48px);
-      border: 1px solid rgba(198, 168, 92, 0.35);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 16px 42px rgba(21, 34, 56, 0.12);
-    }
-    .ab-verif-card::before {
-      content: "";
-      position: absolute;
-      top: 0; right: 0;
-      width: 150px; height: 150px;
-      background: radial-gradient(circle, rgba(198, 168, 92, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .ab-verif-card h3 {
-      color: var(--white);
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding-bottom: 14px;
-    }
-    .ab-verif-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .ab-verif-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 10px;
-      font-size: 0.92rem;
-    }
-    .ab-verif-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    .ab-verif-label {
-      color: rgba(255, 255, 255, 0.65);
-      font-weight: 500;
-    }
-    .ab-verif-value {
-      color: var(--white);
-      text-align: right;
-      font-weight: 600;
-    }
-    .ab-verif-value a {
-      color: var(--gold);
-      border-bottom: 1px dashed rgba(198, 168, 92, 0.5);
-      transition: color .2s, border-color .2s;
-    }
-    .ab-verif-value a:hover {
-      color: #fff;
-      border-bottom-color: #fff;
-    }
-
     .ab-verif-info h2 {
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .ab-verif-info p {
       font-size: 1.05rem;
-      line-height: 1.65;
+      line-height: 1.6;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     .ab-verif-check-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 24px;
     }
     .ab-verif-check-item {
       display: flex;
@@ -341,14 +284,73 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+    .ab-verif-card {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.9);
+      padding: clamp(32px, 5vw, 44px);
+      border: 1px solid rgba(198, 168, 92, 0.35);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 42px rgba(21, 34, 56, 0.12);
+    }
+    .ab-verif-card h3 {
+      color: var(--white);
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 12px;
+    }
+    .ab-verif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ab-verif-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+      font-size: 0.92rem;
+    }
+    .ab-verif-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .ab-verif-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+    }
+    .ab-verif-value {
+      color: var(--white);
+      text-align: right;
+      font-weight: 600;
+    }
+    .ab-verif-value a {
+      color: var(--gold);
+      border-bottom: 1px dashed rgba(198, 168, 92, 0.5);
+      transition: color .2s, border-color .2s;
+    }
+    .ab-verif-value a:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
 
+    @media (max-width: 960px) {
+      .ab-choices-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .ab-choice-card.featured::after {
+        top: -12px;
+      }
+    }
     @media (max-width: 860px) {
-      .ab-intro-container, .ab-pillars-grid, .ab-verif-grid {
+      .ab-manifesto-grid, .ab-pillars-grid, .ab-verif-grid {
         grid-template-columns: 1fr;
         gap: 32px;
       }
-      .ab-intro-image::after {
-        display: none;
+      .ab-manifesto-image {
+        order: -1;
       }
     }
   </style>
@@ -356,7 +358,7 @@
 <body>
   <header class="site-header"><div class="container nav"><a class="brand-link" href="/" aria-label="SILQUE home"><img class="brand-logo" src="/silque-header-lockup.png?v=20260522-pixacut-revert" alt="SILQUE" width="234" height="66" decoding="async"/></a><button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="nav-links" aria-label="Primary navigation"><a class="nav-link" href="/">HOME</a><a class="nav-link" href="/airlaid-napkins">ABOUT AIRLAID</a><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">PRODUCTS</button><div class="nav-dropdown-menu"><a href="/8x8-airlaid-cocktail-napkins">8x8 Cocktail Napkin</a><a href="/16x16-airlaid-dinner-napkins">16x16 Dinner Napkin</a><a href="/airlaid-pocket-napkins">Pocket Cutlery Napkin</a></div></div><div class="nav-dropdown"><button class="nav-drop-toggle" type="button" aria-expanded="false">DOWNLOADS</button><div class="nav-dropdown-menu"><a href="/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf" download>Catalogue</a></div></div><a class="nav-link active" href="/about">ABOUT US</a><a class="nav-link" href="/contact">CONTACT US</a></nav></div></header>
   <main>
-    <!-- ── IMMERSIVE HERO WITH SLIDER ── -->
+    <!-- ── HERO SLIDER ── -->
     <section class="visual-hero inner-visual-hero">
       <div class="hero-media hero-slider" data-hero-slider>
         <img class="hero-slide is-active" src="/silque-page-bangalore-bulk-supply.webp" alt="SILQUE airlaid napkin supply for hospitality buyers" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
@@ -365,184 +367,164 @@
         <img class="hero-slide" data-src="/silque-hero-multi-format-airlaid-napkins.webp" alt="SILQUE airlaid napkin formats" width="1536" height="1024" loading="lazy" decoding="async" />
       </div>
       <div class="hero-copy-panel">
-        <div class="ab-intro-badge">SILQUE Standard</div>
-        <h1>About SILQUE</h1>
-        <p>Premium airlaid napkin formats crafted in Bengaluru for high-end B2B hospitality, banquets, and fine dining settings across India.</p>
+        <div class="ab-badge">The Standard</div>
+        <h1>Redefining Dining</h1>
+        <p>Introducing airlaid napkins to redefine the luxury of the Indian dining experience.</p>
       </div>
     </section>
 
-    <!-- ── BRAND VISION SECTION ── -->
+    <!-- ── BRAND VISION BLOCKQUOTE ── -->
     <section class="about-vision-section" data-reveal>
       <div class="container about-vision-wrap">
         <div>
           <div class="eyebrow">Our Vision</div>
-          <h2>Redefining single-use table presentation.</h2>
+          <h2>Sensory Table Presentation</h2>
         </div>
         <blockquote>
-          "We founded SILQUE with a singular focus: to elevate the guest experience. By combining the luxury weight of linen with the hygienic convenience of single-use material, we help hospitality leaders run pristine services without operational overhead."
+          "Our vision is to elevate the Indian table by overcoming the drawbacks of cloth and basic paper, bringing a sustainable, premium linen-alternative that redefines dining luxury."
         </blockquote>
       </div>
     </section>
 
-    <!-- ── BRAND NARRATIVE SECTION ── -->
-    <section class="section ab-intro-section" data-reveal>
-      <div class="container ab-intro-container">
-        <div class="ab-intro-content">
-          <div class="eyebrow">Why We Exist</div>
-          <h2>Bridging the gap between luxury and utility.</h2>
-          <p>Traditional woven linen requires heavy laundry operations, water consumption, sorting, pressing, and is prone to wear. Standard paper napkins, on the other hand, shred instantly and fail to match the grandeur of a fine dining setup.</p>
-          <p>SILQUE premium airlaid napkins provide the perfect B2B solution. Crafted from 60-75 GSM dry-laid fluff pulp, our napkins have a tactile linen-like texture, exceptional absorption speed, and hold crisp decorative folds. We help luxury hotels, caterers, and venues deliver consistent luxury at every cover.</p>
+    <!-- ── THE MANIFESTO (FOUNDER'S STORY) ── -->
+    <section class="ab-manifesto-section" data-reveal>
+      <div class="container ab-manifesto-grid">
+        <div class="ab-manifesto-content">
+          <div class="eyebrow">The Founders' Vision</div>
+          <h2>Redefining Indian hospitality.</h2>
+          <p class="ab-manifesto-lead">
+            We want to <strong>redefine the luxury of the Indian dining experience</strong> by introducing <strong>Airlaid napkins</strong>, which have historically been absent in the Indian context.
+          </p>
+          <div class="ab-manifesto-text">
+            <p><strong>A napkin is the single most intimate touchpoint on a dining table—the only element that remains in constant contact with a guest's skin throughout the meal.</strong> We believe that true luxury dining shouldn't force premium establishments to compromise between the unhygienic reuse of cloth laundry and the flimsy feel of ordinary paper. By utilizing advanced airlaid technology, we deliver a pristine, single-use material that drapes like linen, absorbs like cloth, and guarantees absolute touch-hygiene. Our vision is to elevate Indian table presentation to match the country's rapid culinary evolution, ensuring a considered, spotless guest experience from the very first touch.</p>
+          </div>
           <div class="btn-row">
-            <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Order Samples on WhatsApp</a>
+            <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Request sample pack</a>
             <a class="btn btn-light" href="/downloads/silque-airlaid-napkin-catalogue-bengaluru.pdf" download>Download Catalogue</a>
           </div>
         </div>
-        <div class="ab-intro-image">
+        <div class="ab-manifesto-image">
           <img src="/silque-hero-multi-format-airlaid-napkins.webp" alt="SILQUE airlaid napkin range close-up" width="1536" height="1024" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
 
-    <!-- ── THE PILLARS OF TRUST ── -->
+    <!-- ── DRAWBACKS COMPARISON GRID (SPEED READING UX) ── -->
+    <section class="ab-choices-section" data-reveal-group>
+      <div class="container">
+        <div class="ab-choices-head">
+          <div class="eyebrow">The Comparison</div>
+          <h2>Overcoming Traditional Drawbacks</h2>
+          <p>Why modern luxury establishments are shifting from linen and basic tissue to airlaid.</p>
+        </div>
+        <div class="ab-choices-grid">
+          <!-- Card 1: Linen -->
+          <div class="ab-choice-card" data-reveal>
+            <h3>Cloth Linen <span class="ab-choice-badge negative">Drawbacks</span></h3>
+            <ul class="ab-choice-list">
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> High water, chemical, and laundry overheads.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> Progressively fades, stains, and frays.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> Hygiene concerns of repeated reuse.</li>
+            </ul>
+          </div>
+          <!-- Card 2: Paper -->
+          <div class="ab-choice-card" data-reveal>
+            <h3>Ordinary Paper <span class="ab-choice-badge negative">Drawbacks</span></h3>
+            <ul class="ab-choice-list">
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> Thin, cheap appearance lowers guest perception.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> Tears instantly; guests waste multiple tissues.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✕</span> Leaves annoying white dust/lint on glasses.</li>
+            </ul>
+          </div>
+          <!-- Card 3: SILQUE Airlaid -->
+          <div class="ab-choice-card featured" data-reveal>
+            <h3>SILQUE Airlaid <span class="ab-choice-badge positive">Overcomes Both</span></h3>
+            <ul class="ab-choice-list">
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✓</span> <strong>Linen drape & texture:</strong> Premium weight.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✓</span> <strong>100% Lint-free:</strong> Spotless presentation.</li>
+              <li class="ab-choice-item"><span class="ab-choice-bullet">✓</span> <strong>Eco-efficient:</strong> Saves laundry resources.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TWIN PILLARS: LUXURY & SUSTAINABILITY (BITE-SIZED) ── -->
     <section class="ab-pillars-section" data-reveal-group>
-      <div class="container">
-        <div class="ab-pillars-head">
-          <div class="eyebrow">Our Trust Pillars</div>
-          <h2>Why hospitality teams rely on SILQUE.</h2>
+      <div class="container ab-pillars-grid">
+        <!-- Pillar 1: Luxury -->
+        <div class="ab-pillar-column" data-reveal>
+          <div class="ab-pillar-image">
+            <img src="/silque-products-overview-card.webp" alt="Premium airlaid napkin fold detail" width="1536" height="1024" loading="lazy" decoding="async" />
+          </div>
+          <h2>Tactile Luxury</h2>
+          <div class="ab-pillar-points">
+            <span class="ab-pillar-point">
+              <strong>Premium Weight</strong>
+              Heavy 60-75 GSM fluff pulp structure provides a thick feel that mimics fabric.
+            </span>
+            <span class="ab-pillar-point">
+              <strong>Crisp Fold Retention</strong>
+              Stiff enough to support complex decorative folds for banquets and events.
+            </span>
+            <span class="ab-pillar-point">
+              <strong>Exceptional Softness</strong>
+              Gentle on the skin, offering guests a luxurious, comfortable experience.
+            </span>
+          </div>
         </div>
-        <div class="ab-pillars-grid">
-          <div class="ab-pillar-card" data-reveal>
-            <div class="ab-pillar-icon">
-              <!-- Factory icon -->
-              <svg viewBox="0 0 24 24"><path d="M22 21H2V3l7 4v5l7-4v4l6-3v13z"/><path d="M17 13h2v3h-2zM12 15h2v3h-2zM7 17h2v2H7z"/></svg>
-            </div>
-            <div class="ab-pillar-info">
-              <h3>Precision Manufacturing</h3>
-              <p>Produced in state-of-the-art facilities using dry-laid air forming technology. We ensure uniform GSM thickness, texture, and strength across every batch.</p>
-            </div>
+
+        <!-- Pillar 2: Sustainability -->
+        <div class="ab-pillar-column" data-reveal>
+          <div class="ab-pillar-image">
+            <img src="/silque-bulk-airlaid-napkin-supply.webp" alt="Eco friendly compostable napkins stack" width="1536" height="1024" loading="lazy" decoding="async" />
           </div>
-          <div class="ab-pillar-card" data-reveal>
-            <div class="ab-pillar-icon">
-              <!-- Sparkles/Softness icon -->
-              <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M12 3l3 4.5M12 3L9 7.5M12 21l3-4.5M12 21l-3-4.5M3 12l4.5 3M3 12l4.5-3M21 12l-4.5 3M21 12l-4.5-3"/></svg>
-            </div>
-            <div class="ab-pillar-info">
-              <h3>Lint-Free Cleanliness</h3>
-              <p>Unlike ordinary paper tissues that leave tiny white fibers on glasses, cutlery, or guests' clothing, SILQUE napkins are 100% lint-free and dust-free.</p>
-            </div>
-          </div>
-          <div class="ab-pillar-card" data-reveal>
-            <div class="ab-pillar-icon">
-              <!-- Recycle/Eco icon -->
-              <svg viewBox="0 0 24 24"><path d="M2 12h5v5H2zM17 12h5v5h-5zM9.5 3.5L12 2l2.5 1.5V6h-5z"/><path d="M12 6v6M12 12l-5 5M12 12l5 5"/></svg>
-            </div>
-            <div class="ab-pillar-info">
-              <h3>Ecological Accountability</h3>
-              <p>Made from responsibly sourced, certified wood pulp. Our napkins are 100% biodegradable and compostable, returning to nature cleanly.</p>
-            </div>
-          </div>
-          <div class="ab-pillar-card" data-reveal>
-            <div class="ab-pillar-icon">
-              <!-- Logistics / Box icon -->
-              <svg viewBox="0 0 24 24"><path d="M21 7.5L12 3 3 7.5 12 12z"/><path d="M12 12v9.5M3 7.5v9L12 21M21 7.5v9L12 21"/></svg>
-            </div>
-            <div class="ab-pillar-info">
-              <h3>B2B Operational Focus</h3>
-              <p>We supply hotels, banquets, and caterers directly. Custom branding, reliable logistics, and dedicated account support are standard parts of our B2B service.</p>
-            </div>
+          <h2>Conscious Dining</h2>
+          <div class="ab-pillar-points">
+            <span class="ab-pillar-point">
+              <strong class="green-text">95% Water Saved</strong>
+              Dry-laid production loops conserve thousands of liters compared to wet mills.
+            </span>
+            <span class="ab-pillar-point">
+              <strong class="green-text">100% Biodegradable</strong>
+              Sourced from sustainable wood pulp, returning naturally to the soil within weeks.
+            </span>
+            <span class="ab-pillar-point">
+              <strong class="green-text">Zero Laundry Footprint</strong>
+              Eliminates the hot-water energy and chemical waste of linen laundry.
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── PERFORMANCE COMPARISON CHART ── -->
-    <section class="ab-comp-section" data-reveal>
-      <div class="container">
-        <div class="ab-comp-head">
-          <div class="eyebrow">Performance Matrix</div>
-          <h2>Compare the differences.</h2>
-          <p>How SILQUE airlaid napkins perform against linen and standard 2-ply tissues on key hospitality variables.</p>
-        </div>
-        <div class="ab-comp-table-wrapper">
-          <table class="ab-comp-table">
-            <thead>
-              <tr>
-                <th>Service Variable</th>
-                <th class="highlight">SILQUE Airlaid</th>
-                <th>Traditional Linen</th>
-                <th>Standard Tissue</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Aesthetic & Feel</strong></td>
-                <td class="highlight">Matte linen-like feel; elegant drape</td>
-                <td>Premium, but prone to wrinkles</td>
-                <td>Thin, cheap look; tears easily</td>
-              </tr>
-              <tr>
-                <td><strong>Wet Strength (Linting)</strong></td>
-                <td class="highlight"><span class="ab-badge success">Zero Lint</span></td>
-                <td>Varies (can lint as it wears)</td>
-                <td><span class="ab-badge danger">High Lint</span></td>
-              </tr>
-              <tr>
-                <td><strong>Absorbency Rate</strong></td>
-                <td class="highlight">Absorbs 6x its weight in seconds</td>
-                <td>Slow if starch-heavy</td>
-                <td>Soaks through instantly</td>
-              </tr>
-              <tr>
-                <td><strong>Setup & Laundry Cost</strong></td>
-                <td class="highlight"><span class="ab-badge success">Zero Laundry</span></td>
-                <td>High laundry, sorting, pressing</td>
-                <td>Low initial cost, high wastage</td>
-              </tr>
-              <tr>
-                <td><strong>Hygiene Standards</strong></td>
-                <td class="highlight">100% fresh, untouched fold</td>
-                <td>Prone to storage dampness/odor</td>
-                <td>Sanitary, but lacks utility</td>
-              </tr>
-              <tr>
-                <td><strong>Custom Brand Printing</strong></td>
-                <td class="highlight">Crisp, non-bleeding custom print</td>
-                <td>Expensive embroidery or screen</td>
-                <td>Bleeds and blurs easily</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── TRANSPARENCY & VERIFICATION SECTION ── -->
+    <!-- ── TRANSPARENCY & CREDENTIALS ── -->
     <section class="ab-verif-section" data-reveal>
       <div class="container ab-verif-grid">
         <div class="ab-verif-info">
-          <div class="eyebrow">Verified B2B Entity</div>
-          <h2>Committed to absolute transparency.</h2>
-          <p>In high-volume B2B hospitality procurement, you need a partner you can track, visit, and verify. SILQUE is a registered commercial brand under SILQUE TISSUES. Our physical office, tax registration, and communication channels are entirely open for corporate audit and inspection.</p>
+          <div class="eyebrow">B2B Verification</div>
+          <h2>Corporate Transparency.</h2>
+          <p>We believe trust is built on clear credentials. SILQUE is a registered B2B entity structured for transparent trade, certified sourcing, and direct local support.</p>
           <div class="ab-verif-check-list">
             <div class="ab-verif-check-item">
               <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>Registered GSTIN entity in Karnataka</span>
+              <span>Registered GSTIN entity: SILQUE TISSUES</span>
             </div>
             <div class="ab-verif-check-item">
               <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>Physical Koramangala office open for partners</span>
+              <span>100% biodegradable & compostable pulp</span>
             </div>
             <div class="ab-verif-check-item">
               <div class="ab-verif-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>FSC-Certified raw wood pulp sourcing</span>
+              <span>Direct showroom office in Bengaluru</span>
             </div>
           </div>
         </div>
         <div class="ab-verif-card">
-          <h3>SILQUE Credentials</h3>
+          <h3>Official Credentials</h3>
           <div class="ab-verif-list">
             <div class="ab-verif-item">
-              <span class="ab-verif-label">Legal Name</span>
+              <span class="ab-verif-label">Legal Entity</span>
               <span class="ab-verif-value">SILQUE TISSUES</span>
             </div>
             <div class="ab-verif-item">
@@ -550,12 +532,8 @@
               <span class="ab-verif-value">29AFXFS1361J1Z8</span>
             </div>
             <div class="ab-verif-item">
-              <span class="ab-verif-label">Headquarters</span>
+              <span class="ab-verif-label">Office Address</span>
               <span class="ab-verif-value"><a href="https://www.google.com/maps?cid=11710792032329002482" target="_blank" rel="me noopener noreferrer">Koramangala, Bengaluru</a></span>
-            </div>
-            <div class="ab-verif-item">
-              <span class="ab-verif-label">Primary Email</span>
-              <span class="ab-verif-value"><a href="mailto:info@silquetissues.com">info@silquetissues.com</a></span>
             </div>
             <div class="ab-verif-item">
               <span class="ab-verif-label">Helpline</span>
@@ -569,8 +547,8 @@
     <!-- ── BOTTOM CTA STRIP ── -->
     <section class="contact-strip" data-reveal>
       <div class="container contact-strip-inner">
-        <h2>Experience the SILQUE difference firsthand.</h2>
-        <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Request sample pack</a>
+        <h2>Redefining luxury for Indian dining.</h2>
+        <a class="btn btn-gold" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer">Order sample pack</a>
       </div>
     </section>
   </main>
