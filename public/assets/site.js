@@ -372,8 +372,8 @@ const buildSampleFloatTrigger = () => {
 const quoteModal = buildQuoteModal();
 const quoteForm = quoteModal.querySelector('.quote-form');
 const quoteDialog = quoteModal.querySelector('.quote-dialog');
-const isHomepage = window.location.pathname === '/' || window.location.pathname === '/index.html';
-const sampleFloatTrigger = isHomepage ? buildSampleFloatTrigger() : null;
+const isContactPage = window.location.pathname.includes('/contact');
+const sampleFloatTrigger = !isContactPage ? buildSampleFloatTrigger() : null;
 let lastQuoteTrigger = null;
 let quoteAutoShown = sessionStorage.getItem('silqueQuoteAutoShown') === '1';
 let quoteCloseTimer = null;
@@ -591,5 +591,156 @@ quoteForm.addEventListener('submit', async (event) => {
   quoteForm.reset();
   window.setTimeout(closeQuoteModal, 900);
 });
+
+// Interactive color swatches preview
+const initColorSwatches = () => {
+  const swatchesContainer = document.querySelector('.colour-swatches.labelled');
+  if (!swatchesContainer) return;
+
+  const infoLabel = document.createElement('p');
+  infoLabel.className = 'swatch-info-label';
+  infoLabel.style.marginTop = '18px';
+  infoLabel.style.fontSize = '0.86rem';
+  infoLabel.style.color = 'rgba(255,255,255,.8)';
+  infoLabel.style.minHeight = '1.8em';
+  infoLabel.style.textAlign = 'center';
+  infoLabel.style.fontWeight = '500';
+  infoLabel.innerHTML = '<em>Click any swatch above to preview color options and B2B configurations.</em>';
+  swatchesContainer.parentNode.insertBefore(infoLabel, swatchesContainer.nextSibling);
+
+  const cocktailCard = document.querySelector('#cocktail img');
+  const dinnerCard = document.querySelector('#dinner img');
+  const pocketCard = document.querySelector('#pocket img');
+
+  const swatches = swatchesContainer.querySelectorAll('span');
+  
+  swatches.forEach(span => {
+    span.style.cursor = 'pointer';
+    span.style.transition = 'transform 0.2s ease, border-color 0.2s ease';
+    span.style.borderRadius = '4px';
+    span.style.padding = '4px 8px';
+    span.style.display = 'inline-flex';
+    span.style.alignItems = 'center';
+    span.style.gap = '6px';
+    
+    span.addEventListener('pointerenter', () => {
+      span.style.transform = 'translateY(-2px)';
+    });
+    span.addEventListener('pointerleave', () => {
+      if (!span.classList.contains('is-active')) {
+        span.style.transform = 'translateY(0)';
+      }
+    });
+  });
+
+  const colorDetails = {
+    white: {
+      text: "Pure White — A crisp, clean classic for formal dining, wedding banquets, and high-standard room service.",
+      images: {
+        cocktail: '/silque-generated-cocktail-detail.webp',
+        dinner: '/silque-premium-table-presentation.webp',
+        pocket: '/silque-pocket-napkin-table-setting.png'
+      }
+    },
+    ivory: {
+      text: "Classic Ivory — Soft linen-tone that adds warm, organic sophistication to standard hotel covers.",
+      images: {
+        cocktail: '/silque-product-cocktail.webp',
+        dinner: '/silque-colour-sample-fan.webp',
+        pocket: '/silque-pocket-napkin-final.png'
+      }
+    },
+    champagne: {
+      text: "Luxury Champagne — A warm golden-beige hue that elevates luxury catering, receptions, and corporate galas.",
+      images: {
+        cocktail: '/silque-product-cocktail.webp',
+        dinner: '/silque-colour-sample-fan.webp',
+        pocket: '/silque-pocket-napkin-final.png'
+      }
+    },
+    charcoal: {
+      text: "Modern Charcoal — A sleek slate grey, perfect for industrial, minimalist, or contemporary restaurant settings.",
+      images: {
+        cocktail: '/silque-colour-range-stacks.webp',
+        dinner: '/silque-colour-range-stacks.webp',
+        pocket: '/silque-colour-pocket-range.webp'
+      }
+    },
+    navy: {
+      text: "Imperial Navy — Deep royal blue, bringing nautical prestige or rich corporate branding to table presentations.",
+      images: {
+        cocktail: '/silque-colour-range-stacks.webp',
+        dinner: '/silque-colour-range-stacks.webp',
+        pocket: '/silque-colour-pocket-range.webp'
+      }
+    },
+    sage: {
+      text: "Organic Sage — Soft, muted botanical green ideal for outdoor catering, garden weddings, and eco-themed dining.",
+      images: {
+        cocktail: '/silque-product-cocktail.webp',
+        dinner: '/silque-colour-sample-fan.webp',
+        pocket: '/silque-pocket-napkin-final.png'
+      }
+    },
+    burgundy: {
+      text: "Royal Burgundy — A rich crimson-red tone that makes formal receptions, events, and wine pairings stand out.",
+      images: {
+        cocktail: '/silque-colour-range-stacks.webp',
+        dinner: '/silque-dinner-napkin-final.png',
+        pocket: '/silque-pocket-napkin-red-slate.png'
+      }
+    },
+    blush: {
+      text: "Soft Blush — A delicate pastel pink, ideal for afternoon teas, luxury bakeries, and floral banquet themes.",
+      images: {
+        cocktail: '/silque-product-cocktail.webp',
+        dinner: '/silque-colour-sample-fan.webp',
+        pocket: '/silque-pocket-napkin-final.png'
+      }
+    }
+  };
+
+  swatches.forEach(span => {
+    const colorName = span.textContent.trim().toLowerCase();
+    
+    span.addEventListener('click', () => {
+      swatches.forEach(s => {
+        s.classList.remove('is-active');
+        s.style.border = 'none';
+        s.style.background = 'transparent';
+        s.style.transform = 'translateY(0)';
+      });
+
+      span.classList.add('is-active');
+      span.style.border = '1px solid var(--gold)';
+      span.style.background = 'rgba(198,168,92,.08)';
+      span.style.transform = 'translateY(-2px)';
+
+      const details = colorDetails[colorName];
+      if (details) {
+        infoLabel.innerHTML = `<strong>${details.text}</strong> <a href="/contact" style="color:var(--gold); margin-left:8px; text-decoration:underline; font-size:0.8rem;">Request physical sample</a>`;
+        
+        if (cocktailCard && dinnerCard && pocketCard && details.images) {
+          [cocktailCard, dinnerCard, pocketCard].forEach(img => {
+            img.style.opacity = '0.3';
+            img.style.transition = 'opacity 0.25s ease';
+          });
+          
+          setTimeout(() => {
+            if (details.images.cocktail) cocktailCard.src = details.images.cocktail;
+            if (details.images.dinner) dinnerCard.src = details.images.dinner;
+            if (details.images.pocket) pocketCard.src = details.images.pocket;
+            
+            [cocktailCard, dinnerCard, pocketCard].forEach(img => {
+              img.style.opacity = '1';
+            });
+          }, 250);
+        }
+      }
+    });
+  });
+};
+
+initColorSwatches();
 
 
