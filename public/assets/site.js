@@ -798,7 +798,17 @@ const buildChatbotTrigger = () => {
   button.setAttribute('aria-label', 'Chat with Dipti AI');
   button.innerHTML = `
     <span class="dipti-trigger-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px;">
+        <circle cx="12" cy="11" r="7" stroke-width="2"></circle>
+        <path d="M9.5 13c1 1.2 4 1.2 5 0" stroke-width="1.5"></path>
+        <circle cx="9.5" cy="9.5" r="1.2" fill="currentColor"></circle>
+        <circle cx="14.5" cy="9.5" r="1.2" fill="currentColor"></circle>
+        <path d="M5 11c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke-width="1.8"></path>
+        <rect x="4" y="9" width="2" height="4" rx="1" fill="currentColor"></rect>
+        <rect x="18" y="9" width="2" height="4" rx="1" fill="currentColor"></rect>
+        <path d="M5 11c0 2.5 1.5 3.5 3.5 3.5" stroke-width="1.5"></path>
+        <path d="M9 17.8c1.5 1.2 4.5 1.2 6 0" stroke-width="1.8"></path>
+      </svg>
     </span>
   `;
   document.body.appendChild(button);
@@ -850,7 +860,9 @@ Here is the verified information about SILQUE that you must use to answer questi
 - To request samples, they should provide their Name, Company, Email, Phone, and Delivery Address. They can do this by using the "Request Sample" button on the site, emailing info@silquetissues.com, or WhatsApping +91 91224 28064.
 
 BEHAVIOR GUIDELINES:
-- Be extremely concise, direct, and to-the-point. Keep replies to 1-3 sentences max.
+- You must ONLY respond in short, clear bullet points (using simple hyphens like "-"). Never write paragraphs.
+- Keep answers extremely concise and to-the-point (1-3 bullet points max).
+- Do NOT use any markdown formatting like bolding (no asterisks like "**" or "###"). Keep all text plain, simple, and clean.
 - Act like a professional customer service executive on WhatsApp, not an AI search engine. Do not write filler intros, general summaries, or unsolicited background information.
 - Focus strictly on answering the specific question asked. If a question is off-topic, politely guide them back to SILQUE's sourcing.
 - Provide our contact info (WhatsApp: +91 91224 28064, Email: info@silquetissues.com) for pricing, orders, and custom quotes.
