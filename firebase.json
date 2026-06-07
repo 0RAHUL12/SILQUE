@@ -3,23 +3,53 @@
     "public": "public",
     "redirects": [
       {
+        "source": "/8x8-airlaid-cocktail-napkins",
+        "destination": "/products#cocktail",
+        "type": 301
+      },
+      {
+        "source": "/8x8-airlaid-cocktail-napkins/",
+        "destination": "/products#cocktail",
+        "type": 301
+      },
+      {
+        "source": "/16x16-airlaid-dinner-napkins",
+        "destination": "/products#dinner",
+        "type": 301
+      },
+      {
+        "source": "/16x16-airlaid-dinner-napkins/",
+        "destination": "/products#dinner",
+        "type": 301
+      },
+      {
+        "source": "/airlaid-pocket-napkins",
+        "destination": "/products#pocket",
+        "type": 301
+      },
+      {
+        "source": "/airlaid-pocket-napkins/",
+        "destination": "/products#pocket",
+        "type": 301
+      },
+      {
         "source": "/20x20-airlaid-cocktail-napkins",
-        "destination": "/8x8-airlaid-cocktail-napkins",
+        "destination": "/products#cocktail",
         "type": 301
       },
       {
         "source": "/20x20-airlaid-cocktail-napkins/",
-        "destination": "/8x8-airlaid-cocktail-napkins",
+        "destination": "/products#cocktail",
         "type": 301
       },
       {
         "source": "/40x40-airlaid-dinner-napkins",
-        "destination": "/16x16-airlaid-dinner-napkins",
+        "destination": "/products#dinner",
         "type": 301
       },
       {
         "source": "/40x40-airlaid-dinner-napkins/",
-        "destination": "/16x16-airlaid-dinner-napkins",
+        "destination": "/products#dinner",
         "type": 301
       },
       {

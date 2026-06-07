@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
 :root {
   --navy: #152238;
   --navy-deep: #101827;
@@ -10,7 +12,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; font-family: Arial, system-ui, sans-serif; background: var(--ivory); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+body { margin: 0; font-family: 'Inter', Arial, system-ui, sans-serif; background: var(--ivory); color: var(--text); line-height: 1.65; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; height: auto; }
 .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
@@ -3417,6 +3419,417 @@ body.quote-modal-open {
   }
   .products-hub-hero .hero-copy-panel h1 {
     font-size: 2.15rem;
+  }
+}
+
+/* ─── Premium Showcase Image Framing ─── */
+.showcase-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 48px);
+  background: #fbfbfa; /* Warm light ivory box background */
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+.showcase-item.reverse .showcase-image-wrapper {
+  border-right: 0;
+  border-left: 1px solid var(--line);
+}
+
+.showcase-image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Preserves natural image aspect ratio, preventing extreme zooms */
+  box-shadow: 0 12px 38px rgba(21, 34, 56, 0.08); /* Soft drop shadow */
+  border: 1px solid rgba(21, 34, 56, 0.04);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #fff;
+}
+
+.showcase-image-wrapper:hover img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 860px) {
+  .showcase-image-wrapper {
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-bottom: 1px solid var(--line);
+    min-height: 340px;
+    padding: 24px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   ═══ REDESIGNED PRODUCTS HUB STYLING ═══
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Typography & Global Overrides for Products Page Elements */
+.products-hero-section .eyebrow,
+.showroom-intro-section .eyebrow,
+.specs-table-section .eyebrow,
+.brand-pillars-section .eyebrow,
+.color-range-section .eyebrow,
+.process-flow-section .eyebrow,
+.card-label,
+.card-spec-tags li,
+.btn,
+.b2b-specs-table th,
+.process-step::before {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.products-hero-section h1,
+.showroom-intro-section h2,
+.specs-table-section h2,
+.brand-pillars-section h2,
+.color-range-section h2,
+.process-flow-section h2,
+.product-showroom-card h3,
+.specs-table-title {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* 1. Products Hero Section */
+.products-hero-section {
+  background: radial-gradient(circle at 75% 25%, #1b283d 0%, var(--navy-deep) 100%);
+  color: #fff;
+  padding: clamp(60px, 8vw, 100px) 0;
+  border-bottom: 1px solid rgba(198, 168, 92, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.products-hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 24, 39, 0.3) 0%, rgba(16, 24, 39, 0.75) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.products-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.products-hero-grid .hero-text-content {
+  max-width: 650px;
+}
+
+.products-hero-grid .hero-text-content h1 {
+  color: #fff;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.12;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.products-hero-grid .hero-lead {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.62;
+  margin-bottom: 28px;
+}
+
+.products-hero-grid .hero-image-decor {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(198, 168, 92, 0.22);
+  aspect-ratio: 3 / 2;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.products-hero-grid .hero-image-decor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.products-hero-section:hover .products-hero-grid .hero-image-decor img {
+  transform: scale(1.03);
+}
+
+/* 2. Showroom Intro Section */
+.showroom-intro-section {
+  padding: clamp(54px, 6vw, 84px) 0 38px;
+  background: var(--ivory);
+}
+
+.showroom-intro-section h2 {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.showroom-intro-section .section-lead {
+  max-width: 600px;
+  margin-inline: auto;
+  color: var(--text);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+
+/* 3. Product Showroom Grid & Cards */
+.showroom-grid-section {
+  padding: 0 0 clamp(64px, 8vw, 104px);
+  background: var(--ivory);
+}
+
+.products-showroom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.product-showroom-card {
+  background: var(--white);
+  border: 1px solid rgba(21, 34, 56, 0.09);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(21, 34, 56, 0.025);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-showroom-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(198, 168, 92, 0.38);
+  box-shadow: 0 16px 42px rgba(21, 34, 56, 0.08);
+}
+
+.product-showroom-card .card-image-box {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f4eee3; /* warm background that blends well */
+  position: relative;
+  border-bottom: 1px solid rgba(21, 34, 56, 0.06);
+}
+
+.product-showroom-card .card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-showroom-card:hover .card-image-box img {
+  transform: scale(1.045);
+}
+
+/* Customize specific alignment for the pocket napkin image to prevent clipping details */
+.product-showroom-card#pocket .card-image-box img {
+  object-position: center 25%;
+}
+
+.product-showroom-card .card-body-box {
+  padding: clamp(22px, 3vw, 30px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-showroom-card .card-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.product-showroom-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.product-showroom-card p {
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: var(--text);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.product-showroom-card .card-spec-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-showroom-card .card-spec-tags li {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  background: rgba(198, 168, 92, 0.07);
+  border: 1px solid rgba(198, 168, 92, 0.2);
+  color: var(--navy);
+  border-radius: 2px;
+}
+
+.product-showroom-card .card-btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.product-showroom-card .card-btn-row .btn {
+  font-size: 0.68rem;
+  padding: 0 10px;
+  min-height: 42px;
+  width: 100%;
+}
+
+.product-showroom-card .card-btn-row .btn-outline {
+  border-color: rgba(21, 34, 56, 0.22);
+  color: var(--navy);
+}
+
+.product-showroom-card .card-btn-row .btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(198, 168, 92, 0.03);
+}
+
+/* 4. Specs Table Section */
+.specs-table-section {
+  padding: clamp(64px, 8vw, 104px) 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.specs-table-header {
+  margin-bottom: 38px;
+}
+
+.specs-table-header h2 {
+  margin-bottom: 14px;
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(21, 34, 56, 0.09);
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(21, 34, 56, 0.015);
+  -webkit-overflow-scrolling: touch;
+}
+
+.b2b-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--text);
+  min-width: 800px;
+}
+
+.b2b-specs-table th {
+  background: var(--navy-deep);
+  color: #fff;
+  font-weight: 600;
+  padding: 18px 24px;
+  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--gold);
+}
+
+.b2b-specs-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(21, 34, 56, 0.06);
+  line-height: 1.5;
+}
+
+.b2b-specs-table tbody tr:nth-child(even) {
+  background: #fcfbfa;
+}
+
+.b2b-specs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.b2b-specs-table td strong {
+  color: var(--navy);
+}
+
+/* Tighten spacing for subsequent sections to maintain visual rhythm */
+.brand-pillars-section {
+  padding: clamp(64px, 8vw, 104px) 0 !important;
+}
+
+.color-range-section {
+  padding: clamp(54px, 7vw, 90px) 0 !important;
+}
+
+.process-flow-section {
+  padding: clamp(64px, 8vw, 104px) 0 !important;
+}
+
+/* Responsive Overrides for Redesigned Sections */
+@media (max-width: 980px) {
+  .products-showroom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .products-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .products-hero-grid .hero-text-content {
+    margin-inline: auto;
+  }
+  .products-hero-grid .hero-image-decor {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .products-hero-grid .btn-row {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .products-showroom-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .product-showroom-card .card-btn-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 

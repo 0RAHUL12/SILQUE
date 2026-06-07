@@ -591,3 +591,5 @@ quoteForm.addEventListener('submit', async (event) => {
   quoteForm.reset();
   window.setTimeout(closeQuoteModal, 900);
 });
+
+
