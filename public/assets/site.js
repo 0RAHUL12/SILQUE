@@ -484,6 +484,14 @@ const closeQuoteModal = (options = {}) => {
 };
 
 const openQuoteModal = (trigger, options = {}) => {
+  // Automatically close chatbot widget if it is open
+  const chatbotWidget = document.querySelector('.dipti-chatbot-container');
+  const chatbotTrigger = document.querySelector('.dipti-chatbot-trigger');
+  if (chatbotWidget && chatbotWidget.classList.contains('dipti-open')) {
+    chatbotWidget.classList.remove('dipti-open');
+    chatbotTrigger?.classList.remove('is-active');
+  }
+
   lastQuoteTrigger = trigger;
   quoteLastOpenWasAuto = Boolean(options.auto);
   trackLeadEvent(options.auto ? 'request_sample_auto_open' : 'request_sample_open', {
@@ -996,6 +1004,9 @@ const initDiptiChatbot = () => {
       widget.classList.remove('dipti-open');
       trigger.classList.remove('is-active');
     } else {
+      if (typeof closeQuoteModal === 'function' && quoteModal && quoteModal.classList.contains('is-open')) {
+        closeQuoteModal({ restoreFocus: false });
+      }
       widget.classList.add('dipti-open');
       trigger.classList.add('is-active');
       resetWidgetViews();
