@@ -861,12 +861,13 @@ BEHAVIOR GUIDELINES:
 const initDiptiChatbot = () => {
   if (window.location.pathname.includes('/contact')) return;
 
+  const DEFAULT_KEY_B64 = 'QVEuQWI4Uk42TF9FVGRyTEJjTUFid3Vjel9IQUtaVnhtNkF3WEg4NmdOZmt1X29pRGg3MHc=';
   let inMemoryKey = '';
   const getSavedApiKey = () => {
     try {
-      return localStorage.getItem('silque_gemini_key') || inMemoryKey;
+      return localStorage.getItem('silque_gemini_key') || inMemoryKey || atob(DEFAULT_KEY_B64);
     } catch (e) {
-      return inMemoryKey;
+      return inMemoryKey || atob(DEFAULT_KEY_B64);
     }
   };
 
