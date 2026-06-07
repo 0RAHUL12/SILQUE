@@ -4318,32 +4318,69 @@ main details[open] p, main details[open] ul {
   z-index: 220;
   width: 54px;
   height: 54px;
-  border: 1px solid rgba(198,168,92,.55);
-  border-radius: 50%;
-  background: rgba(23,40,63,.9);
+  border: 2px solid var(--gold);
+  border-radius: 27px;
+  background: #101827;
   color: #fff;
-  box-shadow: 0 18px 44px rgba(8,12,20,.24);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px rgba(8, 12, 20, 0.24);
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+  justify-content: flex-end; /* keeps logo on the right */
+  overflow: hidden;
+  padding: 0;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
 .dipti-chatbot-trigger:hover,
 .dipti-chatbot-trigger.is-active {
-  transform: scale(1.05) translateY(-2px);
-  border-color: rgba(244,217,135,.86);
-  background: rgba(21,34,56,.96);
-  box-shadow: 0 22px 52px rgba(8,12,20,.3);
+  border-color: rgba(244, 217, 135, 0.86);
+  box-shadow: 0 16px 40px rgba(8, 12, 20, 0.32);
 }
 
-.dipti-chatbot-trigger.is-active {
-  transform: scale(0.95);
-  background: var(--gold);
-  color: #101827;
+.dipti-trigger-logo-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #101827;
+}
+
+.dipti-trigger-logo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dipti-trigger-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.25s ease, max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.35s ease;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Hover expansion */
+@media (hover: hover) and (pointer: fine) {
+  .dipti-chatbot-trigger:hover {
+    width: 185px;
+  }
+  .dipti-chatbot-trigger:hover .dipti-trigger-text {
+    opacity: 1;
+    max-width: 120px;
+    margin-left: 16px;
+    margin-right: 4px;
+  }
 }
 
 .dipti-chatbot-container {
@@ -4381,6 +4418,26 @@ main details[open] p, main details[open] ul {
   border-bottom: 1px solid rgba(198,168,92,.18);
 }
 
+.dipti-chat-back {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-right: 4px;
+  line-height: 1;
+  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dipti-chat-back:hover {
+  color: var(--gold);
+  transform: translateX(-2px);
+}
+
 .dipti-chat-avatar {
   width: 32px;
   height: 32px;
@@ -4392,6 +4449,7 @@ main details[open] p, main details[open] ul {
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
+  overflow: hidden;
 }
 
 .dipti-chat-title-info {
@@ -4431,6 +4489,128 @@ main details[open] p, main details[open] ul {
   color: #fff;
 }
 
+/* Unified Menu Content Styling */
+.dipti-menu-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dipti-menu-content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: #0d121f;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dipti-menu-intro {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin: 0 0 4px;
+  text-align: left;
+}
+
+.dipti-menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dipti-menu-option-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(198, 168, 92, 0.15);
+  border-radius: 6px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.22s, background 0.22s, border-color 0.22s, box-shadow 0.22s;
+  text-decoration: none; /* for WhatsApp a-tag card */
+  color: inherit;
+  outline: none;
+}
+
+.dipti-menu-option-card:hover {
+  transform: translateY(-2px);
+  background: rgba(198, 168, 92, 0.06);
+  border-color: rgba(198, 168, 92, 0.45);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dipti-option-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.dipti-option-icon.whatsapp {
+  background: rgba(37, 211, 102, 0.15);
+}
+
+.dipti-option-icon.robot {
+  background: rgba(198, 168, 92, 0.15);
+}
+
+.dipti-option-icon.document {
+  background: rgba(30, 144, 255, 0.15);
+}
+
+.dipti-option-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dipti-option-details h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.dipti-option-details p {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.dipti-option-arrow {
+  color: var(--gold);
+  font-size: 0.8rem;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.dipti-menu-option-card:hover .dipti-option-arrow {
+  transform: translateX(3px);
+}
+
+.dipti-menu-footer {
+  padding: 10px;
+  background: #152238;
+  border-top: 1px solid rgba(198, 168, 92, 0.12);
+  text-align: center;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+/* Chat Messages view styling */
 .dipti-chat-messages {
   flex: 1;
   padding: 16px;
@@ -4482,6 +4662,46 @@ main details[open] p, main details[open] ul {
   color: var(--gold);
 }
 
+/* Quick replies container inside scroll view */
+.dipti-quick-replies {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 4px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.quick-reply-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  margin: 0 0 2px;
+  text-align: left;
+}
+
+.dipti-quick-reply-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(198, 168, 92, 0.22);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  padding: 8px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  outline: none;
+  font-family: inherit;
+}
+
+.dipti-quick-reply-btn:hover {
+  background: rgba(198, 168, 92, 0.08);
+  border-color: var(--gold);
+  color: #fff;
+}
+
 .dipti-key-panel {
   background: #152238;
   border-top: 1px solid rgba(198,168,92,.22);
@@ -4523,7 +4743,7 @@ main details[open] p, main details[open] ul {
 }
 
 .dipti-chat-input-area button:hover {
-  background: rgba(198,168,92,0.1);
+  background: rgba(198, 168, 92, 0.1);
   transform: scale(1.05);
 }
 

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '..', 'public');
-const targetVersion = '20260607-dipti-chatbot-v8';
+const targetVersion = '20260607-dipti-chatbot-v9';
 
 const walk = (dir) => {
   let results = [];
@@ -30,8 +30,8 @@ const run = () => {
     let modified = false;
 
     // Replace site.css version
-    if (content.includes('site.css?v=20260607-dipti-chatbot-v7')) {
-      content = content.replace('site.css?v=20260607-dipti-chatbot-v7', `site.css?v=${targetVersion}`);
+    if (content.includes('site.css?v=20260607-dipti-chatbot-v8')) {
+      content = content.replace('site.css?v=20260607-dipti-chatbot-v8', `site.css?v=${targetVersion}`);
       modified = true;
     }
     // Also handle other CSS versions if any
@@ -45,8 +45,8 @@ const run = () => {
     }
 
     // Replace site.js version
-    if (content.includes('site.js?v=20260607-dipti-chatbot-v7')) {
-      content = content.replace('site.js?v=20260607-dipti-chatbot-v7', `site.js?v=${targetVersion}`);
+    if (content.includes('site.js?v=20260607-dipti-chatbot-v8')) {
+      content = content.replace('site.js?v=20260607-dipti-chatbot-v8', `site.js?v=${targetVersion}`);
       modified = true;
     }
 

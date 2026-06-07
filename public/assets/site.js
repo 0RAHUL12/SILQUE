@@ -743,48 +743,117 @@ const initColorSwatches = () => {
 
 initColorSwatches();
 
-// Chatbot Dipti Implementation
 const buildChatbotDipti = () => {
   const container = document.createElement('div');
   container.className = 'dipti-chatbot-container';
   container.setAttribute('role', 'dialog');
-  container.setAttribute('aria-label', 'Dipti - AI Sourcing Assistant');
+  container.setAttribute('aria-label', 'SILQUE Help & Support');
   container.hidden = true;
   container.innerHTML = `
     <div class="dipti-chat-window">
-      <div class="dipti-chat-header">
-        <div class="dipti-chat-avatar">D</div>
-        <div class="dipti-chat-title-info">
-          <h3>Dipti</h3>
-          <span>SILQUE AI Assistant</span>
+      <!-- STATE A: Unified Sourcing Menu -->
+      <div class="dipti-menu-view" id="dipti-menu-view">
+        <div class="dipti-chat-header">
+          <div class="dipti-chat-avatar" style="border: 2.2px solid var(--gold); background: #101827; padding: 2px;">
+            <img src="/silque-logo-square.png" alt="SILQUE Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
+          <div class="dipti-chat-title-info">
+            <h3>SILQUE Sourcing</h3>
+            <span>How can we help you today?</span>
+          </div>
+          <button class="dipti-chat-close" type="button" aria-label="Close Chat">&times;</button>
         </div>
-        <button class="dipti-chat-close" type="button" id="dipti-close-btn" aria-label="Close Chat">&times;</button>
-      </div>
-      
-      <div class="dipti-chat-messages" id="dipti-messages">
-        <div class="dipti-message assistant">
-          <div class="message-content">
-            Hello! I am <strong>Dipti</strong>, your SILQUE AI Assistant. How can I help you today with our premium airlaid napkins, custom printing, or sample sourcing?
+        
+        <div class="dipti-menu-content">
+          <p class="dipti-menu-intro">Choose an option below to connect with us:</p>
+          
+          <div class="dipti-menu-options">
+            <button class="dipti-menu-option-card" type="button" id="dipti-opt-ai">
+              <div class="dipti-option-icon robot">🤖</div>
+              <div class="dipti-option-details">
+                <h4>Talk to Dipti (AI Sourcing Agent)</h4>
+                <p>Instant answers about specifications, custom printing, and delivery.</p>
+              </div>
+              <div class="dipti-option-arrow">➔</div>
+            </button>
+
+            <button class="dipti-menu-option-card" type="button" id="dipti-opt-quote">
+              <div class="dipti-option-icon document">📝</div>
+              <div class="dipti-option-details">
+                <h4>Request Quote / Samples</h4>
+                <p>Fill out our B2B form to receive bulk quotes and free sample kits.</p>
+              </div>
+              <div class="dipti-option-arrow">➔</div>
+            </button>
+
+            <a class="dipti-menu-option-card" href="https://wa.me/919122428064" target="_blank" rel="noopener noreferrer" id="dipti-opt-wa">
+              <div class="dipti-option-icon whatsapp">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #25D366; display: block;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.967C16.638 2.022 14.162.99 11.536.99c-5.438 0-9.863 4.373-9.867 9.803-.001 1.73.457 3.42 1.32 4.938L1.936 21.099l5.807-1.52L6.59 19.154zM17.91 14.65c-.307-.154-1.82-.9-2.102-1.003-.283-.103-.49-.154-.695.154-.205.308-.795.998-.973 1.203-.178.205-.356.23-.663.077-.307-.154-1.3-.48-2.476-1.53-1.026-.917-1.413-2.036-1.618-2.385-.205-.348-.022-.538.13-.69.138-.135.307-.358.46-.538.154-.18.205-.307.307-.512.103-.205.051-.385-.026-.538-.077-.154-.695-1.68-.953-2.302-.25-.604-.52-.519-.695-.53-.179-.011-.385-.013-.59-.013-.205 0-.538.077-.82.384-.282.308-1.077 1.05-1.077 2.564 0 1.513 1.1 2.974 1.254 3.18 1.583 2.146 3.1 2.872 5.061 3.719 1.961.846 1.961.564 2.308.53.346-.035 1.82-.744 2.077-1.46.257-.718.257-1.333.18-1.461-.077-.128-.282-.205-.59-.359z"/></svg>
+              </div>
+              <div class="dipti-option-details">
+                <h4>WhatsApp Us Directly</h4>
+                <p>Message our support team on WhatsApp for order updates or custom branding.</p>
+              </div>
+              <div class="dipti-option-arrow">➔</div>
+            </a>
           </div>
         </div>
-      </div>
-      
-      <div class="dipti-key-panel" id="dipti-key-panel" hidden>
-        <p style="margin:0 0 4px; font-weight:700; color:var(--gold); font-size:0.8rem;">🔧 Developer Key Required</p>
-        <p style="font-size:0.7rem; margin:0 0 8px; color:rgba(255,255,255,0.7); line-height:1.3;">To chat with Dipti, paste your Google Gemini API Key. It is saved in your browser locally.</p>
-        <div style="display:flex; gap:6px;">
-          <input type="password" id="dipti-api-key-input" placeholder="AI Studio Key..." style="flex:1; padding:6px; font-size:0.75rem; border-radius:4px; border:1px solid rgba(198,168,92,0.3); background:rgba(0,0,0,0.3); color:#fff; outline:none;" />
-          <button id="dipti-save-key-btn" style="padding:6px 12px; background:var(--gold); border:none; border-radius:4px; font-size:0.75rem; font-weight:bold; cursor:pointer; color:#101827;">Save</button>
+        
+        <div class="dipti-menu-footer">
+          <span>⚡ Typically replies in under 5 minutes</span>
         </div>
-        <p style="font-size:0.65rem; margin:6px 0 0; text-align:center;"><a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--gold); text-decoration:underline;">Get a free API key from Google AI Studio</a></p>
       </div>
 
-      <form class="dipti-chat-input-area" id="dipti-input-form">
-        <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
-        <button type="submit" id="dipti-send-btn" aria-label="Send message">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-        </button>
-      </form>
+      <!-- STATE B: AI Chat Assistant View -->
+      <div class="dipti-chat-view" id="dipti-chat-view" style="display: none; flex-direction: column; height: 100%;">
+        <div class="dipti-chat-header">
+          <button class="dipti-chat-back" type="button" id="dipti-back-btn" aria-label="Go Back">←</button>
+          <div class="dipti-chat-avatar" style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #101827; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;">D</div>
+          <div class="dipti-chat-title-info">
+            <h3>Dipti</h3>
+            <span>SILQUE AI Assistant</span>
+          </div>
+          <button class="dipti-chat-close" type="button" aria-label="Close Chat">&times;</button>
+        </div>
+        
+        <div class="dipti-chat-messages" id="dipti-messages">
+          <div class="dipti-message assistant">
+            <div class="message-content">
+              Hello! I am <strong>Dipti</strong>, your SILQUE AI Assistant. How can I help you today?
+            </div>
+          </div>
+          
+          <div class="dipti-quick-replies" id="dipti-quick-replies">
+            <p class="quick-reply-title">Common Sourcing Questions:</p>
+            <button class="dipti-quick-reply-btn" type="button" data-question="What is the MOQ for custom printing?">
+              💬 What is the MOQ for custom logo printing?
+            </button>
+            <button class="dipti-quick-reply-btn" type="button" data-question="Tell me about Airlaid vs cloth Linen.">
+              💬 Airlaid Napkins vs Cloth Linen?
+            </button>
+            <button class="dipti-quick-reply-btn" type="button" data-question="How do I get a free sample kit?">
+              💬 How can I request a free physical sample?
+            </button>
+          </div>
+        </div>
+        
+        <div class="dipti-key-panel" id="dipti-key-panel" hidden>
+          <p style="margin:0 0 4px; font-weight:700; color:var(--gold); font-size:0.8rem;">🔧 Developer Key Required</p>
+          <p style="font-size:0.7rem; margin:0 0 8px; color:rgba(255,255,255,0.7); line-height:1.3;">To chat with Dipti, paste your Google Gemini API Key. It is saved in your browser locally.</p>
+          <div style="display:flex; gap:6px;">
+            <input type="password" id="dipti-api-key-input" placeholder="AI Studio Key..." style="flex:1; padding:6px; font-size:0.75rem; border-radius:4px; border:1px solid rgba(198,168,92,0.3); background:rgba(0,0,0,0.3); color:#fff; outline:none;" />
+            <button id="dipti-save-key-btn" style="padding:6px 12px; background:var(--gold); border:none; border-radius:4px; font-size:0.75rem; font-weight:bold; cursor:pointer; color:#101827;">Save</button>
+          </div>
+          <p style="font-size:0.65rem; margin:6px 0 0; text-align:center;"><a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--gold); text-decoration:underline;">Get a free API key from Google AI Studio</a></p>
+        </div>
+
+        <form class="dipti-chat-input-area" id="dipti-input-form">
+          <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
+          <button type="submit" id="dipti-send-btn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
+      </div>
     </div>
   `;
   document.body.appendChild(container);
@@ -795,21 +864,12 @@ const buildChatbotTrigger = () => {
   const button = document.createElement('button');
   button.className = 'dipti-chatbot-trigger';
   button.type = 'button';
-  button.setAttribute('aria-label', 'Chat with Dipti AI');
+  button.setAttribute('aria-label', 'Have a question?');
   button.innerHTML = `
-    <span class="dipti-trigger-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px;">
-        <circle cx="12" cy="11" r="7" stroke-width="2"></circle>
-        <path d="M9.5 13c1 1.2 4 1.2 5 0" stroke-width="1.5"></path>
-        <circle cx="9.5" cy="9.5" r="1.2" fill="currentColor"></circle>
-        <circle cx="14.5" cy="9.5" r="1.2" fill="currentColor"></circle>
-        <path d="M5 11c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke-width="1.8"></path>
-        <rect x="4" y="9" width="2" height="4" rx="1" fill="currentColor"></rect>
-        <rect x="18" y="9" width="2" height="4" rx="1" fill="currentColor"></rect>
-        <path d="M5 11c0 2.5 1.5 3.5 3.5 3.5" stroke-width="1.5"></path>
-        <path d="M9 17.8c1.5 1.2 4.5 1.2 6 0" stroke-width="1.8"></path>
-      </svg>
-    </span>
+    <span class="dipti-trigger-text">Have a question?</span>
+    <div class="dipti-trigger-logo-wrapper" style="border: 1.5px solid var(--gold); border-radius: 50%; padding: 2px;">
+      <img src="/silque-logo-square.png" alt="SILQUE Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+    </div>
   `;
   document.body.appendChild(button);
   return button;
@@ -901,13 +961,21 @@ const initDiptiChatbot = () => {
   const trigger = buildChatbotTrigger();
   const widget = buildChatbotDipti();
   
-  const closeBtn = widget.querySelector('#dipti-close-btn');
+  const menuView = widget.querySelector('#dipti-menu-view');
+  const chatView = widget.querySelector('#dipti-chat-view');
+  
+  const optAiBtn = widget.querySelector('#dipti-opt-ai');
+  const optQuoteBtn = widget.querySelector('#dipti-opt-quote');
+  const backBtn = widget.querySelector('#dipti-back-btn');
+  const closeBtns = widget.querySelectorAll('.dipti-chat-close');
+  
   const inputForm = widget.querySelector('#dipti-input-form');
   const userInput = widget.querySelector('#dipti-user-input');
   const messagesContainer = widget.querySelector('#dipti-messages');
   const keyPanel = widget.querySelector('#dipti-key-panel');
   const keyInput = widget.querySelector('#dipti-api-key-input');
   const saveKeyBtn = widget.querySelector('#dipti-save-key-btn');
+  const quickRepliesContainer = widget.querySelector('#dipti-quick-replies');
 
   let chatHistory = [];
 
@@ -919,22 +987,50 @@ const initDiptiChatbot = () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
+  const resetWidgetViews = () => {
+    menuView.style.display = 'flex';
+    chatView.style.display = 'none';
+    if (chatHistory.length === 0 && quickRepliesContainer) {
+      quickRepliesContainer.style.display = 'flex';
+    }
+  };
+
   const toggleChat = () => {
     const isHidden = widget.hidden;
     widget.hidden = !isHidden;
     trigger.classList.toggle('is-active', isHidden);
     if (isHidden) {
-      userInput.focus();
-      if (!getSavedApiKey()) {
-        keyPanel.hidden = false;
-      } else {
-        keyPanel.hidden = true;
-      }
+      resetWidgetViews();
     }
   };
 
   trigger.addEventListener('click', toggleChat);
-  closeBtn.addEventListener('click', toggleChat);
+  
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', toggleChat);
+  });
+
+  // Main menu handlers
+  optAiBtn.addEventListener('click', () => {
+    menuView.style.display = 'none';
+    chatView.style.display = 'flex';
+    userInput.focus();
+    if (!getSavedApiKey()) {
+      keyPanel.hidden = false;
+    } else {
+      keyPanel.hidden = true;
+    }
+  });
+
+  optQuoteBtn.addEventListener('click', () => {
+    toggleChat();
+    // open existing B2B modal
+    if (typeof openQuoteModal === 'function') {
+      openQuoteModal(optQuoteBtn);
+    }
+  });
+
+  backBtn.addEventListener('click', resetWidgetViews);
 
   saveKeyBtn.addEventListener('click', () => {
     const key = keyInput.value.trim();
@@ -946,10 +1042,30 @@ const initDiptiChatbot = () => {
     }
   });
 
+  // Quick replies handler
+  const quickReplyBtns = widget.querySelectorAll('.dipti-quick-reply-btn');
+  quickReplyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const question = btn.dataset.question;
+      if (question) {
+        userInput.value = question;
+        if (quickRepliesContainer) {
+          quickRepliesContainer.style.display = 'none';
+        }
+        // Dispatch submit event on the form
+        inputForm.dispatchEvent(new Event('submit'));
+      }
+    });
+  });
+
   inputForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = userInput.value.trim();
     if (!query) return;
+
+    if (quickRepliesContainer) {
+      quickRepliesContainer.style.display = 'none';
+    }
 
     const hasKey = getSavedApiKey();
     const looksLikeKey = !/\s/.test(query) && query.length >= 30 && query.length <= 80;
@@ -998,7 +1114,10 @@ const initDiptiChatbot = () => {
       }
 
       const resData = await response.json();
-      const answer = resData.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate an answer. Please contact info@silquetissues.com.';
+      let answer = resData.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate an answer. Please contact info@silquetissues.com.';
+
+      // Strip any markdown bold stars if the model somehow generated them
+      answer = answer.replace(/\*\*/g, '');
 
       addMessage('assistant', answer);
       chatHistory.push({ role: 'model', parts: [{ text: answer }] });
@@ -1013,5 +1132,3 @@ const initDiptiChatbot = () => {
 };
 
 initDiptiChatbot();
-
-
