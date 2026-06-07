@@ -4310,5 +4310,232 @@ main details[open] p, main details[open] ul {
   transform: translateY(-1px);
 }
 
+/* ═══ Chatbot Dipti Styling ═══ */
+.dipti-chatbot-trigger {
+  position: fixed;
+  right: clamp(12px, 1.4vw, 20px);
+  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  z-index: 220;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(198,168,92,.55);
+  border-radius: 50%;
+  background: rgba(23,40,63,.9);
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(8,12,20,.24);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.dipti-chatbot-trigger:hover,
+.dipti-chatbot-trigger.is-active {
+  transform: scale(1.05) translateY(-2px);
+  border-color: rgba(244,217,135,.86);
+  background: rgba(21,34,56,.96);
+  box-shadow: 0 22px 52px rgba(8,12,20,.3);
+}
+
+.dipti-chatbot-trigger.is-active {
+  transform: scale(0.95);
+  background: var(--gold);
+  color: #101827;
+}
+
+.dipti-chatbot-container {
+  position: fixed;
+  right: clamp(12px, 1.4vw, 20px);
+  bottom: calc(146px + env(safe-area-inset-bottom, 0px));
+  z-index: 230;
+  width: 360px;
+  height: 500px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 180px);
+  background: #101827;
+  border: 1px solid rgba(198,168,92,.35);
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(8,12,20,.42);
+  overflow: hidden;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+}
+
+.dipti-chatbot-container[hidden] {
+  display: none;
+}
+
+.dipti-chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dipti-chat-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #152238;
+  border-bottom: 1px solid rgba(198,168,92,.18);
+}
+
+.dipti-chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #101827;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.dipti-chat-title-info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.dipti-chat-title-info h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dipti-chat-title-info span {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.dipti-chat-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.dipti-chat-close:hover {
+  color: #fff;
+}
+
+.dipti-chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #0d121f;
+}
+
+.dipti-message {
+  display: flex;
+  max-width: 85%;
+}
+
+.dipti-message.assistant {
+  align-self: flex-start;
+}
+
+.dipti-message.user {
+  align-self: flex-end;
+}
+
+.dipti-message .message-content {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.dipti-message.assistant .message-content {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.03);
+  color: rgba(255,255,255,.9);
+  border-radius: 8px 8px 8px 0;
+}
+
+.dipti-message.user .message-content {
+  background: var(--gold);
+  color: #101827;
+  border-radius: 8px 8px 0 8px;
+}
+
+.dipti-message.user .message-content strong {
+  color: #000;
+}
+
+.dipti-message.assistant .message-content strong {
+  color: var(--gold);
+}
+
+.dipti-key-panel {
+  background: #152238;
+  border-top: 1px solid rgba(198,168,92,.22);
+  border-bottom: 1px solid rgba(198,168,92,.22);
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.dipti-chat-input-area {
+  display: flex;
+  border-top: 1px solid rgba(198,168,92,.18);
+  padding: 10px 12px;
+  background: #101827;
+  align-items: center;
+  gap: 8px;
+}
+
+.dipti-chat-input-area input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  font-size: 0.85rem;
+  padding: 6px 4px;
+}
+
+.dipti-chat-input-area button {
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.dipti-chat-input-area button:hover {
+  background: rgba(198,168,92,0.1);
+  transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .dipti-chatbot-container {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 120px);
+    max-height: none;
+    right: 10px;
+    bottom: 80px;
+  }
+}
+
 
 

@@ -743,4 +743,260 @@ const initColorSwatches = () => {
 
 initColorSwatches();
 
+// Chatbot Dipti Implementation
+const buildChatbotDipti = () => {
+  const container = document.createElement('div');
+  container.className = 'dipti-chatbot-container';
+  container.setAttribute('role', 'dialog');
+  container.setAttribute('aria-label', 'Dipti - AI Sourcing Assistant');
+  container.hidden = true;
+  container.innerHTML = `
+    <div class="dipti-chat-window">
+      <div class="dipti-chat-header">
+        <div class="dipti-chat-avatar">D</div>
+        <div class="dipti-chat-title-info">
+          <h3>Dipti</h3>
+          <span>SILQUE AI Assistant</span>
+        </div>
+        <button class="dipti-chat-close" type="button" id="dipti-close-btn" aria-label="Close Chat">&times;</button>
+      </div>
+      
+      <div class="dipti-chat-messages" id="dipti-messages">
+        <div class="dipti-message assistant">
+          <div class="message-content">
+            Hello! I am <strong>Dipti</strong>, your SILQUE AI Assistant. How can I help you today with our premium airlaid napkins, custom printing, or sample sourcing?
+          </div>
+        </div>
+      </div>
+      
+      <div class="dipti-key-panel" id="dipti-key-panel" hidden>
+        <p style="margin:0 0 4px; font-weight:700; color:var(--gold); font-size:0.8rem;">🔧 Developer Key Required</p>
+        <p style="font-size:0.7rem; margin:0 0 8px; color:rgba(255,255,255,0.7); line-height:1.3;">To chat with Dipti, paste your Google Gemini API Key. It is saved in your browser locally.</p>
+        <div style="display:flex; gap:6px;">
+          <input type="password" id="dipti-api-key-input" placeholder="AI Studio Key..." style="flex:1; padding:6px; font-size:0.75rem; border-radius:4px; border:1px solid rgba(198,168,92,0.3); background:rgba(0,0,0,0.3); color:#fff; outline:none;" />
+          <button id="dipti-save-key-btn" style="padding:6px 12px; background:var(--gold); border:none; border-radius:4px; font-size:0.75rem; font-weight:bold; cursor:pointer; color:#101827;">Save</button>
+        </div>
+        <p style="font-size:0.65rem; margin:6px 0 0; text-align:center;"><a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--gold); text-decoration:underline;">Get a free API key from Google AI Studio</a></p>
+      </div>
+
+      <form class="dipti-chat-input-area" id="dipti-input-form">
+        <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
+        <button type="submit" id="dipti-send-btn" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(container);
+  return container;
+};
+
+const buildChatbotTrigger = () => {
+  const button = document.createElement('button');
+  button.className = 'dipti-chatbot-trigger';
+  button.type = 'button';
+  button.setAttribute('aria-label', 'Chat with Dipti AI');
+  button.innerHTML = `
+    <span class="dipti-trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </span>
+  `;
+  document.body.appendChild(button);
+  return button;
+};
+
+const DIPTI_SYSTEM_INSTRUCTION = `
+You are Dipti, the friendly, professional, and knowledgeable AI Sourcing Assistant for SILQUE (SILQUE TISSUES), a premium hospitality airlaid napkin manufacturer and supplier based in Bengaluru (Bangalore), India.
+Your goal is to assist B2B buyers (hotel procurement managers, restaurant groups, wedding planners, caterers, and distributors) with their sourcing inquiries.
+
+Here is the verified information about SILQUE that you must use to answer questions:
+
+1. COMPANY OVERVIEW & CONTACTS:
+- Brand Name: SILQUE TISSUES (or SILQUE).
+- Operations: Manufacturer and wholesale supplier of dry-laid airlaid nonwoven cellulose napkins.
+- Bangalore Office: 15, 3rd Cross, 80 Feet Road, Koramangala 6th Block, Bengaluru - 560095.
+- Email: info@silquetissues.com
+- Phone / WhatsApp: +91 91224 28064 (provide this for direct quotes or sample requests).
+- GSTIN: 29AFXFS1361J1Z8
+
+2. WHAT IS AIRLAID MATERIAL?
+- Material: 100% virgin cellulose wood pulp fibers distributed using air loops (dry-laid process) instead of water.
+- Experience: It feels like linen fabric, has heavy drape, holds folds beautifully, and is highly absorbent and lint-free.
+- Linen vs. Airlaid: Airlaid is single-use, providing maximum hygiene while eliminating hotel laundry overheads (washing, ironing, storage, replenishment, and inventory loss).
+- Tissue vs. Airlaid: Airlaid is 60-75 GSM, significantly thicker and stronger than thin multi-ply paper tissues. One airlaid napkin lasts the entire meal.
+- Water efficiency: Uses up to 95% less water in production than traditional paper mills. Fully biodegradable and compostable.
+
+3. PRODUCT FORMATS & SPECIFICATIONS:
+- 8x8 Cocktail Napkin: Open size 8"x8" (20cm x 20cm). 1/4 fold. Ideal for beverage service, welcome drinks, lounge bars, cafes, receptions.
+- 16x16 Dinner Napkin: Open size 16"x16" (40cm x 40cm). 1/4 fold or 1/8 fold. Ideal for formal dining, banquets, wedding covers.
+- Pocket Cutlery Napkin: Open size 16"x16" (40cm x 40cm), pre-folded in a 1/8 book fold with a built-in sleeve to hold cutlery. Speeds up table setting times by 50%. Ideal for banquets, buffets, caterers, and room service.
+
+4. COLORS & CUSTOMIZATION:
+- Base Colors: White, Ivory, Champagne, Charcoal, Navy, Sage, Burgundy, Blush. Custom color matching is available for large orders.
+- Custom Printing: We print client logos using:
+  * Flexo Printing (up to 2 colors using food-safe, non-bleeding inks).
+  * Metallic Hotfoil Stamping (gold/silver details for premium events).
+  * Embossing/Debossing (blind texture presses).
+- Minimum Order Quantity (MOQ) for custom logo printing: 10,000 Pcs per design.
+- Lower tiers available for unprinted stock.
+
+5. LEAD TIMELINE & DELIVERY:
+- Production Lead Time: 7 to 10 days from design layout approval.
+- Warehouse: Koramangala, Bangalore.
+- Delivery: Direct door-to-door delivery across Bangalore. We ship to major Indian hubs.
+
+6. SAMPLE KITS:
+- Free physical sample packs are available for hospitality buyers in India.
+- To request samples, they should provide their Name, Company, Email, Phone, and Delivery Address. They can do this by using the "Request Sample" button on the site, emailing info@silquetissues.com, or WhatsApping +91 91224 28064.
+
+BEHAVIOR GUIDELINES:
+- Keep answers polite, brief, professional, and B2B-focused.
+- Always recommend requesting a free sample kit so they can feel the quality.
+- If an inquiry is about pricing or placing an order, give them the WhatsApp number (+91 91224 28064) or email (info@silquetissues.com) to get a custom B2B quote.
+- Do not make up facts. If you do not know the answer, ask them to contact sales.
+`;
+
+const initDiptiChatbot = () => {
+  if (window.location.pathname.includes('/contact')) return;
+
+  let inMemoryKey = '';
+  const getSavedApiKey = () => {
+    try {
+      return localStorage.getItem('silque_gemini_key') || inMemoryKey;
+    } catch (e) {
+      return inMemoryKey;
+    }
+  };
+
+  const saveApiKey = (key) => {
+    try {
+      localStorage.setItem('silque_gemini_key', key);
+    } catch (e) {
+      inMemoryKey = key;
+    }
+  };
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlKey = urlParams.get('setkey');
+  if (urlKey) {
+    saveApiKey(urlKey);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
+  const trigger = buildChatbotTrigger();
+  const widget = buildChatbotDipti();
+  
+  const closeBtn = widget.querySelector('#dipti-close-btn');
+  const inputForm = widget.querySelector('#dipti-input-form');
+  const userInput = widget.querySelector('#dipti-user-input');
+  const messagesContainer = widget.querySelector('#dipti-messages');
+  const keyPanel = widget.querySelector('#dipti-key-panel');
+  const keyInput = widget.querySelector('#dipti-api-key-input');
+  const saveKeyBtn = widget.querySelector('#dipti-save-key-btn');
+
+  let chatHistory = [];
+
+  const addMessage = (sender, text) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `dipti-message ${sender}`;
+    msgDiv.innerHTML = `<div class="message-content">${text}</div>`;
+    messagesContainer.appendChild(msgDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+
+  const toggleChat = () => {
+    const isHidden = widget.hidden;
+    widget.hidden = !isHidden;
+    trigger.classList.toggle('is-active', isHidden);
+    if (isHidden) {
+      userInput.focus();
+      if (!getSavedApiKey()) {
+        keyPanel.hidden = false;
+      } else {
+        keyPanel.hidden = true;
+      }
+    }
+  };
+
+  trigger.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+
+  saveKeyBtn.addEventListener('click', () => {
+    const key = keyInput.value.trim();
+    if (key) {
+      saveApiKey(key);
+      keyPanel.hidden = true;
+      addMessage('assistant', '🔑 <em>API Key saved successfully! I am ready to answer your questions.</em>');
+      keyInput.value = '';
+    }
+  });
+
+  inputForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = userInput.value.trim();
+    if (!query) return;
+
+    const hasKey = getSavedApiKey();
+    const looksLikeKey = !/\s/.test(query) && query.length >= 30 && query.length <= 80;
+    
+    if (!hasKey && looksLikeKey) {
+      saveApiKey(query);
+      keyPanel.hidden = true;
+      userInput.value = '';
+      addMessage('user', '••••••••••••••••••••');
+      addMessage('assistant', '🔑 <em>API Key detected and saved successfully! I am ready to answer your questions now.</em>');
+      return;
+    }
+
+    addMessage('user', query);
+    userInput.value = '';
+
+    const apiKey = getSavedApiKey();
+    if (!apiKey) {
+      keyPanel.hidden = false;
+      addMessage('assistant', '⚠️ <em>Please enter a Gemini API Key to chat.</em>');
+      return;
+    }
+
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'dipti-message assistant typing-indicator-msg';
+    typingDiv.innerHTML = `<div class="message-content"><em>Dipti is typing...</em></div>`;
+    messagesContainer.appendChild(typingDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    chatHistory.push({ role: 'user', parts: [{ text: query }] });
+
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: chatHistory,
+          systemInstruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] }
+        })
+      });
+
+      typingDiv.remove();
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const resData = await response.json();
+      const answer = resData.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate an answer. Please contact info@silquetissues.com.';
+
+      addMessage('assistant', answer);
+      chatHistory.push({ role: 'model', parts: [{ text: answer }] });
+
+    } catch (err) {
+      console.error(err);
+      typingDiv.remove();
+      addMessage('assistant', '❌ <em>Sorry, I encountered an error. Please verify your Gemini API key in the settings panel or contact us directly on WhatsApp.</em>');
+      keyPanel.hidden = false;
+    }
+  });
+};
+
+initDiptiChatbot();
+
 
