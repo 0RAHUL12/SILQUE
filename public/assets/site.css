@@ -205,7 +205,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 .social-icon { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(198,168,92,.35); color: rgba(255,255,255,.9); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
 .social-icon:hover { background: rgba(198,168,92,.14); border-color: rgba(198,168,92,.72); transform: translateY(-1px); }
 .social-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.footer-nav-compact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.footer-nav-compact { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .footer-group { background: transparent; border: 0; border-bottom: 1px solid rgba(198,168,92,.18); padding: 0; }
 .footer-group summary { color: rgba(255,255,255,.78); list-style: none; padding: 12px 0; font-size: .72rem; text-transform: uppercase; letter-spacing: .13em; }
 .footer-group summary::-webkit-details-marker { display: none; }
@@ -3832,5 +3832,377 @@ body.quote-modal-open {
     gap: 8px;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   ═══ B2B RESOURCES & SOURCING GUIDES STYLING ═══
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Resources Hero & Intro */
+.resources-hero-section {
+  background: radial-gradient(circle at 80% 20%, #fdfcfb 0%, #f4eee2 100%);
+  color: var(--navy);
+  padding: clamp(64px, 8vw, 96px) 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.resources-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.resources-hero-grid .hero-text-content {
+  max-width: 680px;
+}
+
+.resources-hero-grid .hero-text-content h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.resources-hero-grid .hero-lead {
+  color: var(--text);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.resources-hero-grid .hero-image-decor {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 16px 38px rgba(21, 34, 56, 0.08);
+  border: 1px solid var(--line);
+  aspect-ratio: 4 / 3;
+}
+
+.resources-hero-grid .hero-image-decor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 2. Resources Cards Grid */
+.resources-showroom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 38px;
+}
+
+.resource-showroom-card {
+  background: var(--white);
+  border: 1px solid rgba(21, 34, 56, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(21, 34, 56, 0.02);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resource-showroom-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 168, 92, 0.4);
+  box-shadow: 0 14px 36px rgba(21, 34, 56, 0.06);
+}
+
+.resource-showroom-card .card-image-box {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #ece7dc;
+  border-bottom: 1px solid rgba(21, 34, 56, 0.06);
+}
+
+.resource-showroom-card .card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resource-showroom-card:hover .card-image-box img {
+  transform: scale(1.03);
+}
+
+.resource-showroom-card .card-body-box {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.resource-showroom-card .card-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.resource-showroom-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+.resource-showroom-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.resource-showroom-card .read-link {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  border-bottom: 2px solid var(--gold);
+  width: fit-content;
+  margin-top: auto;
+  padding-bottom: 2px;
+  transition: border-bottom-color 0.25s ease, color 0.25s ease;
+}
+
+.resource-showroom-card:hover .read-link {
+  color: var(--gold);
+  border-bottom-color: var(--navy);
+}
+
+/* 3. Deep Dive Article layouts */
+.article-layout-section {
+  padding: clamp(54px, 8vw, 96px) 0;
+  background: #fff;
+}
+
+.article-content-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.article-content-wrapper h2,
+.article-content-wrapper h3 {
+  color: var(--navy);
+  margin-top: 42px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.article-content-wrapper h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.article-content-wrapper h3 {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+}
+
+.article-content-wrapper p {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+
+.article-content-wrapper blockquote {
+  margin: 32px 0;
+  padding: 24px 28px;
+  background: #fbfbfa;
+  border-left: 4px solid var(--gold);
+  border-radius: 2px;
+}
+
+.article-content-wrapper blockquote p {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.58;
+  color: var(--navy);
+  margin-bottom: 0;
+}
+
+.article-content-wrapper ul.article-checklist,
+.article-content-wrapper ol.article-steps {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0;
+}
+
+.article-content-wrapper ul.article-checklist li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 0.98rem;
+  line-height: 1.58;
+  color: var(--text);
+}
+
+.article-content-wrapper ul.article-checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.article-content-wrapper ol.article-steps li {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 20px;
+  font-size: 0.98rem;
+  line-height: 1.58;
+}
+
+.article-content-wrapper ol.article-steps li::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 24px;
+  height: 24px;
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-content-wrapper ol.article-steps {
+  counter-reset: step-counter;
+}
+
+/* 4. Calculator Layout styling */
+.calculator-box {
+  background: #fbfbfa;
+  border: 1px solid rgba(21, 34, 56, 0.08);
+  border-radius: 4px;
+  padding: 30px;
+  margin: 38px 0;
+  box-shadow: 0 8px 30px rgba(21, 34, 56, 0.02);
+}
+
+.calculator-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.calc-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calc-input-group label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+.calc-input-group select,
+.calc-input-group input {
+  padding: 12px;
+  border: 1px solid rgba(21, 34, 56, 0.16);
+  border-radius: 2px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--navy);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.calc-input-group select:focus,
+.calc-input-group input:focus {
+  border-color: var(--gold);
+}
+
+.calculator-results {
+  background: var(--navy-deep);
+  color: #fff;
+  padding: 24px;
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  text-align: center;
+}
+
+.result-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-metric span {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.result-metric strong {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+
+/* 5. Responsive Overrides for Resources */
+@media (max-width: 980px) {
+  .resources-showroom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .resources-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  .resources-hero-grid .hero-text-content {
+    margin-inline: auto;
+  }
+  .resources-hero-grid .hero-image-decor {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .resources-showroom-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .calculator-inputs-grid,
+  .calculator-results {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
 
 
