@@ -317,7 +317,7 @@ const buildQuoteModal = () => {
   modal.innerHTML = `
     <div class="quote-modal-backdrop" data-quote-close></div>
     <div class="quote-dialog">
-      <button class="quote-close" type="button" data-quote-close aria-label="Close quote form">Close</button>
+      <button class="quote-close" type="button" data-quote-close aria-label="Close quote form">&times;</button>
       <div class="eyebrow">Sample Enquiry</div>
       <h2 id="quote-modal-title">Request samples</h2>
       <form class="quote-form" novalidate>

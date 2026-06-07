@@ -2090,21 +2090,29 @@ body.quote-modal-open {
   position: absolute;
   top: 14px;
   right: 14px;
-  min-height: 34px;
-  padding: 0 12px;
-  border: 1px solid rgba(244,217,135,.28);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 300;
   cursor: pointer;
+  transition: all 0.25s ease;
+  line-height: 1;
+  padding: 0;
+  padding-bottom: 3px; /* visual center alignment for times symbol */
 }
 
 .quote-close:hover {
-  border-color: rgba(244,217,135,.6);
-  background: rgba(255,255,255,.14);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(198, 168, 92, 0.5);
+  transform: rotate(90deg);
 }
 
 .sample-float-trigger {
@@ -2167,39 +2175,54 @@ body.quote-modal-open {
 .quote-form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 11px;
+  gap: 12px;
 }
 
 .quote-form label {
-  display: grid;
-  gap: 7px;
-  color: rgba(255,255,255,.86);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .1em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.quote-form label:focus-within {
+  color: var(--gold);
 }
 
 .quote-form input,
 .quote-form textarea {
   width: 100%;
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
   color: #fff;
   caret-color: var(--gold);
-  font: inherit;
-  font-size: .95rem;
-  letter-spacing: 0;
-  line-height: 1.35;
-  padding: 10px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  padding: 11px 14px;
   outline: 0;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quote-form input:hover,
+.quote-form textarea:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(198, 168, 92, 0.35);
 }
 
 .quote-form input:focus,
 .quote-form textarea:focus {
   border-color: var(--gold);
-  background: rgba(255,255,255,.18);
-  box-shadow: 0 0 0 3px rgba(198,168,92,.22);
+  background: rgba(16, 24, 39, 0.4);
+  box-shadow: 0 0 12px rgba(198, 168, 92, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
 }
 
 @keyframes quote-autofill-start {
@@ -2220,13 +2243,35 @@ body.quote-modal-open {
 
 .quote-actions {
   display: grid;
-  gap: 9px;
-  margin-top: 2px;
+  gap: 12px;
+  margin-top: 6px;
 }
 
-.quote-actions .btn {
+.quote-actions .btn-gold {
+  background: linear-gradient(135deg, #f4d987 0%, #c6a85c 100%);
+  border: none;
+  border-radius: 8px;
+  color: #101827;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  box-shadow: 0 4px 16px rgba(198, 168, 92, 0.25);
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
   width: 100%;
+}
+
+.quote-actions .btn-gold:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 168, 92, 0.4);
+  background: linear-gradient(135deg, #fff 0%, #f4d987 100%);
+}
+
+.quote-actions .btn-gold:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .quote-actions .btn:disabled {
