@@ -967,12 +967,12 @@ const initDiptiChatbot = () => {
     chatHistory.push({ role: 'user', parts: [{ text: query }] });
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: chatHistory,
-          systemInstruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] }
+          system_instruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] }
         })
       });
 
