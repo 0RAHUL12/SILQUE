@@ -353,27 +353,11 @@ const buildQuoteModal = () => {
   return modal;
 };
 
-const buildSampleFloatTrigger = () => {
-  const button = document.createElement('button');
-  button.className = 'sample-float-trigger';
-  button.type = 'button';
-  button.setAttribute('aria-label', 'Request samples');
-  button.setAttribute('aria-expanded', 'false');
-  button.innerHTML = `
-    <span class="sample-float-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M7 4h10v16H7z"></path><path d="M9.5 6.5h5"></path><path d="M9.5 10h5"></path><path d="M9.5 13.5h3"></path></svg>
-    </span>
-    <span>Request Sample?</span>
-  `;
-  document.body.appendChild(button);
-  return button;
-};
-
 const quoteModal = buildQuoteModal();
 const quoteForm = quoteModal.querySelector('.quote-form');
 const quoteDialog = quoteModal.querySelector('.quote-dialog');
 const isContactPage = window.location.pathname.includes('/contact');
-const sampleFloatTrigger = !isContactPage ? buildSampleFloatTrigger() : null;
+const sampleFloatTrigger = null;
 let lastQuoteTrigger = null;
 let quoteAutoShown = sessionStorage.getItem('silqueQuoteAutoShown') === '1';
 let quoteCloseTimer = null;
@@ -748,7 +732,6 @@ const buildChatbotDipti = () => {
   container.className = 'dipti-chatbot-container';
   container.setAttribute('role', 'dialog');
   container.setAttribute('aria-label', 'SILQUE Help & Support');
-  container.hidden = true;
   container.innerHTML = `
     <div class="dipti-chat-window">
       <!-- STATE A: Unified Sourcing Menu -->
@@ -808,7 +791,9 @@ const buildChatbotDipti = () => {
       <div class="dipti-chat-view" id="dipti-chat-view" style="display: none; flex-direction: column; height: 100%;">
         <div class="dipti-chat-header">
           <button class="dipti-chat-back" type="button" id="dipti-back-btn" aria-label="Go Back">←</button>
-          <div class="dipti-chat-avatar" style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #101827; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;">D</div>
+          <div class="dipti-chat-avatar" style="width: 32px; height: 32px; border: 1.5px solid var(--gold); background: #101827; padding: 1.5px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <img src="/dipti-avatar.png" alt="Dipti Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
           <div class="dipti-chat-title-info">
             <h3>Dipti</h3>
             <span>SILQUE AI Assistant</span>
@@ -867,8 +852,11 @@ const buildChatbotTrigger = () => {
   button.setAttribute('aria-label', 'Have a question?');
   button.innerHTML = `
     <span class="dipti-trigger-text">Have a question?</span>
-    <div class="dipti-trigger-logo-wrapper" style="border: 1.5px solid var(--gold); border-radius: 50%; padding: 2px;">
-      <img src="/silque-logo-square.png" alt="SILQUE Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+    <div class="dipti-trigger-icon-wrap">
+      <div class="dipti-trigger-logo">
+        <img src="/dipti-avatar.png" alt="Dipti Avatar" />
+      </div>
+      <div class="dipti-trigger-close">&times;</div>
     </div>
   `;
   document.body.appendChild(button);
@@ -990,16 +978,26 @@ const initDiptiChatbot = () => {
   const resetWidgetViews = () => {
     menuView.style.display = 'flex';
     chatView.style.display = 'none';
+    widget.classList.remove('dipti-chat-mode');
+    
+    // Trigger staggered entry animations on cards
+    menuView.classList.remove('dipti-animate');
+    void menuView.offsetWidth; // force reflow
+    menuView.classList.add('dipti-animate');
+    
     if (chatHistory.length === 0 && quickRepliesContainer) {
       quickRepliesContainer.style.display = 'flex';
     }
   };
 
   const toggleChat = () => {
-    const isHidden = widget.hidden;
-    widget.hidden = !isHidden;
-    trigger.classList.toggle('is-active', isHidden);
-    if (isHidden) {
+    const isOpen = widget.classList.contains('dipti-open');
+    if (isOpen) {
+      widget.classList.remove('dipti-open');
+      trigger.classList.remove('is-active');
+    } else {
+      widget.classList.add('dipti-open');
+      trigger.classList.add('is-active');
       resetWidgetViews();
     }
   };
@@ -1014,6 +1012,7 @@ const initDiptiChatbot = () => {
   optAiBtn.addEventListener('click', () => {
     menuView.style.display = 'none';
     chatView.style.display = 'flex';
+    widget.classList.add('dipti-chat-mode');
     userInput.focus();
     if (!getSavedApiKey()) {
       keyPanel.hidden = false;
@@ -1116,11 +1115,52 @@ const initDiptiChatbot = () => {
       const resData = await response.json();
       let answer = resData.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate an answer. Please contact info@silquetissues.com.';
 
-      // Strip any markdown bold stars if the model somehow generated them
-      answer = answer.replace(/\*\*/g, '');
+      // Strip markdown bold and sanitize text to be strictly plain bullet points
+      const cleanAnswer = (text) => {
+        let cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '-');
+        let rawLines = cleaned.split('\n');
+        let points = [];
+        
+        rawLines.forEach(line => {
+          let trimmed = line.trim();
+          if (!trimmed) return;
+          
+          // Remove leading bullet formatting if it exists to normalize
+          let content = trimmed.replace(/^[-*•\d\.\:\s]+/, '').trim();
+          if (!content) return;
+          
+          // Filter out filler conversational headers
+          const lower = content.toLowerCase();
+          if (lower.startsWith('here is') || lower.startsWith('here are') || lower.startsWith('sure,') || lower.startsWith('certainly') || content.endsWith(':')) {
+            return;
+          }
+          
+          points.push(`- ${content}`);
+        });
+        
+        if (points.length === 0) {
+          let sentences = cleaned.split(/(?<=[.!?])\s+/);
+          sentences.forEach(s => {
+            let trimmed = s.trim();
+            if (!trimmed) return;
+            let content = trimmed.replace(/^[-*•\d\.\:\s]+/, '').trim();
+            if (content) {
+              points.push(`- ${content}`);
+            }
+          });
+        }
+        
+        if (points.length > 3) {
+          points = points.slice(0, 3);
+        }
+        
+        return points.join('\n');
+      };
 
-      addMessage('assistant', answer);
-      chatHistory.push({ role: 'model', parts: [{ text: answer }] });
+      const formattedAnswer = cleanAnswer(answer);
+
+      addMessage('assistant', formattedAnswer);
+      chatHistory.push({ role: 'model', parts: [{ text: formattedAnswer }] });
 
     } catch (err) {
       console.error(err);

@@ -3223,7 +3223,7 @@ body.quote-modal-open {
   color: rgba(255,255,255,0.7);
 }
 
-/* ─── Products Hub Page ─── */
+/* --------- Products Hub Page --------- */
 .products-hub-hero {
   min-height: min(68vh, 600px);
 }
@@ -3272,7 +3272,7 @@ body.quote-modal-open {
   flex: 0 0 6px;
 }
 
-/* Brand pillar grid — "The SILQUE Standard" */
+/* Brand pillar grid --- "The SILQUE Standard" */
 .brand-pillar-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3322,7 +3322,7 @@ body.quote-modal-open {
   line-height: 1.5;
 }
 
-/* Process flow — buyer journey */
+/* Process flow --- buyer journey */
 .process-flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3434,7 +3434,7 @@ body.quote-modal-open {
   }
 }
 
-/* ─── Premium Showcase Image Framing ─── */
+/* --------- Premium Showcase Image Framing --------- */
 .showcase-image-wrapper {
   display: flex;
   align-items: center;
@@ -3478,9 +3478,9 @@ body.quote-modal-open {
   }
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   ═══ REDESIGNED PRODUCTS HUB STYLING ═══
-   ────────────────────────────────────────────────────────────────────────── */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   --------- REDESIGNED PRODUCTS HUB STYLING ---------
+   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /* Typography & Global Overrides for Products Page Elements */
 .products-hero-section .eyebrow,
@@ -3845,9 +3845,9 @@ body.quote-modal-open {
   }
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   ═══ B2B RESOURCES & SOURCING GUIDES STYLING ═══
-   ────────────────────────────────────────────────────────────────────────── */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   --------- B2B RESOURCES & SOURCING GUIDES STYLING ---------
+   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /* 1. Resources Hero & Intro */
 .resources-hero-section {
@@ -4063,7 +4063,7 @@ body.quote-modal-open {
 }
 
 .article-content-wrapper ul.article-checklist li::before {
-  content: "✓";
+  content: "---";
   position: absolute;
   left: 4px;
   top: 1px;
@@ -4216,7 +4216,7 @@ body.quote-modal-open {
   }
 }
 
-/* ═══ FAQ Accordions Polish & Visual Indicators ═══ */
+/* --------- FAQ Accordions Polish & Visual Indicators --------- */
 main details {
   background: var(--white);
   border: 1px solid var(--line);
@@ -4270,7 +4270,7 @@ main details[open] summary {
 }
 
 main details[open] summary::after {
-  content: "−";
+  content: "---";
   transform: translateY(-50%) rotate(180deg);
   color: var(--navy);
 }
@@ -4288,7 +4288,7 @@ main details[open] p, main details[open] ul {
   transform: translateY(0);
 }
 
-/* ═══ Sizing Calculator Inputs Polish ═══ */
+/* --------- Sizing Calculator Inputs Polish --------- */
 .calc-input-group select,
 .calc-input-group input {
   padding: 12px 14px;
@@ -4310,11 +4310,11 @@ main details[open] p, main details[open] ul {
   transform: translateY(-1px);
 }
 
-/* ═══ Chatbot Dipti Styling ═══ */
+/* --------- Chatbot Dipti Styling --------- */
 .dipti-chatbot-trigger {
   position: fixed;
   right: clamp(12px, 1.4vw, 20px);
-  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 220;
   width: 54px;
   height: 54px;
@@ -4326,10 +4326,26 @@ main details[open] p, main details[open] ul {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* keeps logo on the right */
+  justify-content: flex-end; /* keeps logo/close wrapper on the right */
   overflow: hidden;
   padding: 0;
   transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.dipti-chatbot-trigger:not(.is-active) {
+  animation: dipti-pulse 2s infinite;
+}
+
+@keyframes dipti-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(198, 168, 92, 0.4), 0 12px 32px rgba(8, 12, 20, 0.24);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(198, 168, 92, 0), 0 12px 32px rgba(8, 12, 20, 0.24);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(198, 168, 92, 0), 0 12px 32px rgba(8, 12, 20, 0.24);
+  }
 }
 
 .dipti-chatbot-trigger:hover,
@@ -4338,23 +4354,71 @@ main details[open] p, main details[open] ul {
   box-shadow: 0 16px 40px rgba(8, 12, 20, 0.32);
 }
 
-.dipti-trigger-logo-wrapper {
+.dipti-trigger-icon-wrap {
+  position: relative;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: #101827;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.dipti-trigger-logo-wrapper img {
+.dipti-trigger-logo {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #101827;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+  overflow: hidden;
+}
+
+.dipti-trigger-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.dipti-trigger-close {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  line-height: 1;
+}
+
+/* Trigger Active State (open) */
+.dipti-chatbot-trigger.is-active .dipti-trigger-icon-wrap {
+  transform: rotate(180deg);
+}
+
+.dipti-chatbot-trigger.is-active .dipti-trigger-logo {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.dipti-chatbot-trigger.is-active .dipti-trigger-close {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 .dipti-trigger-text {
@@ -4370,12 +4434,12 @@ main details[open] p, main details[open] ul {
   margin-right: 0;
 }
 
-/* Hover expansion */
+/* Hover expansion - closed only */
 @media (hover: hover) and (pointer: fine) {
-  .dipti-chatbot-trigger:hover {
+  .dipti-chatbot-trigger:not(.is-active):hover {
     width: 185px;
   }
-  .dipti-chatbot-trigger:hover .dipti-trigger-text {
+  .dipti-chatbot-trigger:not(.is-active):hover .dipti-trigger-text {
     opacity: 1;
     max-width: 120px;
     margin-left: 16px;
@@ -4386,22 +4450,37 @@ main details[open] p, main details[open] ul {
 .dipti-chatbot-container {
   position: fixed;
   right: clamp(12px, 1.4vw, 20px);
-  bottom: calc(146px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(86px + env(safe-area-inset-bottom, 0px));
   z-index: 230;
   width: 360px;
   height: 500px;
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 180px);
-  background: #101827;
-  border: 1px solid rgba(198,168,92,.35);
-  border-radius: 8px;
-  box-shadow: 0 24px 64px rgba(8,12,20,.42);
+  background: rgba(16, 24, 39, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(198, 168, 92, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 0 32px rgba(198, 168, 92, 0.15), 0 24px 64px rgba(8, 12, 20, 0.42);
   overflow: hidden;
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+  
+  /* Transition states */
+  opacity: 0;
+  transform: translateY(40px) scale(0.85);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s, height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.dipti-chatbot-container[hidden] {
-  display: none;
+.dipti-chatbot-container.dipti-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dipti-chatbot-container.dipti-chat-mode {
+  height: 570px;
 }
 
 .dipti-chat-window {
@@ -4415,13 +4494,13 @@ main details[open] p, main details[open] ul {
   align-items: center;
   padding: 12px 16px;
   background: #152238;
-  border-bottom: 1px solid rgba(198,168,92,.18);
+  border-bottom: 1px solid rgba(198, 168, 92, 0.18);
 }
 
 .dipti-chat-back {
   background: transparent;
   border: none;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.25rem;
   cursor: pointer;
   padding: 4px 8px;
@@ -4468,7 +4547,7 @@ main details[open] p, main details[open] ul {
 }
 
 .dipti-chat-title-info span {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.7rem;
   letter-spacing: 0.02em;
 }
@@ -4477,7 +4556,7 @@ main details[open] p, main details[open] ul {
   margin-left: auto;
   background: transparent;
   border: none;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 1.6rem;
   cursor: pointer;
   line-height: 1;
@@ -4610,6 +4689,38 @@ main details[open] p, main details[open] ul {
   font-weight: 500;
 }
 
+/* Staggered card animations */
+@keyframes diptiFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dipti-menu-view .dipti-menu-option-card {
+  opacity: 0;
+}
+
+.dipti-menu-view.dipti-animate .dipti-menu-option-card {
+  animation: diptiFadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.dipti-menu-view.dipti-animate .dipti-menu-option-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dipti-menu-view.dipti-animate .dipti-menu-option-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dipti-menu-view.dipti-animate .dipti-menu-option-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
 /* Chat Messages view styling */
 .dipti-chat-messages {
   flex: 1;
@@ -4639,12 +4750,13 @@ main details[open] p, main details[open] ul {
   font-size: 0.82rem;
   line-height: 1.4;
   text-align: left;
+  white-space: pre-wrap; /* critical to display points separated by \n correctly */
 }
 
 .dipti-message.assistant .message-content {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.03);
-  color: rgba(255,255,255,.9);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 8px 8px 8px 0;
 }
 
@@ -4704,15 +4816,15 @@ main details[open] p, main details[open] ul {
 
 .dipti-key-panel {
   background: #152238;
-  border-top: 1px solid rgba(198,168,92,.22);
-  border-bottom: 1px solid rgba(198,168,92,.22);
+  border-top: 1px solid rgba(198, 168, 92, 0.22);
+  border-bottom: 1px solid rgba(198, 168, 92, 0.22);
   padding: 14px 16px;
   text-align: left;
 }
 
 .dipti-chat-input-area {
   display: flex;
-  border-top: 1px solid rgba(198,168,92,.18);
+  border-top: 1px solid rgba(198, 168, 92, 0.18);
   padding: 10px 12px;
   background: #101827;
   align-items: center;
@@ -4750,7 +4862,7 @@ main details[open] p, main details[open] ul {
 @media (max-width: 480px) {
   .dipti-chatbot-container {
     width: calc(100vw - 20px);
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px) !important;
     max-height: none;
     right: 10px;
     bottom: 80px;

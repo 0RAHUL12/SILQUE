@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '..', 'public');
-const targetVersion = '20260607-dipti-chatbot-v9';
+const targetVersion = '20260607-dipti-chatbot-v10';
 
 const walk = (dir) => {
   let results = [];
@@ -24,31 +24,29 @@ const run = () => {
   console.log(`Found ${htmlFiles.length} HTML files to update.`);
 
   let updatedCount = 0;
+  const previousVersions = [
+    '20260607-dipti-chatbot-v9',
+    '20260607-dipti-chatbot-v8',
+    '20260607-products-hub',
+    '20260607-resources-hub'
+  ];
 
   htmlFiles.forEach((file) => {
     let content = fs.readFileSync(file, 'utf8');
     let modified = false;
 
-    // Replace site.css version
-    if (content.includes('site.css?v=20260607-dipti-chatbot-v8')) {
-      content = content.replace('site.css?v=20260607-dipti-chatbot-v8', `site.css?v=${targetVersion}`);
-      modified = true;
-    }
-    // Also handle other CSS versions if any
-    if (content.includes('site.css?v=20260607-products-hub')) {
-      content = content.replace('site.css?v=20260607-products-hub', `site.css?v=${targetVersion}`);
-      modified = true;
-    }
-    if (content.includes('site.css?v=20260607-resources-hub')) {
-      content = content.replace('site.css?v=20260607-resources-hub', `site.css?v=${targetVersion}`);
-      modified = true;
-    }
-
-    // Replace site.js version
-    if (content.includes('site.js?v=20260607-dipti-chatbot-v8')) {
-      content = content.replace('site.js?v=20260607-dipti-chatbot-v8', `site.js?v=${targetVersion}`);
-      modified = true;
-    }
+    previousVersions.forEach((prev) => {
+      const cssTarget = `site.css?v=${prev}`;
+      if (content.includes(cssTarget)) {
+        content = content.split(cssTarget).join(`site.css?v=${targetVersion}`);
+        modified = true;
+      }
+      const jsTarget = `site.js?v=${prev}`;
+      if (content.includes(jsTarget)) {
+        content = content.split(jsTarget).join(`site.js?v=${targetVersion}`);
+        modified = true;
+      }
+    });
 
     if (modified) {
       fs.writeFileSync(file, content, 'utf8');
