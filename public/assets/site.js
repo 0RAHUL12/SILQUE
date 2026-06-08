@@ -830,15 +830,7 @@ const buildChatbotDipti = () => {
           </div>
         </div>
         
-        <div class="dipti-key-panel" id="dipti-key-panel" hidden>
-          <p style="margin:0 0 4px; font-weight:700; color:var(--gold); font-size:0.8rem;">🔧 Developer Key Required</p>
-          <p style="font-size:0.7rem; margin:0 0 8px; color:rgba(255,255,255,0.7); line-height:1.3;">To chat with Dipti, paste your Google Gemini API Key. It is saved in your browser locally.</p>
-          <div style="display:flex; gap:6px;">
-            <input type="password" id="dipti-api-key-input" placeholder="AI Studio Key..." style="flex:1; padding:6px; font-size:0.75rem; border-radius:4px; border:1px solid rgba(198,168,92,0.3); background:rgba(0,0,0,0.3); color:#fff; outline:none;" />
-            <button id="dipti-save-key-btn" style="padding:6px 12px; background:var(--gold); border:none; border-radius:4px; font-size:0.75rem; font-weight:bold; cursor:pointer; color:#101827;">Save</button>
-          </div>
-          <p style="font-size:0.65rem; margin:6px 0 0; text-align:center;"><a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--gold); text-decoration:underline;">Get a free API key from Google AI Studio</a></p>
-        </div>
+
 
         <form class="dipti-chat-input-area" id="dipti-input-form">
           <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
@@ -929,31 +921,6 @@ BEHAVIOR GUIDELINES:
 const initDiptiChatbot = () => {
   if (window.location.pathname.includes('/contact')) return;
 
-  const DEFAULT_KEY_B64 = 'QVEuQWI4Uk42TF9FVGRyTEJjTUFid3Vjel9IQUtaVnhtNkF3WEg4NmdOZmt1X29pRGg3MHc=';
-  let inMemoryKey = '';
-  const getSavedApiKey = () => {
-    try {
-      return localStorage.getItem('silque_gemini_key') || inMemoryKey || atob(DEFAULT_KEY_B64);
-    } catch (e) {
-      return inMemoryKey || atob(DEFAULT_KEY_B64);
-    }
-  };
-
-  const saveApiKey = (key) => {
-    try {
-      localStorage.setItem('silque_gemini_key', key);
-    } catch (e) {
-      inMemoryKey = key;
-    }
-  };
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlKey = urlParams.get('setkey');
-  if (urlKey) {
-    saveApiKey(urlKey);
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-
   const trigger = buildChatbotTrigger();
   const widget = buildChatbotDipti();
   
@@ -968,9 +935,6 @@ const initDiptiChatbot = () => {
   const inputForm = widget.querySelector('#dipti-input-form');
   const userInput = widget.querySelector('#dipti-user-input');
   const messagesContainer = widget.querySelector('#dipti-messages');
-  const keyPanel = widget.querySelector('#dipti-key-panel');
-  const keyInput = widget.querySelector('#dipti-api-key-input');
-  const saveKeyBtn = widget.querySelector('#dipti-save-key-btn');
   const quickRepliesContainer = widget.querySelector('#dipti-quick-replies');
 
   let chatHistory = [];
@@ -1025,11 +989,6 @@ const initDiptiChatbot = () => {
     chatView.style.display = 'flex';
     widget.classList.add('dipti-chat-mode');
     userInput.focus();
-    if (!getSavedApiKey()) {
-      keyPanel.hidden = false;
-    } else {
-      keyPanel.hidden = true;
-    }
   });
 
   optQuoteBtn.addEventListener('click', () => {
@@ -1041,16 +1000,6 @@ const initDiptiChatbot = () => {
   });
 
   backBtn.addEventListener('click', resetWidgetViews);
-
-  saveKeyBtn.addEventListener('click', () => {
-    const key = keyInput.value.trim();
-    if (key) {
-      saveApiKey(key);
-      keyPanel.hidden = true;
-      addMessage('assistant', '🔑 <em>API Key saved successfully! I am ready to answer your questions.</em>');
-      keyInput.value = '';
-    }
-  });
 
   // Quick replies handler
   const quickReplyBtns = widget.querySelectorAll('.dipti-quick-reply-btn');
@@ -1077,27 +1026,8 @@ const initDiptiChatbot = () => {
       quickRepliesContainer.style.display = 'none';
     }
 
-    const hasKey = getSavedApiKey();
-    const looksLikeKey = !/\s/.test(query) && query.length >= 30 && query.length <= 80;
-    
-    if (!hasKey && looksLikeKey) {
-      saveApiKey(query);
-      keyPanel.hidden = true;
-      userInput.value = '';
-      addMessage('user', '••••••••••••••••••••');
-      addMessage('assistant', '🔑 <em>API Key detected and saved successfully! I am ready to answer your questions now.</em>');
-      return;
-    }
-
     addMessage('user', query);
     userInput.value = '';
-
-    const apiKey = getSavedApiKey();
-    if (!apiKey) {
-      keyPanel.hidden = false;
-      addMessage('assistant', '⚠️ <em>Please enter a Gemini API Key to chat.</em>');
-      return;
-    }
 
     const typingDiv = document.createElement('div');
     typingDiv.className = 'dipti-message assistant typing-indicator-msg';
@@ -1106,14 +1036,16 @@ const initDiptiChatbot = () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     chatHistory.push({ role: 'user', parts: [{ text: query }] });
+    if (chatHistory.length > 4) {
+      chatHistory = chatHistory.slice(-4);
+    }
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: chatHistory,
-          system_instruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] }
+          contents: chatHistory
         })
       });
 
@@ -1172,12 +1104,14 @@ const initDiptiChatbot = () => {
 
       addMessage('assistant', formattedAnswer);
       chatHistory.push({ role: 'model', parts: [{ text: formattedAnswer }] });
+      if (chatHistory.length > 4) {
+        chatHistory = chatHistory.slice(-4);
+      }
 
     } catch (err) {
       console.error(err);
       typingDiv.remove();
-      addMessage('assistant', '❌ <em>Sorry, I encountered an error. Please verify your Gemini API key in the settings panel or contact us directly on WhatsApp.</em>');
-      keyPanel.hidden = false;
+      addMessage('assistant', '❌ <em>Sorry, I encountered an error. Please try again or contact us directly on WhatsApp.</em>');
     }
   });
 };

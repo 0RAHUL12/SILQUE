@@ -63,6 +63,12 @@
         "type": 301
       }
     ],
+    "rewrites": [
+      {
+        "source": "/api/chat",
+        "function": "chat"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -70,5 +76,14 @@
     ],
     "cleanUrls": true,
     "trailingSlash": false
-  }
+  },
+  "functions": [
+    {
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git"
+      ]
+    }
+  ]
 }
