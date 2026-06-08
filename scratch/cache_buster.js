@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '..', 'public');
-const targetVersion = '20260608-dipti-chatbot-v24';
+const targetVersion = '20260608-dipti-chatbot-v25';
 
 const walk = (dir) => {
   let results = [];
@@ -25,6 +25,7 @@ const run = () => {
 
   let updatedCount = 0;
   const previousVersions = [
+    '20260608-dipti-chatbot-v24',
     '20260608-dipti-chatbot-v23',
     '20260608-dipti-chatbot-v22',
     '20260608-dipti-chatbot-v21',

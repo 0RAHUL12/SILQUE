@@ -958,8 +958,6 @@ const showGreetingTooltip = (trigger) => {
 };
 
 const initDiptiChatbot = () => {
-  if (window.location.pathname.includes('/contact')) return;
-
   const trigger = buildChatbotTrigger();
   const widget = buildChatbotDipti();
   
@@ -994,6 +992,84 @@ const initDiptiChatbot = () => {
       cache[query.toLowerCase().trim()] = answer;
       localStorage.setItem('silque_response_cache', JSON.stringify(cache));
     } catch (e) {}
+  };
+
+  // Pre-defined B2B FAQ Database to bypass Gemini API calls and protect free-tier limits
+  const LOCAL_FAQ_RESPONSES = [
+    {
+      keywords: ['moq', 'minimum order', 'minimum quantity', 'minimums'],
+      answer: "- Custom Printing MOQ: 10,000 pieces per design.\n- Unprinted Stock MOQ: Available in smaller carton quantities (contact sales for details).\n- Please WhatsApp +91 91224 28064 or email info@silquetissues.com for order details."
+    },
+    {
+      keywords: ['sample', 'samples', 'free sample', 'sample kit', 'physical sample'],
+      answer: "- Free sample kits are available for B2B hospitality buyers in India.\n- To request, please click 'Request Quote / Samples' on the menu or WhatsApp +91 91224 28064.\n- You will need to provide: Name, Company, Email, Phone, and Delivery Address."
+    },
+    {
+      keywords: ['custom print', 'custom logo', 'branding', 'printing', 'logo', 'personalise', 'personalize', 'foil', 'stamping', 'emboss'],
+      answer: "- Custom Logo Printing: We support flexo printing (up to 2 colors), metallic hotfoil stamping (gold/silver), and debossing.\n- MOQ: 10,000 Pcs per logo design.\n- Ink: Food-safe, non-bleeding inks."
+    },
+    {
+      keywords: ['size', 'sizes', 'dimension', 'dimensions', 'format', 'formats', 'cocktail', 'dinner', 'pocket', 'cutlery'],
+      answer: "- 8x8 Cocktail: 20cm x 20cm open, 1/4 fold. Ideal for beverage service, cafes, lounge bars.\n- 16x16 Dinner: 40cm x 40cm open, 1/4 or 1/8 fold. Ideal for formal dining, events.\n- Pocket Cutlery: 40cm x 40cm open, 1/8 book fold with built-in cutlery slot. Speeds up setups by 50%."
+    },
+    {
+      keywords: ['price', 'pricing', 'cost', 'quote', 'rates', 'bulk rate'],
+      answer: "- Bulk pricing varies by size, quantity, and branding requirements.\n- To get a custom quote: Please click 'Request Quote / Samples' to submit your B2B requirements, or WhatsApp +91 91224 28064."
+    },
+    {
+      keywords: ['lead time', 'delivery', 'shipping', 'timeline', 'bangalore', 'bengaluru'],
+      answer: "- Production Lead Time: 7 to 10 days from design layout approval.\n- Delivery: Direct door-to-door delivery across Bangalore. We ship to major Indian hubs.\n- Warehouse location: Koramangala, Bengaluru."
+    },
+    {
+      keywords: ['airlaid', 'material', 'cellulose', 'dry laid', 'linen', 'paper', 'tissue'],
+      answer: "- Airlaid Material: 100% virgin wood pulp fibers distributed using air loops (dry-laid process) instead of water.\n- Experience: Feels like textile linen, heavy drape, lint-free, highly absorbent.\n- Eco-friendly: Fully biodegradable and compostable, uses up to 95% less water in production."
+    },
+    {
+      keywords: ['contact', 'phone', 'whatsapp', 'email', 'office', 'address', 'gstin', 'location'],
+      answer: "- Phone/WhatsApp: +91 91224 28064\n- Email: info@silquetissues.com\n- Office: 15, 3rd Cross, 80 Feet Road, Koramangala 6th Block, Bengaluru - 560095\n- GSTIN: 29AFXFS1361J1Z8"
+    }
+  ];
+
+  const getLocalFaqResponse = (query) => {
+    const normalized = query.toLowerCase().trim().replace(/[^\w\s]/g, '');
+    const words = normalized.split(/\s+/);
+    for (const faq of LOCAL_FAQ_RESPONSES) {
+      for (const kw of faq.keywords) {
+        if (kw.includes(' ')) {
+          if (normalized.includes(kw)) return faq.answer;
+        } else {
+          if (words.some(word => word.startsWith(kw))) return faq.answer;
+        }
+      }
+    }
+    return null;
+  };
+
+  const showContextualCta = (text) => {
+    const lowerText = text.toLowerCase();
+    if (lowerText.includes('sales') || lowerText.includes('contact') || lowerText.includes('whatsapp') || lowerText.includes('quote') || lowerText.includes('pricing') || lowerText.includes('sample') || lowerText.includes('procure')) {
+      const ctaDiv = document.createElement('div');
+      ctaDiv.className = 'dipti-message assistant dipti-cta-message';
+      ctaDiv.style.marginTop = '6px';
+      ctaDiv.innerHTML = `
+        <div class="message-content" style="background: rgba(198, 168, 92, 0.1); border: 1px dashed rgba(198, 168, 92, 0.4); padding: 10px; border-radius: 8px;">
+          <p style="margin: 0 0 8px 0; font-size: 0.75rem; color: rgba(255, 255, 255, 0.85); font-weight: 500;">Quick Actions:</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="dipti-cta-btn quote-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: var(--gold); border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #101827; cursor: pointer; transition: transform 0.2s;">📝 Get Quote</button>
+            <a href="https://wa.me/919122428064?text=Hi%2C%20I%20want%20to%20enhance%20my%20table%20presentation.%20Let's%20connect." target="_blank" rel="noopener noreferrer" class="dipti-cta-btn wa-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: #25D366; border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #fff; text-align: center; text-decoration: none; cursor: pointer; transition: transform 0.2s;">💬 WhatsApp</a>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(ctaDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      ctaDiv.querySelector('.quote-btn').addEventListener('click', () => {
+        toggleChat();
+        if (typeof openQuoteModal === 'function') {
+          openQuoteModal(null);
+        }
+      });
+    }
   };
 
   // Trigger greeting tooltip after page load
@@ -1111,10 +1187,27 @@ const initDiptiChatbot = () => {
       setTimeout(() => {
         typingDiv.remove();
         addMessage('assistant', cached);
+        showContextualCta(cached);
         chatHistory.push({ role: 'model', parts: [{ text: cached }] });
         if (chatHistory.length > 4) {
           chatHistory = chatHistory.slice(-4);
         }
+      }, 450);
+      return;
+    }
+
+    // CHECK LOCAL FAQ
+    const faqAnswer = getLocalFaqResponse(query);
+    if (faqAnswer) {
+      setTimeout(() => {
+        typingDiv.remove();
+        addMessage('assistant', faqAnswer);
+        showContextualCta(faqAnswer);
+        chatHistory.push({ role: 'model', parts: [{ text: faqAnswer }] });
+        if (chatHistory.length > 4) {
+          chatHistory = chatHistory.slice(-4);
+        }
+        saveCachedResponse(query, faqAnswer);
       }, 450);
       return;
     }
@@ -1186,30 +1279,7 @@ const initDiptiChatbot = () => {
       addMessage('assistant', formattedAnswer);
 
       // Contextual lead generation CTAs in chat stream
-      const lowerAnswer = formattedAnswer.toLowerCase();
-      if (lowerAnswer.includes('sales') || lowerAnswer.includes('contact') || lowerAnswer.includes('whatsapp') || lowerAnswer.includes('quote') || lowerAnswer.includes('pricing') || lowerAnswer.includes('sample') || lowerAnswer.includes('procure')) {
-        const ctaDiv = document.createElement('div');
-        ctaDiv.className = 'dipti-message assistant dipti-cta-message';
-        ctaDiv.style.marginTop = '6px';
-        ctaDiv.innerHTML = `
-          <div class="message-content" style="background: rgba(198, 168, 92, 0.1); border: 1px dashed rgba(198, 168, 92, 0.4); padding: 10px; border-radius: 8px;">
-            <p style="margin: 0 0 8px 0; font-size: 0.75rem; color: rgba(255, 255, 255, 0.85); font-weight: 500;">Quick Actions:</p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <button class="dipti-cta-btn quote-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: var(--gold); border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #101827; cursor: pointer; transition: transform 0.2s;">📝 Get Quote</button>
-              <a href="https://wa.me/919122428064?text=Hi%2C%20I%20want%20to%20enhance%20my%20table%20presentation.%20Let's%20connect." target="_blank" rel="noopener noreferrer" class="dipti-cta-btn wa-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: #25D366; border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #fff; text-align: center; text-decoration: none; cursor: pointer; transition: transform 0.2s;">💬 WhatsApp</a>
-            </div>
-          </div>
-        `;
-        messagesContainer.appendChild(ctaDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        ctaDiv.querySelector('.quote-btn').addEventListener('click', () => {
-          toggleChat();
-          if (typeof openQuoteModal === 'function') {
-            openQuoteModal(null);
-          }
-        });
-      }
+      showContextualCta(formattedAnswer);
 
       chatHistory.push({ role: 'model', parts: [{ text: formattedAnswer }] });
       if (chatHistory.length > 4) {
