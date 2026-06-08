@@ -996,6 +996,16 @@ const initSakshamChatbot = () => {
   // Trigger greeting tooltip after page load
   showGreetingTooltip(trigger);
 
+  // Auto-expand teaser "Have a question?" on load, then collapse after 3 seconds
+  setTimeout(() => {
+    if (!widget.classList.contains('dipti-open')) {
+      trigger.classList.add('dipti-expand-teaser');
+      setTimeout(() => {
+        trigger.classList.remove('dipti-expand-teaser');
+      }, 3000);
+    }
+  }, 1200);
+
   const addMessage = (sender, text) => {
     const msgDiv = document.createElement('div');
     msgDiv.className = `dipti-message ${sender}`;
@@ -1107,7 +1117,7 @@ const initSakshamChatbot = () => {
     }
 
     try {
-      const decodedKey = atob('QUl6YVN5QThSTjZMX0VUZHJMQmNNQWJ3dWN6X0hBS3Z4bTZBd1hIODZnTmZrdV9vaURoNzB3');
+      const decodedKey = atob('QUl6YVN5QThSTjZMX0VUZHJMQmNNQWJ3dWN6X0hBS1p2eG02QXdYSDg2Z05ma3Vfb2lEaDcwdw==');
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${decodedKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

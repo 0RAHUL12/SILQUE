@@ -4492,6 +4492,17 @@ main details[open] p, main details[open] ul {
   }
 }
 
+/* Programmatic teaser expand on load */
+.dipti-chatbot-trigger.dipti-expand-teaser {
+  width: 185px !important;
+}
+.dipti-chatbot-trigger.dipti-expand-teaser .dipti-trigger-text {
+  opacity: 1 !important;
+  max-width: 120px !important;
+  margin-left: 16px !important;
+  margin-right: 4px !important;
+}
+
 .dipti-chatbot-container {
   position: fixed;
   right: clamp(12px, 1.4vw, 20px);
