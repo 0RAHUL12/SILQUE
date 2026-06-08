@@ -1181,6 +1181,33 @@ const initSakshamChatbot = () => {
       const formattedAnswer = cleanAnswer(answer);
 
       addMessage('assistant', formattedAnswer);
+
+      // Contextual lead generation CTAs in chat stream
+      const lowerAnswer = formattedAnswer.toLowerCase();
+      if (lowerAnswer.includes('sales') || lowerAnswer.includes('contact') || lowerAnswer.includes('whatsapp') || lowerAnswer.includes('quote') || lowerAnswer.includes('pricing') || lowerAnswer.includes('sample') || lowerAnswer.includes('procure')) {
+        const ctaDiv = document.createElement('div');
+        ctaDiv.className = 'dipti-message assistant dipti-cta-message';
+        ctaDiv.style.marginTop = '6px';
+        ctaDiv.innerHTML = `
+          <div class="message-content" style="background: rgba(198, 168, 92, 0.1); border: 1px dashed rgba(198, 168, 92, 0.4); padding: 10px; border-radius: 8px;">
+            <p style="margin: 0 0 8px 0; font-size: 0.75rem; color: rgba(255, 255, 255, 0.85); font-weight: 500;">Quick Actions:</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="dipti-cta-btn quote-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: var(--gold); border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #101827; cursor: pointer; transition: transform 0.2s;">📝 Get Quote</button>
+              <a href="https://wa.me/919122428064?text=Hi%2C%20I%20want%20to%20enhance%20my%20table%20presentation.%20Let's%20connect." target="_blank" rel="noopener noreferrer" class="dipti-cta-btn wa-btn" style="flex: 1; min-width: 100px; padding: 6px 10px; background: #25D366; border: none; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #fff; text-align: center; text-decoration: none; cursor: pointer; transition: transform 0.2s;">💬 WhatsApp</a>
+            </div>
+          </div>
+        `;
+        messagesContainer.appendChild(ctaDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        ctaDiv.querySelector('.quote-btn').addEventListener('click', () => {
+          toggleChat();
+          if (typeof openQuoteModal === 'function') {
+            openQuoteModal(null);
+          }
+        });
+      }
+
       chatHistory.push({ role: 'model', parts: [{ text: formattedAnswer }] });
       if (chatHistory.length > 4) {
         chatHistory = chatHistory.slice(-4);
