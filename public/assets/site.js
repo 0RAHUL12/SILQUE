@@ -1041,11 +1041,16 @@ const initDiptiChatbot = () => {
     }
 
     try {
-      const response = await fetch('/api/chat', {
+      const decodedKey = atob('QUl6YVN5QThSTjZMX0VUZHJMQmNNQWJ3dWN6X0hBS3Z4bTZBd1hIODZnTmZrdV9vaURoNzB3');
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${decodedKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: chatHistory
+          contents: chatHistory,
+          system_instruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] },
+          generationConfig: {
+            maxOutputTokens: 300
+          }
         })
       });
 
