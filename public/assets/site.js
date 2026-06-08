@@ -762,7 +762,7 @@ const buildChatbotDipti = () => {
             <button class="dipti-menu-option-card" type="button" id="dipti-opt-ai">
               <div class="dipti-option-icon robot">🤖</div>
               <div class="dipti-option-details">
-                <h4>Talk to Dipti (AI Sourcing Agent)</h4>
+                <h4>Talk to Saksham (AI Sourcing Agent)</h4>
                 <p>Instant answers about specifications, custom printing, and delivery.</p>
               </div>
               <div class="dipti-option-arrow">➔</div>
@@ -800,10 +800,10 @@ const buildChatbotDipti = () => {
         <div class="dipti-chat-header">
           <button class="dipti-chat-back" type="button" id="dipti-back-btn" aria-label="Go Back">←</button>
           <div class="dipti-chat-avatar" style="width: 32px; height: 32px; border: 1.5px solid var(--gold); background: #101827; padding: 1.5px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <img src="/dipti-avatar.png" alt="Dipti Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+            <img src="/saksham-avatar.png" alt="Saksham Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
           </div>
           <div class="dipti-chat-title-info">
-            <h3>Dipti</h3>
+            <h3>Saksham</h3>
             <span>SILQUE AI Assistant</span>
           </div>
           <button class="dipti-chat-close" type="button" aria-label="Close Chat">&times;</button>
@@ -812,7 +812,7 @@ const buildChatbotDipti = () => {
         <div class="dipti-chat-messages" id="dipti-messages">
           <div class="dipti-message assistant">
             <div class="message-content">
-              Hello! I am <strong>Dipti</strong>, your SILQUE AI Assistant. How can I help you today?
+              Hello! I am <strong>Saksham</strong>, your SILQUE AI Assistant. How can I help you today?
             </div>
           </div>
           
@@ -833,7 +833,7 @@ const buildChatbotDipti = () => {
 
 
         <form class="dipti-chat-input-area" id="dipti-input-form">
-          <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
+          <input type="text" id="dipti-user-input" placeholder="Ask Saksham about sizes, custom prints..." autocomplete="off" required />
           <button type="submit" id="dipti-send-btn" aria-label="Send message">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           </button>
@@ -854,7 +854,7 @@ const buildChatbotTrigger = () => {
     <span class="dipti-trigger-text">Have a question?</span>
     <div class="dipti-trigger-icon-wrap">
       <div class="dipti-trigger-logo">
-        <img src="/dipti-avatar.png" alt="Dipti Avatar" />
+        <img src="/saksham-avatar.png" alt="Saksham Avatar" />
       </div>
       <div class="dipti-trigger-close">&times;</div>
     </div>
@@ -863,10 +863,7 @@ const buildChatbotTrigger = () => {
   return button;
 };
 
-const DIPTI_SYSTEM_INSTRUCTION = `
-You are Dipti, the friendly, professional, and knowledgeable AI Sourcing Assistant for SILQUE (SILQUE TISSUES), a premium hospitality airlaid napkin manufacturer and supplier based in Bengaluru (Bangalore), India.
-Your goal is to assist B2B buyers (hotel procurement managers, restaurant groups, wedding planners, caterers, and distributors) with their sourcing inquiries.
-
+const SAKSHAM_SYSTEM_INSTRUCTION = `
 Here is the verified information about SILQUE that you must use to answer questions:
 
 1. COMPANY OVERVIEW & CONTACTS:
@@ -918,7 +915,46 @@ BEHAVIOR GUIDELINES:
 - Never make up information. If unknown, ask them to contact sales.
 `;
 
-const initDiptiChatbot = () => {
+const showGreetingTooltip = (trigger) => {
+  if (localStorage.getItem('silque_chat_interacted')) return;
+
+  const tooltip = document.createElement('div');
+  tooltip.className = 'dipti-greeting-tooltip';
+  tooltip.innerHTML = `
+    <div class="tooltip-body">Hi! I'm Saksham. Have a sourcing question? 👋</div>
+    <div class="tooltip-arrow"></div>
+  `;
+  document.body.appendChild(tooltip);
+
+  const positionTooltip = () => {
+    const rect = trigger.getBoundingClientRect();
+    tooltip.style.left = `${rect.left + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+    tooltip.style.bottom = `${window.innerHeight - rect.top + 12}px`;
+  };
+
+  // Delay fade-in
+  setTimeout(() => {
+    tooltip.classList.add('visible');
+    positionTooltip();
+  }, 4000);
+
+  window.addEventListener('resize', positionTooltip);
+
+  const dismissTooltip = () => {
+    tooltip.classList.remove('visible');
+    setTimeout(() => tooltip.remove(), 300);
+    window.removeEventListener('scroll', dismissTooltip);
+    window.removeEventListener('resize', positionTooltip);
+  };
+
+  window.addEventListener('scroll', dismissTooltip, { once: true });
+  trigger.addEventListener('click', () => {
+    localStorage.setItem('silque_chat_interacted', 'true');
+    dismissTooltip();
+  }, { once: true });
+};
+
+const initSakshamChatbot = () => {
   if (window.location.pathname.includes('/contact')) return;
 
   const trigger = buildChatbotTrigger();
@@ -939,6 +975,27 @@ const initDiptiChatbot = () => {
 
   let chatHistory = [];
 
+  // Local response cache helpers
+  const getCachedResponse = (query) => {
+    try {
+      const cache = JSON.parse(localStorage.getItem('silque_response_cache')) || {};
+      return cache[query.toLowerCase().trim()];
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const saveCachedResponse = (query, answer) => {
+    try {
+      const cache = JSON.parse(localStorage.getItem('silque_response_cache')) || {};
+      cache[query.toLowerCase().trim()] = answer;
+      localStorage.setItem('silque_response_cache', JSON.stringify(cache));
+    } catch (e) {}
+  };
+
+  // Trigger greeting tooltip after page load
+  showGreetingTooltip(trigger);
+
   const addMessage = (sender, text) => {
     const msgDiv = document.createElement('div');
     msgDiv.className = `dipti-message ${sender}`;
@@ -952,7 +1009,6 @@ const initDiptiChatbot = () => {
     chatView.style.display = 'none';
     widget.classList.remove('dipti-chat-mode');
     
-    // Trigger staggered entry animations on cards
     menuView.classList.remove('dipti-animate');
     void menuView.offsetWidth; // force reflow
     menuView.classList.add('dipti-animate');
@@ -983,7 +1039,6 @@ const initDiptiChatbot = () => {
     btn.addEventListener('click', toggleChat);
   });
 
-  // Main menu handlers
   optAiBtn.addEventListener('click', () => {
     menuView.style.display = 'none';
     chatView.style.display = 'flex';
@@ -993,7 +1048,6 @@ const initDiptiChatbot = () => {
 
   optQuoteBtn.addEventListener('click', () => {
     toggleChat();
-    // open existing B2B modal
     if (typeof openQuoteModal === 'function') {
       openQuoteModal(optQuoteBtn);
     }
@@ -1001,7 +1055,6 @@ const initDiptiChatbot = () => {
 
   backBtn.addEventListener('click', resetWidgetViews);
 
-  // Quick replies handler
   const quickReplyBtns = widget.querySelectorAll('.dipti-quick-reply-btn');
   quickReplyBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1011,7 +1064,6 @@ const initDiptiChatbot = () => {
         if (quickRepliesContainer) {
           quickRepliesContainer.style.display = 'none';
         }
-        // Dispatch submit event on the form
         inputForm.dispatchEvent(new Event('submit'));
       }
     });
@@ -1031,13 +1083,27 @@ const initDiptiChatbot = () => {
 
     const typingDiv = document.createElement('div');
     typingDiv.className = 'dipti-message assistant typing-indicator-msg';
-    typingDiv.innerHTML = `<div class="message-content"><em>Dipti is typing...</em></div>`;
+    typingDiv.innerHTML = `<div class="message-content"><em>Saksham is typing...</em></div>`;
     messagesContainer.appendChild(typingDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     chatHistory.push({ role: 'user', parts: [{ text: query }] });
     if (chatHistory.length > 4) {
       chatHistory = chatHistory.slice(-4);
+    }
+
+    // CHECK CACHE
+    const cached = getCachedResponse(query);
+    if (cached) {
+      setTimeout(() => {
+        typingDiv.remove();
+        addMessage('assistant', cached);
+        chatHistory.push({ role: 'model', parts: [{ text: cached }] });
+        if (chatHistory.length > 4) {
+          chatHistory = chatHistory.slice(-4);
+        }
+      }, 450);
+      return;
     }
 
     try {
@@ -1047,7 +1113,7 @@ const initDiptiChatbot = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: chatHistory,
-          system_instruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] },
+          system_instruction: { parts: [{ text: SAKSHAM_SYSTEM_INSTRUCTION }] },
           generationConfig: {
             maxOutputTokens: 300
           }
@@ -1063,7 +1129,6 @@ const initDiptiChatbot = () => {
       const resData = await response.json();
       let answer = resData.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate an answer. Please contact info@silquetissues.com.';
 
-      // Strip markdown bold and sanitize text to be strictly plain bullet points
       const cleanAnswer = (text) => {
         let cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '-');
         let rawLines = cleaned.split('\n');
@@ -1073,11 +1138,9 @@ const initDiptiChatbot = () => {
           let trimmed = line.trim();
           if (!trimmed) return;
           
-          // Remove leading bullet formatting if it exists to normalize
           let content = trimmed.replace(/^[-*•\d\.\:\s]+/, '').trim();
           if (!content) return;
           
-          // Filter out filler conversational headers
           const lower = content.toLowerCase();
           if (lower.startsWith('here is') || lower.startsWith('here are') || lower.startsWith('sure,') || lower.startsWith('certainly') || content.endsWith(':')) {
             return;
@@ -1113,6 +1176,9 @@ const initDiptiChatbot = () => {
         chatHistory = chatHistory.slice(-4);
       }
 
+      // SAVE TO CACHE
+      saveCachedResponse(query, formattedAnswer);
+
     } catch (err) {
       console.error(err);
       typingDiv.remove();
@@ -1121,4 +1187,4 @@ const initDiptiChatbot = () => {
   });
 };
 
-initDiptiChatbot();
+initSakshamChatbot();
