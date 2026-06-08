@@ -1120,8 +1120,8 @@ const initDiptiChatbot = () => {
     }
 
     try {
-      const decodedKey = atob('QUl6YVN5QThSTjZMX0VUZHJMQmNNQWJ3dWN6X0hBS1p2eG02QXdYSDg2Z05ma3Vfb2lEaDcwdw==');
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${decodedKey}`, {
+      const decodedKey = atob('QVEuQWI4Uk42TF9FVGRyTEJjTUFid3Vjel9IQUtaVnhtNkF3WEg4NmdOZmt1X29pRGg3MHc=');
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${decodedKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1227,4 +1227,4 @@ const initDiptiChatbot = () => {
   });
 };
 
-initSakshamChatbot();
+initDiptiChatbot();

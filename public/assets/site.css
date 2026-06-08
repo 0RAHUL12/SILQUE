@@ -4362,9 +4362,12 @@ main details[open] p, main details[open] ul {
   z-index: 220;
   width: 54px;
   height: 54px;
-  border: 2px solid var(--gold);
+  border: 2px solid transparent;
   border-radius: 27px;
-  background: rgba(16, 24, 39, 0.75);
+  background: 
+    linear-gradient(rgba(16, 24, 39, 0.82), rgba(16, 24, 39, 0.82)) padding-box,
+    linear-gradient(90deg, rgba(198,168,92,0.35) 0%, var(--gold) 35%, rgba(198,168,92,0.35) 70%, var(--gold) 100%) border-box;
+  background-size: 100% 100%, 300% 100%;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #fff;
@@ -4375,27 +4378,21 @@ main details[open] p, main details[open] ul {
   justify-content: flex-end; /* keeps logo/close wrapper on the right */
   overflow: hidden;
   padding: 0;
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, box-shadow 0.3s;
+  animation: dipti-border-flow 6s linear infinite;
 }
 
-.dipti-chatbot-trigger:not(.is-active) {
-  animation: dipti-pulse 2s infinite;
-}
-
-@keyframes dipti-pulse {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(198, 168, 92, 0.25), 0 12px 32px rgba(8, 12, 20, 0.24);
-    border-color: rgba(198, 168, 92, 0.45);
+@keyframes dipti-border-flow {
+  0% {
+    background-position: 0% 0%, 0% 0%;
   }
-  50% {
-    box-shadow: 0 0 15px rgba(198, 168, 92, 0.6), 0 12px 32px rgba(8, 12, 20, 0.28);
-    border-color: rgba(198, 168, 92, 0.9);
+  100% {
+    background-position: 0% 0%, -300% 0%;
   }
 }
 
 .dipti-chatbot-trigger:hover,
 .dipti-chatbot-trigger.is-active {
-  border-color: rgba(244, 217, 135, 0.86);
   box-shadow: 0 16px 40px rgba(8, 12, 20, 0.32);
 }
 
