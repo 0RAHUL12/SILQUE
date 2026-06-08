@@ -762,7 +762,7 @@ const buildChatbotDipti = () => {
             <button class="dipti-menu-option-card" type="button" id="dipti-opt-ai">
               <div class="dipti-option-icon robot">🤖</div>
               <div class="dipti-option-details">
-                <h4>Talk to Saksham (AI Sourcing Agent)</h4>
+                <h4>Talk to Dipti (AI Sourcing Agent)</h4>
                 <p>Instant answers about specifications, custom printing, and delivery.</p>
               </div>
               <div class="dipti-option-arrow">➔</div>
@@ -800,10 +800,10 @@ const buildChatbotDipti = () => {
         <div class="dipti-chat-header">
           <button class="dipti-chat-back" type="button" id="dipti-back-btn" aria-label="Go Back">←</button>
           <div class="dipti-chat-avatar" style="width: 32px; height: 32px; border: 1.5px solid var(--gold); background: #101827; padding: 1.5px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <img src="/saksham-avatar.png" alt="Saksham Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+            <img src="/dipti-avatar.png" alt="Dipti Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
           </div>
           <div class="dipti-chat-title-info">
-            <h3>Saksham</h3>
+            <h3>Dipti</h3>
             <span>SILQUE AI Assistant</span>
           </div>
           <button class="dipti-chat-close" type="button" aria-label="Close Chat">&times;</button>
@@ -812,7 +812,7 @@ const buildChatbotDipti = () => {
         <div class="dipti-chat-messages" id="dipti-messages">
           <div class="dipti-message assistant">
             <div class="message-content">
-              Hello! I am <strong>Saksham</strong>, your SILQUE AI Assistant. How can I help you today?
+              Hello! I am <strong>Dipti</strong>, your SILQUE AI Assistant. How can I help you today?
             </div>
           </div>
           
@@ -833,7 +833,7 @@ const buildChatbotDipti = () => {
 
 
         <form class="dipti-chat-input-area" id="dipti-input-form">
-          <input type="text" id="dipti-user-input" placeholder="Ask Saksham about sizes, custom prints..." autocomplete="off" required />
+          <input type="text" id="dipti-user-input" placeholder="Ask Dipti about sizes, custom prints..." autocomplete="off" required />
           <button type="submit" id="dipti-send-btn" aria-label="Send message">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           </button>
@@ -854,7 +854,7 @@ const buildChatbotTrigger = () => {
     <span class="dipti-trigger-text">Have a question?</span>
     <div class="dipti-trigger-icon-wrap">
       <div class="dipti-trigger-logo">
-        <img src="/saksham-avatar.png" alt="Saksham Avatar" />
+        <img src="/dipti-avatar.png" alt="Dipti Avatar" />
       </div>
       <div class="dipti-trigger-close">&times;</div>
     </div>
@@ -863,7 +863,10 @@ const buildChatbotTrigger = () => {
   return button;
 };
 
-const SAKSHAM_SYSTEM_INSTRUCTION = `
+const DIPTI_SYSTEM_INSTRUCTION = `
+You are Dipti, the friendly, professional, and knowledgeable AI Sourcing Assistant for SILQUE (SILQUE TISSUES), a premium hospitality airlaid napkin manufacturer and supplier based in Bengaluru (Bangalore), India.
+Your goal is to assist B2B buyers (hotel procurement managers, restaurant groups, wedding planners, caterers, and distributors) with their sourcing inquiries.
+
 Here is the verified information about SILQUE that you must use to answer questions:
 
 1. COMPANY OVERVIEW & CONTACTS:
@@ -921,7 +924,7 @@ const showGreetingTooltip = (trigger) => {
   const tooltip = document.createElement('div');
   tooltip.className = 'dipti-greeting-tooltip';
   tooltip.innerHTML = `
-    <div class="tooltip-body">Hi! I'm Saksham. Have a sourcing question? 👋</div>
+    <div class="tooltip-body">Hi! I'm Dipti. Have a sourcing question? 👋</div>
     <div class="tooltip-arrow"></div>
   `;
   document.body.appendChild(tooltip);
@@ -954,7 +957,7 @@ const showGreetingTooltip = (trigger) => {
   }, { once: true });
 };
 
-const initSakshamChatbot = () => {
+const initDiptiChatbot = () => {
   if (window.location.pathname.includes('/contact')) return;
 
   const trigger = buildChatbotTrigger();
@@ -1093,7 +1096,7 @@ const initSakshamChatbot = () => {
 
     const typingDiv = document.createElement('div');
     typingDiv.className = 'dipti-message assistant typing-indicator-msg';
-    typingDiv.innerHTML = `<div class="message-content"><em>Saksham is typing...</em></div>`;
+    typingDiv.innerHTML = `<div class="message-content"><em>Dipti is typing...</em></div>`;
     messagesContainer.appendChild(typingDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
@@ -1123,7 +1126,7 @@ const initSakshamChatbot = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: chatHistory,
-          system_instruction: { parts: [{ text: SAKSHAM_SYSTEM_INSTRUCTION }] },
+          system_instruction: { parts: [{ text: DIPTI_SYSTEM_INSTRUCTION }] },
           generationConfig: {
             maxOutputTokens: 300
           }
