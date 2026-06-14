@@ -51,7 +51,7 @@ if (slides.length > 1) {
   }
 
   if (!reducedMotion) {
-    window.setInterval(() => {
+    window.heroSliderInterval = window.setInterval(() => {
       setHeroSlide(activeSlide + 1);
     }, 3600);
   }
@@ -461,6 +461,7 @@ const closeQuoteModal = (options = {}) => {
   sampleFloatTrigger?.setAttribute('aria-expanded', 'false');
   quoteModal.classList.add('is-closing');
   quoteModal.classList.remove('is-open');
+  quoteModal.setAttribute('aria-modal', 'false');
   document.body.classList.remove('quote-modal-open');
 
   const finishClose = () => {
@@ -506,6 +507,7 @@ const openQuoteModal = (trigger, options = {}) => {
   quoteFormEngaged = false;
   quoteModal.classList.remove('is-closing');
   quoteModal.hidden = false;
+  quoteModal.setAttribute('aria-modal', 'true');
   sampleFloatTrigger?.classList.add('is-active');
   sampleFloatTrigger?.setAttribute('aria-expanded', 'true');
   quoteForm.elements.source.value = `${document.title} | ${window.location.href}`;
@@ -565,23 +567,31 @@ quoteForm.addEventListener('submit', async (event) => {
   });
   const submitButton = quoteForm.querySelector('button[type="submit"]');
   const status = quoteForm.querySelector('.quote-status');
+  
   submitButton.disabled = true;
-  status.textContent = quoteSuccessMessage;
+  status.textContent = 'Submitting request...';
+
   trackLeadEvent('request_sample_submit', {
     form_location: window.location.pathname,
     lead_source: String(data.get('source') || '')
   });
-  postQuoteLead(data).catch(() => {
+
+  try {
+    await postQuoteLead(data);
+    status.textContent = quoteSuccessMessage;
+    quoteForm.reset();
+    window.setTimeout(() => {
+      closeQuoteModal();
+      submitButton.disabled = false;
+    }, 1500);
+  } catch (error) {
+    console.error(error);
     trackLeadEvent('request_sample_submit_error', {
       form_location: window.location.pathname
     });
     status.textContent = 'Could not submit. Please WhatsApp or email us.';
-  }).finally(() => {
     submitButton.disabled = false;
-  });
-
-  quoteForm.reset();
-  window.setTimeout(closeQuoteModal, 900);
+  }
 });
 
 // Interactive color swatches preview
@@ -990,6 +1000,10 @@ const initDiptiChatbot = () => {
     try {
       const cache = JSON.parse(localStorage.getItem('silque_response_cache')) || {};
       cache[query.toLowerCase().trim()] = answer;
+      const keys = Object.keys(cache);
+      if (keys.length > 50) {
+        delete cache[keys[0]]; // remove oldest entry
+      }
       localStorage.setItem('silque_response_cache', JSON.stringify(cache));
     } catch (e) {}
   };
@@ -1088,7 +1102,14 @@ const initDiptiChatbot = () => {
   const addMessage = (sender, text) => {
     const msgDiv = document.createElement('div');
     msgDiv.className = `dipti-message ${sender}`;
-    msgDiv.innerHTML = `<div class="message-content">${text}</div>`;
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    if (sender === 'user') {
+      contentDiv.textContent = text;
+    } else {
+      contentDiv.innerHTML = text;
+    }
+    msgDiv.appendChild(contentDiv);
     messagesContainer.appendChild(msgDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
@@ -1153,7 +1174,7 @@ const initDiptiChatbot = () => {
         if (quickRepliesContainer) {
           quickRepliesContainer.style.display = 'none';
         }
-        inputForm.dispatchEvent(new Event('submit'));
+        inputForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
       }
     });
   });

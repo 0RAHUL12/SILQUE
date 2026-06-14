@@ -2,6 +2,7 @@
   --navy: #152238;
   --navy-deep: #101827;
   --gold: #c6a85c;
+  --gold-dark: #a88b45;
   --ivory: #f5f3ef;
   --white: #ffffff;
   --text: #3d4a5c;
@@ -1330,18 +1331,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
   }
 }
 
-/* Common user optimisation pass */
-[data-reveal],
-[data-reveal].is-visible,
-.image-feature[data-reveal],
-.showcase-item[data-reveal] img,
-.gallery-item[data-reveal] img,
-.showcase-item[data-reveal].is-visible img,
-.gallery-item[data-reveal].is-visible img {
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
+/* Reveal animation override pass removed */
 
 h1,
 h2,
@@ -2376,7 +2366,7 @@ body.quote-modal-open {
 
 .quick-spec-strip em {
   color: var(--navy);
-  font-family: "Playfair Display", serif;
+  font-family: "Outfit", sans-serif;
   font-size: clamp(1.08rem, 1.6vw, 1.42rem);
   font-style: normal;
   font-weight: 800;
@@ -4943,7 +4933,7 @@ main details[open] p, main details[open] ul {
 /* Tooltip Greeting Styling */
 .dipti-greeting-tooltip {
   position: fixed;
-  z-index: 10000;
+  z-index: 500;
   background: rgba(16, 24, 39, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
