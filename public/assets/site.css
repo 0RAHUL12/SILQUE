@@ -1193,7 +1193,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 
 .contact-logo-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -1257,6 +1257,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 .contact-logo-card.instagram span { background: linear-gradient(135deg, #7b2ff7, #f94174 54%, #f9a826); }
 .contact-logo-card.linkedin span { background: #0a66c2; }
 .contact-logo-card.maps span { background: #c6a85c; }
+.contact-logo-card.livechat span { background: #185adb; }
 
 .office-panel {
   min-height: 100%;
@@ -4703,6 +4704,10 @@ main details[open] p, main details[open] ul {
 
 .dipti-option-icon.document {
   background: rgba(30, 144, 255, 0.15);
+}
+
+.dipti-option-icon.livechat {
+  background: rgba(24, 90, 219, 0.15);
 }
 
 .dipti-option-details {

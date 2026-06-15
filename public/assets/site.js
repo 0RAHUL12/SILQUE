@@ -787,6 +787,15 @@ const buildChatbotDipti = () => {
               <div class="dipti-option-arrow">➔</div>
             </button>
 
+            <button class="dipti-menu-option-card" type="button" id="dipti-opt-livechat">
+              <div class="dipti-option-icon livechat">💬</div>
+              <div class="dipti-option-details">
+                <h4>Chat with Live Support</h4>
+                <p>Connect with a member of our customer support team in real-time.</p>
+              </div>
+              <div class="dipti-option-arrow">➔</div>
+            </button>
+
             <a class="dipti-menu-option-card" href="https://wa.me/919122428064?text=Hi%2C%20I%20want%20to%20enhance%20my%20table%20presentation.%20Let's%20connect." target="_blank" rel="noopener noreferrer" id="dipti-opt-wa">
               <div class="dipti-option-icon whatsapp">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #25D366; display: block;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.967C16.638 2.022 14.162.99 11.536.99c-5.438 0-9.863 4.373-9.867 9.803-.001 1.73.457 3.42 1.32 4.938L1.936 21.099l5.807-1.52L6.59 19.154zM17.91 14.65c-.307-.154-1.82-.9-2.102-1.003-.283-.103-.49-.154-.695.154-.205.308-.795.998-.973 1.203-.178.205-.356.23-.663.077-.307-.154-1.3-.48-2.476-1.53-1.026-.917-1.413-2.036-1.618-2.385-.205-.348-.022-.538.13-.69.138-.135.307-.358.46-.538.154-.18.205-.307.307-.512.103-.205.051-.385-.026-.538-.077-.154-.695-1.68-.953-2.302-.25-.604-.52-.519-.695-.53-.179-.011-.385-.013-.59-.013-.205 0-.538.077-.82.384-.282.308-1.077 1.05-1.077 2.564 0 1.513 1.1 2.974 1.254 3.18 1.583 2.146 3.1 2.872 5.061 3.719 1.961.846 1.961.564 2.308.53.346-.035 1.82-.744 2.077-1.46.257-.718.257-1.333.18-1.461-.077-.128-.282-.205-.59-.359z"/></svg>
@@ -976,6 +985,7 @@ const initDiptiChatbot = () => {
   
   const optAiBtn = widget.querySelector('#dipti-opt-ai');
   const optQuoteBtn = widget.querySelector('#dipti-opt-quote');
+  const optLiveChatBtn = widget.querySelector('#dipti-opt-livechat');
   const backBtn = widget.querySelector('#dipti-back-btn');
   const closeBtns = widget.querySelectorAll('.dipti-chat-close');
   
@@ -1163,6 +1173,15 @@ const initDiptiChatbot = () => {
     }
   });
 
+  optLiveChatBtn.addEventListener('click', () => {
+    toggleChat();
+    if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+      window.$zoho.salesiq.floatwindow.visible('show');
+    } else {
+      alert("Live chat is currently unavailable. Please contact us on WhatsApp.");
+    }
+  });
+
   backBtn.addEventListener('click', resetWidgetViews);
 
   const quickReplyBtns = widget.querySelectorAll('.dipti-quick-reply-btn');
@@ -1319,3 +1338,16 @@ const initDiptiChatbot = () => {
 };
 
 initDiptiChatbot();
+
+// Contact page live chat card trigger
+const contactLiveChatTrigger = document.querySelector('#contact-livechat-trigger');
+if (contactLiveChatTrigger) {
+  contactLiveChatTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+      window.$zoho.salesiq.floatwindow.visible('show');
+    } else {
+      alert("Live chat is currently unavailable. Please contact us on WhatsApp.");
+    }
+  });
+}
