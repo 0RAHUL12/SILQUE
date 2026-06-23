@@ -866,6 +866,7 @@ const buildChatbotTrigger = () => {
       <div class="dipti-trigger-logo">
         <img src="/dipti-avatar.png" alt="Dipti Avatar" />
       </div>
+      <span class="dipti-online-dot" aria-label="Online status"></span>
       <div class="dipti-trigger-close">&times;</div>
     </div>
   `;
@@ -1332,3 +1333,42 @@ if (contactLiveChatTrigger) {
     }
   });
 }
+
+// Prevent overlap conflict between Zoho SalesIQ window and Dipti AI Chatbot
+const initZohoOverlapPrevention = () => {
+  const registerCallbacks = () => {
+    if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+      window.$zoho.salesiq.floatwindow.open(function() {
+        const trigger = document.querySelector('.dipti-chatbot-trigger');
+        const container = document.querySelector('.dipti-chatbot-container');
+        if (trigger) trigger.classList.add('dipti-hidden');
+        if (container) container.classList.remove('dipti-open'); // Hide Dipti's UI if open
+      });
+
+      const showDiptiAgain = function() {
+        const trigger = document.querySelector('.dipti-chatbot-trigger');
+        if (trigger) trigger.classList.remove('dipti-hidden');
+      };
+
+      window.$zoho.salesiq.floatwindow.close(showDiptiAgain);
+      window.$zoho.salesiq.floatwindow.minimize(showDiptiAgain);
+    }
+  };
+
+  // If already loaded and ready, register callbacks immediately
+  if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+    registerCallbacks();
+  } else {
+    // Otherwise, hook into the ready callback
+    window.$zoho = window.$zoho || {};
+    window.$zoho.salesiq = window.$zoho.salesiq || {};
+    const originalReady = window.$zoho.salesiq.ready;
+    window.$zoho.salesiq.ready = function() {
+      if (typeof originalReady === 'function') {
+        originalReady();
+      }
+      registerCallbacks();
+    };
+  }
+};
+initZohoOverlapPrevention();
