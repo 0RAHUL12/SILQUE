@@ -1257,7 +1257,31 @@ summary { cursor: pointer; color: var(--navy); font-weight: 700; }
 .contact-logo-card.instagram span { background: linear-gradient(135deg, #7b2ff7, #f94174 54%, #f9a826); }
 .contact-logo-card.linkedin span { background: #0a66c2; }
 .contact-logo-card.maps span { background: #c6a85c; }
-.contact-logo-card.livechat span { background: #185adb; }
+.contact-logo-card.livechat span { background: #ef4444; }
+
+/* Red neon light effect for live chat card */
+.contact-logo-card.livechat {
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2), 0 12px 34px rgba(21, 34, 56, 0.045);
+  animation: neon-pulse-red 2.5s infinite alternate ease-in-out;
+}
+
+.contact-logo-card.livechat:hover {
+  border-color: rgba(239, 68, 68, 0.9) !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 35px rgba(239, 68, 68, 0.35), 0 18px 46px rgba(21, 34, 56, 0.08) !important;
+  animation: none !important;
+}
+
+@keyframes neon-pulse-red {
+  0% {
+    border-color: rgba(239, 68, 68, 0.35);
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.15), 0 12px 34px rgba(21, 34, 56, 0.045);
+  }
+  100% {
+    border-color: rgba(239, 68, 68, 0.75);
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.45), 0 0 30px rgba(239, 68, 68, 0.25), 0 18px 46px rgba(21, 34, 56, 0.08);
+  }
+}
 
 .office-panel {
   min-height: 100%;

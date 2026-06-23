@@ -1327,6 +1327,9 @@ if (contactLiveChatTrigger) {
   contactLiveChatTrigger.addEventListener('click', (e) => {
     e.preventDefault();
     if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+      if (window.$zoho.salesiq.floatbutton) {
+        window.$zoho.salesiq.floatbutton.visible('hide');
+      }
       window.$zoho.salesiq.floatwindow.visible('show');
     } else {
       alert("Live chat is currently unavailable. Please contact us on WhatsApp.");
@@ -1339,13 +1342,24 @@ const initZohoOverlapPrevention = () => {
   const registerCallbacks = () => {
     if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
       window.$zoho.salesiq.floatwindow.open(function() {
+        // Enforce Zoho's default chat button remains hidden
+        if (window.$zoho.salesiq.floatbutton) {
+          window.$zoho.salesiq.floatbutton.visible("hide");
+        }
         const trigger = document.querySelector('.dipti-chatbot-trigger');
         const container = document.querySelector('.dipti-chatbot-container');
         if (trigger) trigger.classList.add('dipti-hidden');
-        if (container) container.classList.remove('dipti-open'); // Hide Dipti's UI if open
+        if (container) {
+          container.classList.remove('dipti-open');
+          container.classList.remove('dipti-chat-mode'); // Reset chat mode state
+        }
       });
 
       const showDiptiAgain = function() {
+        // Enforce Zoho's default chat button remains hidden on close/minimize
+        if (window.$zoho.salesiq.floatbutton) {
+          window.$zoho.salesiq.floatbutton.visible("hide");
+        }
         const trigger = document.querySelector('.dipti-chatbot-trigger');
         if (trigger) trigger.classList.remove('dipti-hidden');
       };
